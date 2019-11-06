@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.login.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_haz_paseador"
+        android:name="com.example.login.ui.gallery.GalleryFragment"
+        android:label="@string/convierte_paseador"
+        tools:layout="@layout/fragment_haz_paseador" />
+
+    <fragment
+        android:id="@+id/nav_cerrar_se"
+        android:name="com.example.login.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_cerrar_se" />
+
+    <fragment
+        android:id="@+id/nav_tools"
+        android:name="com.example.login.ui.tools.ToolsFragment"
+        android:label="@string/menu_tools"
+        tools:layout="@layout/fragment_mascotas" />
+
+    <fragment
+        android:id="@+id/nav_acerca"
+        android:name="com.example.login.ui.share.ShareFragment"
+        android:label="@string/acerca_de"
+        tools:layout="@layout/fragment_acerca" />
+
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.example.login.ui.send.SendFragment"
+        android:label="@string/perfil"
+        tools:layout="@layout/fragment_perfil" />
+</navigation>
