@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+    /*
+    ahorita vemos que pedo
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
