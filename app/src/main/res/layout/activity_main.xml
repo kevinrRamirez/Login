@@ -7,8 +7,67 @@
     tools:context=".MainActivity">
 
 
+
     <ScrollView
         android:layout_width="match_parent"
+
+    <Button
+        android:id="@+id/btnIngresar"
+        android:layout_width="199dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="224dp"
+        android:background="@drawable/boton_solido"
+        android:onClick="ctrlBoton"
+        android:text="@string/login_ingresar"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnRegistro"
+        android:layout_width="145dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/boton_borde"
+        android:onClick="ctrlBoton"
+        android:text="@string/login_registro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIngresar" />
+
+    <EditText
+        android:id="@+id/txtUsuario"
+        android:layout_width="250dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#FF196AB6"
+        android:drawableLeft="@drawable/ic_email"
+        android:ems="10"
+        android:hint="@string/correo_electronio"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/txtPass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/txtPass"
+        android:layout_width="248dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="84dp"
+        android:backgroundTint="#FF196AB6"
+        android:drawableLeft="@drawable/ic_action_name"
+        android:ems="10"
+        android:hint="@string/contrasenia"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/btnIngresar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -144,20 +203,6 @@
 
 
     </ScrollView>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
