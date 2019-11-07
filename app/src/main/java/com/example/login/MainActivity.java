@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(MainActivity.this, NavigationPaseando.class);
                 break;
             case R.id.btnRegistro:
-            //case R.id.tv_registrate:
+            case R.id.tv_registrate:
                 intent = new Intent(MainActivity.this, Registro.class);
                 break;
 

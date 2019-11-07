@@ -6,69 +6,140 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btnIngresar"
-        android:layout_width="199dp"
-        android:layout_height="53dp"
-        android:layout_marginBottom="224dp"
-        android:background="@drawable/boton_solido"
-        android:onClick="ctrlBoton"
-        android:text="@string/login_ingresar"
-        android:textSize="40dp"
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnRegistro"
-        android:layout_width="145dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/boton_borde"
-        android:onClick="ctrlBoton"
-        android:text="@string/login_registro"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIngresar" />
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
-    <EditText
-        android:id="@+id/txtUsuario"
-        android:layout_width="250dp"
-        android:layout_height="43dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="#FF196AB6"
-        android:drawableLeft="@drawable/ic_email"
-        android:ems="10"
-        android:hint="@string/correo_electronio"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/txtPass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/txtPass"
-        android:layout_width="248dp"
-        android:layout_height="39dp"
-        android:layout_marginBottom="84dp"
-        android:backgroundTint="#FF196AB6"
-        android:drawableLeft="@drawable/ic_action_name"
-        android:ems="10"
-        android:hint="@string/contrasenia"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/btnIngresar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtUsuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/usuario"
-        tools:srcCompat="@tools:sample/avatars[14]" />
+
+            <Button
+                android:id="@+id/btnIngresar"
+                android:layout_width="199dp"
+                android:layout_height="53dp"
+                android:layout_marginBottom="50dp"
+
+                android:background="@drawable/boton_solido"
+                android:foregroundGravity="center_horizontal"
+                android:onClick="ctrlBoton"
+                android:text="@string/login_ingresar"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toBottomOf="@id/btnRegistro"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/txtUsuario"
+                android:layout_width="250dp"
+                android:layout_height="43dp"
+                android:layout_marginBottom="24dp"
+                android:autofillHints="@string/ingresar"
+                android:backgroundTint="#FF196AB6"
+                android:drawableStart="@drawable/ic_email"
+
+                android:ems="10"
+                android:hint="@string/correo_electronio"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/txtPass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/txtPass"
+                android:layout_width="248dp"
+                android:layout_height="39dp"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="#FF196AB6"
+                android:drawableStart="@drawable/ic_action_name"
+                android:ems="10"
+                android:hint="@string/contrasenia"
+                android:inputType="textPassword"
+                app:layout_constraintBottom_toTopOf="@+id/btnIngresar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toTopOf="@+id/txtUsuario"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@mipmap/usuario"
+                tools:srcCompat="@tools:sample/avatars[14]" />
+
+
+            <Button
+                android:id="@+id/btnRegistro"
+                android:layout_width="145dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/boton_borde"
+                android:onClick="ctrlBoton"
+                android:text="@string/login_registro"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnIngresar"
+                app:layout_constraintVertical_bias="0.25" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="221dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnIngresar">
+
+                <TextView
+                    android:id="@+id/editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:text="@string/no_tienes_cuenta"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_registrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:onClick="ctrlBoton"
+                    android:text="@string/login_registro"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/editText"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
