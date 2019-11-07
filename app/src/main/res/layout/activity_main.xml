@@ -16,7 +16,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/boton_solido"/>
 
     <Button
         android:id="@+id/btnRegistro"
@@ -27,7 +28,8 @@
         android:text="@string/login_registro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIngresar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnIngresar"
+        android:background="@drawable/boton_borde"/>
 
     <EditText
         android:id="@+id/txtUsuario"
@@ -39,7 +41,8 @@
         app:layout_constraintBottom_toTopOf="@+id/txtPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/correo_electronio" />
+        tools:text="@string/correo_electronio"
+        android:backgroundTint="#FF196AB6"/>
 
     <EditText
         android:id="@+id/txtPass"
@@ -50,7 +53,8 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/btnIngresar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="#FF196AB6"/>
 
     <ImageView
         android:id="@+id/imageView2"
