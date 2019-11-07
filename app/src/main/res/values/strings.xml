@@ -29,4 +29,6 @@
     <string name="convierte_paseador">Conviertete en Paseador</string>
     <string name="registrar">Registrar</string>
     <string name="contrasenia">Contrasenia</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="ubicacion">Ubicacion</string>
 </resources>
