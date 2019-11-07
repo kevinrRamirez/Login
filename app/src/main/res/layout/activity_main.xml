@@ -14,6 +14,7 @@
         android:background="@drawable/boton_solido"
         android:onClick="ctrlBoton"
         android:text="@string/login_ingresar"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
