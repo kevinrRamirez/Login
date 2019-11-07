@@ -28,4 +28,5 @@
     <string name="edad_de_la_mascota">Edad de la Mascota</string>
     <string name="convierte_paseador">Conviertete en Paseador</string>
     <string name="registrar">Registrar</string>
+    <string name="contrasenia">Contrasenia</string>
 </resources>
