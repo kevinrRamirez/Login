@@ -31,4 +31,11 @@
     <string name="contrasenia">Contrasenia</string>
     <string name="aceptar">Aceptar</string>
     <string name="ubicacion">Ubicacion</string>
+    <string name="nombre_y_apellido">Nombre y Apellido</string>
+
+
+
+    <string name="no_tienes_cuenta">¿No tienes una cuenta?</string>
+    <string name="si_tienes_cuenta">¿Ya tienes una cuenta?</string>
+    <string name="ingresar">Ingresar</string>
 </resources>

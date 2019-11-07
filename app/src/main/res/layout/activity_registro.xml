@@ -26,8 +26,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="256dp"
                 android:ems="10"
+                android:hint="@string/nombre_y_apellido"
                 android:inputType="textPersonName"
-                android:text="Name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,26 +36,27 @@
                 android:id="@+id/txtCorreo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
+                android:hint="@string/correo_electronio"
                 android:inputType="textPersonName"
-                android:text="Name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtNombre"
-                android:layout_gravity="center"/>
+                app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
 
             <EditText
                 android:id="@+id/txtPass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
+                android:hint="@string/contrasenia"
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCorreo"
-                android:layout_gravity="center"/>
+                app:layout_constraintTop_toBottomOf="@+id/txtCorreo" />
 
 
             <EditText
@@ -64,14 +65,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="272dp"
+                android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="@string/contrasenia"
                 android:inputType="textPassword"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/btnRegistro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPass"
                 app:layout_constraintVertical_bias="1.0" />
+
 
             <Button
                 android:id="@+id/btnRegistro"
@@ -80,24 +83,77 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="150dp"
                 android:layout_marginEnd="150dp"
-                android:layout_marginBottom="80dp"
+                android:onClick="ctrlBoton"
+
                 android:text="@string/registrar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPass" />
 
             <ImageView
                 android:id="@+id/imgLogo"
                 android:layout_width="193dp"
                 android:layout_height="158dp"
+                android:layout_marginStart="150dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginEnd="150dp"
                 android:layout_marginBottom="60dp"
                 app:layout_constraintBottom_toTopOf="@+id/txtNombre"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@mipmap/perro" />
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@mipmap/ic_launcherpaseando_round" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="221dp"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPassConf">
+
+                <TextView
+                    android:id="@+id/editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:text="@string/si_tienes_cuenta"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:text="@string/ingresar"
+                    android:textStyle="bold"
+                    android:onClick="ctrlBoton"
+                    android:id="@+id/tv_ingresar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/editText"
+                    app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editText"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
