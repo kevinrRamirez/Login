@@ -33,7 +33,7 @@
                 android:foregroundGravity="center_horizontal"
                 android:onClick="ctrlBoton"
                 android:text="@string/login_ingresar"
-                android:textSize="40sp"
+                android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="@id/btnRegistro"
                 app:layout_constraintEnd_toEndOf="parent"
 
