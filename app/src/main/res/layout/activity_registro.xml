@@ -30,7 +30,8 @@
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:backgroundTint="@color/colorPrimary2"/>
 
             <EditText
                 android:id="@+id/txtCorreo"
@@ -43,7 +44,8 @@
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+                app:layout_constraintTop_toBottomOf="@+id/txtNombre"
+                android:backgroundTint="@color/colorPrimary2"/>
 
             <EditText
                 android:id="@+id/txtPass"
@@ -56,7 +58,8 @@
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCorreo" />
+                app:layout_constraintTop_toBottomOf="@+id/txtCorreo"
+                android:backgroundTint="@color/colorPrimary2"/>
 
 
             <EditText
@@ -73,7 +76,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPass"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="1.0"
+                android:backgroundTint="@color/colorPrimary2"/>
 
 
             <Button
@@ -89,7 +93,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPass" />
+                app:layout_constraintTop_toBottomOf="@+id/txtPass"
+                android:background="@drawable/boton_solido2"/>
 
             <ImageView
                 android:id="@+id/imgLogo"

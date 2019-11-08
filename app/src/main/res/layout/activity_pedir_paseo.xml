@@ -17,7 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:background="@drawable/boton_solido"/>
 
     <ImageView
         android:id="@+id/imgMascota"
