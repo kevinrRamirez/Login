@@ -36,24 +36,10 @@ public class Registro extends AppCompatActivity {
         txtPassConf = (EditText) findViewById(R.id.txtPassConf);
         btnIngresar = (Button) findViewById(R.id.btnIngresar);
 
-        tvAux = (TextView) findViewById(R.id.tv_aux);
 
-        //btnIngresar.setOnClickListener(this);
     }
 
 
-/*
-       @Override
-    public void onClick(View v) {
-        final String nombre = txtNombre.getText().toString();
-        final String correo = txtCorreo.getText().toString();
-        final String pass = txtPass.getText().toString();
-        final String passConf = txtPassConf.getText().toString();
-
-        Intent intent = new Intent (v.getContext(),NavigationPaseando.class);
-        startActivity(intent);
-    }
-*/
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
