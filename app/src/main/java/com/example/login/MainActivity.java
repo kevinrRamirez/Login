@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     /*
@@ -12,7 +13,8 @@ public class MainActivity extends AppCompatActivity {
     pablooooo
      */
 
-
+    TextView txtCorreo;
+    TextView txtPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.btnIngresar:
                 intent = new Intent(MainActivity.this, NavigationPaseando.class);
+                limpTextView();
                 break;
             case R.id.btnRegistro:
             case R.id.tv_registrate:
@@ -43,6 +46,16 @@ public class MainActivity extends AppCompatActivity {
 
         }
         startActivity(intent);
+
+    }
+
+    public void limpTextView()
+    {
+        txtCorreo = (TextView) findViewById(R.id.txtUsuario);
+        txtPass = (TextView) findViewById(R.id.txtPass);
+
+        txtCorreo.setText("");
+        txtPass.setText("");
 
     }
 

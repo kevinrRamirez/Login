@@ -45,7 +45,7 @@
                 android:id="@+id/txtUsuario"
                 android:layout_width="250dp"
                 android:layout_height="43dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="45dp"
                 android:autofillHints="@string/ingresar"
                 android:backgroundTint="#FF196AB6"
                 android:drawableStart="@drawable/ic_email"
@@ -61,7 +61,7 @@
                 android:id="@+id/txtPass"
                 android:layout_width="248dp"
                 android:layout_height="39dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="60dp"
                 android:backgroundTint="#FF196AB6"
                 android:drawableStart="@drawable/ic_action_name"
                 android:ems="10"
@@ -101,7 +101,7 @@
 
                 <TextView
                     android:id="@+id/editText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:text="@string/no_tienes_cuenta"
                     app:layout_constraintBottom_toBottomOf="parent"

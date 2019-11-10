@@ -25,36 +25,20 @@
                 android:id="@+id/btnNuevoPaseo"
                 android:layout_width="260dp"
                 android:layout_height="67dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="400dp"
+                android:layout_marginBottom="100dp"
                 android:onClick="ctrlBoton"
+
                 android:text="@string/nav_pas_pedirpaseo"
-
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-
-                />
-
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="244dp"
-                android:layout_height="73dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:text="@string/cerrar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintHorizontal_bias="0.562"
                 app:layout_constraintStart_toStartOf="parent"
 
-                app:layout_constraintTop_toBottomOf="@+id/btnNuevoPaseo"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.944" />
 
-
-
-                app:layout_constraintVertical_bias="1.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

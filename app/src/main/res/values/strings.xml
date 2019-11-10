@@ -21,21 +21,25 @@
     <string name="acerca_de">Acerca de</string>
     <string name="acerca_de_paseando">Acerca de PaseAndo</string>
     <string name="perfil">Perfil</string>
-    <string name="cerrar">Cerrar</string>
+    <string name="cerrar">Cerrar sesión</string>
     <string name="nombre_de_usuario">Nombre de usuario</string>
     <string name="direccion">Direccion</string>
     <string name="nombre_de_la_mascota">Nombre de la mascota</string>
     <string name="edad_de_la_mascota">Edad de la Mascota</string>
     <string name="convierte_paseador">Conviertete en Paseador</string>
     <string name="registrar">Registrar</string>
-    <string name="contrasenia">Contrasenia</string>
+    <string name="contrasenia">Contraseña</string>
     <string name="aceptar">Aceptar</string>
-    <string name="ubicacion">Ubicacion</string>
+    <string name="ubicacion">Ubicación</string>
     <string name="nombre_y_apellido">Nombre y Apellido</string>
-
+    <string name="cancelar">Cancelar</string>
+    <string name="nada"> </string>
+    <string name="paseando">PaseAndo</string>
 
 
     <string name="no_tienes_cuenta">¿No tienes una cuenta?</string>
     <string name="si_tienes_cuenta">¿Ya tienes una cuenta?</string>
     <string name="ingresar">Ingresar</string>
+    <string name="ayuda">Ayuda</string>
+    <string name="seguro_cerrar_se">¿Estas seguro de cerrar sesión?</string>
 </resources>

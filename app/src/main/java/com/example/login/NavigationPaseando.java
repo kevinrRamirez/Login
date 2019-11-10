@@ -59,6 +59,12 @@ public class NavigationPaseando extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
+    public void cerrarApp(View view)
+    {
+        finish();
+    }
+
+
     public void ctrlBoton(View view)
     {
         Intent intent = new Intent(NavigationPaseando.this,PedirPaseo.class);
