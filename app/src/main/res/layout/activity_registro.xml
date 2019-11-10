@@ -19,6 +19,8 @@
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
+
+
             <EditText
                 android:id="@+id/txtNombre"
                 android:layout_width="wrap_content"
@@ -27,7 +29,7 @@
                 android:layout_marginTop="256dp"
                 android:ems="10"
                 android:hint="@string/nombre_y_apellido"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -87,7 +89,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="150dp"
                 android:layout_marginEnd="150dp"
-                android:onClick="ctrlBoton"
+                android:onClick="Registrar"
 
                 android:text="@string/registrar"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -114,10 +116,11 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="221dp"
-                android:layout_height="52dp"
-                android:orientation="horizontal"
+                android:id="@+id/constraintLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="50dp"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -131,33 +134,18 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
                 <TextView
+                    android:id="@+id/tv_ingresar"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
+                    android:onClick="ctrlBoton"
                     android:text="@string/ingresar"
                     android:textStyle="bold"
-                    android:onClick="ctrlBoton"
-                    android:id="@+id/tv_ingresar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/editText"
                     app:layout_constraintTop_toTopOf="parent" />
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/editText"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
