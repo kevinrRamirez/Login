@@ -22,7 +22,6 @@ public class Registro extends AppCompatActivity {
     EditText txtPassConf;
     Button btnIngresar;
 
-    TextView tvAux;
 
 
     @Override
@@ -35,10 +34,7 @@ public class Registro extends AppCompatActivity {
         txtPass = (EditText) findViewById(R.id.txtPass);
         txtPassConf = (EditText) findViewById(R.id.txtPassConf);
         btnIngresar = (Button) findViewById(R.id.btnIngresar);
-
-
     }
-
 
 
     @Override
@@ -46,26 +42,14 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    public void ctrlBoton(View view) {
+    public void ctrlBotonIngresar(View view) {
         Intent intent = null;
-        switch (view.getId()) {
-            /*
-             case R.id.btnRegistro:
-
-                intent = new Intent(Registro.this, NavigationPaseando.class);
-                break;
-
-             */
-
-            case R.id.tv_ingresar:
-                intent = new Intent(Registro.this, MainActivity.class);
-                break;
-        }
+        intent = new Intent(Registro.this, MainActivity.class);
         startActivity(intent);
     }
 
 
-    public void Registrar(View view) {
+    public void ctrlBtnRegistrar(View view) {
         String nombre = txtNombre.getText().toString();
         String correo = txtCorreo.getText().toString();
         String pass = txtPass.getText().toString();
@@ -88,7 +72,6 @@ public class Registro extends AppCompatActivity {
 
 
     boolean validacionNombreApellido(String s) {
-        int cont = 0;
         boolean bandera = true;
         StringTokenizer t = new StringTokenizer(s, " ");
         if (t.countTokens() != 2) {
@@ -100,7 +83,6 @@ public class Registro extends AppCompatActivity {
                 Toast.makeText(this, "Ingresar Nombre y Apellido de forma correcta", Toast.LENGTH_LONG).show();
                 bandera = false;
             }
-            cont++;
         }
         return bandera;
     }
@@ -131,7 +113,6 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
             return false;
         }
-
     }
 
 }

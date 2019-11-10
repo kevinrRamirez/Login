@@ -89,7 +89,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="150dp"
                 android:layout_marginEnd="150dp"
-                android:onClick="Registrar"
+                android:onClick="ctrlBtnRegistrar"
 
                 android:text="@string/registrar"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -138,7 +138,7 @@
                     android:id="@+id/tv_ingresar"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:onClick="ctrlBoton"
+                    android:onClick="ctrlBotonIngresar"
                     android:text="@string/ingresar"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"

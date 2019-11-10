@@ -32,7 +32,7 @@
                 android:layout_marginBottom="200dp"
                 android:background="@drawable/boton_solido"
                 android:foregroundGravity="center_horizontal"
-                android:onClick="ctrlBoton"
+                android:onClick="ctrlBtnIngresar"
                 android:text="@string/login_ingresar"
                 android:textSize="20dp"
 
@@ -112,7 +112,7 @@
                     android:id="@+id/tv_registrate"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:onClick="ctrlBoton"
+                    android:onClick="ctrlBtnReg"
                     android:text="@string/login_registro"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"

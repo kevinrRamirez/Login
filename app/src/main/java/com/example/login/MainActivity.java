@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
-    /*
-    ahorita vemos que pedo
-    pablooooo
-     */
 
     TextView txtCorreo;
     TextView txtPass;
@@ -28,35 +28,48 @@ public class MainActivity extends AppCompatActivity {
          */
     }
 
-    public void ctrlBoton(View view)
-    {
+    public void ctrlBtnReg(View view) {
         Intent intent = null;
-
-        switch (view.getId())
-        {
-            case R.id.btnIngresar:
-                intent = new Intent(MainActivity.this, NavigationPaseando.class);
-                limpTextView();
-                break;
-            case R.id.btnRegistro:
-            case R.id.tv_registrate:
+        boolean cambiar = false;
                 intent = new Intent(MainActivity.this, Registro.class);
-                break;
-
-
-        }
-        startActivity(intent);
-
+            startActivity(intent);
     }
-
-    public void limpTextView()
-    {
+    public void ctrlBtnIngresar(View view) {
         txtCorreo = (TextView) findViewById(R.id.txtUsuario);
         txtPass = (TextView) findViewById(R.id.txtPass);
+        String correo = txtCorreo.getText().toString();
+        String pass = txtPass.getText().toString();
 
+        if (correo.isEmpty() || pass.isEmpty()) {
+            Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
+        } else if (!validacionCorreo(correo)) {
+            Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
+        } else if (!(pass.length() >= 6)) {
+            Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
+        } else {
+            Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
+            startActivity(intent);
+        }
+    }
+
+    public void limpTextView() {
+        txtCorreo = (TextView) findViewById(R.id.txtUsuario);
+        txtPass = (TextView) findViewById(R.id.txtPass);
         txtCorreo.setText("");
         txtPass.setText("");
+    }
 
+    boolean validacionCorreo(String s) {
+        // Patrón para validar el email
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(s);
+        if (mather.find()) {
+            return true;
+        } else {
+            Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
+            return false;
+        }
     }
 
 }
