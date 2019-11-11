@@ -9,7 +9,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,22 +21,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Button
+
+            <LinearLayout
+                android:layout_width="299dp"
+                android:layout_height="141dp"
+                android:gravity="center"
                 android:id="@+id/btnNuevoPaseo"
-                android:layout_width="300dp"
-                android:layout_height="67dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="100dp"
                 android:onClick="ctrlBoton"
-                android:background="@drawable/edit_text"
-                android:text="@string/nav_pas_pedirpaseo"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.562"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.944" />
+                app:layout_constraintVertical_bias="0.944"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="100dp"
+                android:orientation="vertical"
+                android:background="@drawable/edit_text">
+                <ImageView
+                    android:layout_width="84dp"
+                    android:layout_height="84dp"
+                    app:srcCompat="@drawable/ic_perfil" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nav_pas_pedirpaseo" />
+
+
+            </LinearLayout>
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
