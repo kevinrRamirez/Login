@@ -46,5 +46,7 @@
     <string name="vacios">------------ ------------</string>
     <string name="altitud_longitud1">Altitud: \\nlongitud:</string>
     <string name="correoapp">paseando@paseando.com</string>
+    <string name="mis_paseos">Mis paseos</string>
+    <string name="hazte_paseador">Hazte paseador</string>
 
 </resources>

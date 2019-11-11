@@ -75,6 +75,7 @@
                     android:layout_height="44dp"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/boton_solido2"
+                    android:onClick="ctrlBtnCancelar"
                     android:text="@string/cancelar" />
 
 
