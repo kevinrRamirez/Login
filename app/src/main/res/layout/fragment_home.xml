@@ -28,6 +28,7 @@
                 android:layout_marginTop="400dp"
                 android:layout_marginBottom="100dp"
                 android:onClick="ctrlBoton"
+                android:drawableLeft="@drawable/dog"
 
                 android:text="@string/nav_pas_pedirpaseo"
                 app:layout_constraintBottom_toBottomOf="parent"
