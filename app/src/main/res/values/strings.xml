@@ -42,4 +42,8 @@
     <string name="ingresar">Ingresar</string>
     <string name="ayuda">Ayuda</string>
     <string name="seguro_cerrar_se">¿Estas seguro de cerrar sesión?</string>
+    <string name="altitud_longitud">Altitud:      Longitud:</string>
+    <string name="vacios">------------ ------------</string>
+    <string name="altitud_longitud1">Altitud: \\nlongitud:</string>
+
 </resources>
