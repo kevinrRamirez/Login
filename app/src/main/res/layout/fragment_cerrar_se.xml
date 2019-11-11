@@ -9,9 +9,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-42dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_height="500dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="-2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -73,8 +75,7 @@
                     android:layout_height="44dp"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/boton_solido2"
-                    android:text="@string/cancelar"
-             />
+                    android:text="@string/cancelar" />
 
 
             </LinearLayout>
