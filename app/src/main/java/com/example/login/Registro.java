@@ -10,6 +10,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,6 +60,7 @@ public class Registro extends AppCompatActivity {
 
 
     public void ctrlBtnRegistrar(View view) {
+        /*
         String nombre = txtNombre.getText().toString();
         String correo = txtCorreo.getText().toString();
         String pass = txtPass.getText().toString();
@@ -61,12 +72,16 @@ public class Registro extends AppCompatActivity {
             if (!(pass.length() >= 6)) {
                 Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
             } else if (!pass.equals(passConf)) {
+
                 Toast.makeText(this, "Las contaseñas no coinciden", Toast.LENGTH_LONG).show();
             }else{
                 Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
                 startActivity(intent);
             }
         }
+
+         */
+        servicio("http://192.168.100.119/prueba/insertar_preba.php");
 
     }
 
@@ -113,6 +128,36 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
             return false;
         }
+    }
+
+
+    public void servicio(String url)
+    {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "Operacion al pedo", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Operacion NO al pedo ->"+error.toString(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+
+                parametros.put("id",txtNombre.getText().toString());
+                parametros.put("nombre",txtCorreo.getText().toString());
+                parametros.put("apellido_pat",txtPass.getText().toString());
+                parametros.put("apellido_mat",txtPassConf.getText().toString());
+
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
 }
