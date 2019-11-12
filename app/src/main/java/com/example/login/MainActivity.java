@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (!(pass.length() >= 6)) {
             Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
         } else {
+            limpTextView();
             Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
             startActivity(intent);
         }

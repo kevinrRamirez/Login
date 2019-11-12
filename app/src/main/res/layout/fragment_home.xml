@@ -36,6 +36,8 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="100dp"
                 android:orientation="vertical"
+
+
                 android:background="@drawable/edit_text">
                 <ImageView
                     android:layout_width="84dp"

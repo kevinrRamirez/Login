@@ -60,7 +60,7 @@ public class Registro extends AppCompatActivity {
 
 
     public void ctrlBtnRegistrar(View view) {
-        /*
+
         String nombre = txtNombre.getText().toString();
         String correo = txtCorreo.getText().toString();
         String pass = txtPass.getText().toString();
@@ -75,14 +75,17 @@ public class Registro extends AppCompatActivity {
 
                 Toast.makeText(this, "Las contaseñas no coinciden", Toast.LENGTH_LONG).show();
             }else{
+                txtNombre.setText("");
+                txtCorreo.setText("");
+                txtPass.setText("");
+                txtPassConf.setText("");
                 Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
                 startActivity(intent);
             }
         }
 
-         */
-        servicio("http://192.168.100.119/prueba/insertar_preba.php");
 
+        //servicio("http://192.168.100.119/prueba/insertar_preba.php");
     }
 
 
