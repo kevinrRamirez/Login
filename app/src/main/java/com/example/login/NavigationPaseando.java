@@ -64,7 +64,7 @@ public class NavigationPaseando extends AppCompatActivity {
         finish();
     }
 
-    public void ctrlBtnCancelar(View view)
+    public void ctrlBtnHome(View view)
     {
         Intent intent = new Intent(view.getContext(),NavigationPaseando.class);
         startActivity(intent);

@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF196AB6"
-    tools:context=".Registro"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/colorPrimary2"
     android:orientation="vertical"
-    android:layout_gravity="center_horizontal">
+    tools:context=".Registro">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary2">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,20 +21,20 @@
             android:orientation="vertical">
 
 
-
             <EditText
                 android:id="@+id/txtNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="256dp"
+                android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/nombre_y_apellido"
                 android:inputType="textCapWords"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:backgroundTint="@color/colorPrimary2"/>
+                />
 
             <EditText
                 android:id="@+id/txtCorreo"
@@ -41,13 +42,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/correo_electronio"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtNombre"
-                android:backgroundTint="@color/colorPrimary2"/>
+                app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
 
             <EditText
                 android:id="@+id/txtPass"
@@ -55,13 +56,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/contrasenia"
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCorreo"
-                android:backgroundTint="@color/colorPrimary2"/>
+                app:layout_constraintTop_toBottomOf="@+id/txtCorreo" />
 
 
             <EditText
@@ -71,6 +72,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/contrasenia"
                 android:inputType="textPassword"
@@ -78,8 +80,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPass"
-                app:layout_constraintVertical_bias="1.0"
-                android:backgroundTint="@color/colorPrimary2"/>
+                app:layout_constraintVertical_bias="1.0" />
 
 
             <Button
@@ -90,7 +91,7 @@
                 android:layout_marginStart="150dp"
                 android:layout_marginEnd="150dp"
 
-                android:background="@drawable/boton_solido2"
+                android:background="@drawable/boton_solido"
                 android:onClick="ctrlBtnRegistrar"
                 android:text="@string/registrar"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -134,6 +135,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/tv_ingresar"
                     android:layout_width="wrap_content"

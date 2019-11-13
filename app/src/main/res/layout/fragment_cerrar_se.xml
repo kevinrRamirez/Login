@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF196AB6">
+    android:background="@color/colorPrimary2">
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteY="-2dp">
 
@@ -62,7 +62,7 @@
                     android:layout_height="45dp"
                     android:layout_marginEnd="10dp"
 
-                    android:background="@drawable/boton_solido2"
+                    android:background="@drawable/boton_solido"
                     android:onClick="cerrarApp"
                     android:text="@string/cerrar"
 
@@ -74,8 +74,8 @@
                     android:layout_width="144dp"
                     android:layout_height="44dp"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/boton_solido2"
-                    android:onClick="ctrlBtnCancelar"
+                    android:background="@drawable/boton_solido"
+                    android:onClick="ctrlBtnHome"
                     android:text="@string/cancelar" />
 
 

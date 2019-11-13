@@ -17,7 +17,8 @@
     <string name="login_ingresar">Ingresar</string>
     <string name="login_registro">Registrate</string>
     <string name="nav_pas_pedirpaseo">Nuevo Paseo</string>
-    <string name="correo_electronio">Correo electronio</string>
+
+    <string name="correo_electronio">Correo electronico</string>
     <string name="acerca_de">Acerca de</string>
     <string name="acerca_de_paseando">Acerca de PaseAndo</string>
     <string name="perfil">Perfil</string>
@@ -48,5 +49,7 @@
     <string name="correoapp">paseando@paseando.com</string>
     <string name="mis_paseos">Mis paseos</string>
     <string name="hazte_paseador">Hazte paseador</string>
+    <string name="mayor_que"><![CDATA[>]]></string>
+
 
 </resources>

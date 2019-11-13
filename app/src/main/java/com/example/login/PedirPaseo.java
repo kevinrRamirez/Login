@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -88,5 +89,14 @@ public class PedirPaseo extends AppCompatActivity {
             }
         }
 
+    }
+
+
+
+
+    public void ctrlBtnAceptar(View view) {
+        Intent intent;
+        intent = new Intent(view.getContext(), NavigationPaseando.class);
+        startActivity(intent);
     }
 }

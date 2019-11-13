@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ctrlBtnReg(View view) {
-        Intent intent = null;
-        boolean cambiar = false;
+        Intent intent;
                 intent = new Intent(MainActivity.this, Registro.class);
             startActivity(intent);
     }
