@@ -50,6 +50,7 @@
     <string name="mis_paseos">Mis paseos</string>
     <string name="hazte_paseador">Hazte paseador</string>
     <string name="mayor_que"><![CDATA[>]]></string>
+    <string name="title_activity_pedir_paseo_mapa">Map</string>
 
 
 </resources>

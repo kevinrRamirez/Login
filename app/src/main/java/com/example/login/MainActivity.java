@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             limpTextView();
             Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
             startActivity(intent);
+            limpTextView();
         }
     }
 

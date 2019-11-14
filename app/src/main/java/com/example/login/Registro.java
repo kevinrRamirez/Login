@@ -60,7 +60,7 @@ public class Registro extends AppCompatActivity {
 
 
     public void ctrlBtnRegistrar(View view) {
-
+        /*
         String nombre = txtNombre.getText().toString();
         String correo = txtCorreo.getText().toString();
         String pass = txtPass.getText().toString();
@@ -75,17 +75,14 @@ public class Registro extends AppCompatActivity {
 
                 Toast.makeText(this, "Las contaseñas no coinciden", Toast.LENGTH_LONG).show();
             }else{
-                txtNombre.setText("");
-                txtCorreo.setText("");
-                txtPass.setText("");
-                txtPassConf.setText("");
                 Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
                 startActivity(intent);
             }
         }
 
+         */
+        servicio("http://192.168.209.23/prueba/insertar_preba.php");
 
-        //servicio("http://192.168.100.119/prueba/insertar_preba.php");
     }
 
 
@@ -139,12 +136,12 @@ public class Registro extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Operacion al pedo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Regsitro exitoso", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Operacion NO al pedo ->"+error.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Error en el registro -> "+error.toString(), Toast.LENGTH_LONG).show();
             }
         }){
             @Override
