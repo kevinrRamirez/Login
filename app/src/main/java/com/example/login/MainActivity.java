@@ -34,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
     }
     public void ctrlBtnIngresar(View view) {
+
+        /*
         txtCorreo = (TextView) findViewById(R.id.txtUsuario);
         txtPass = (TextView) findViewById(R.id.txtPass);
         String correo = txtCorreo.getText().toString();
         String pass = txtPass.getText().toString();
-
         if (correo.isEmpty() || pass.isEmpty()) {
             Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
         } else if (!validacionCorreo(correo)) {
@@ -46,11 +47,22 @@ public class MainActivity extends AppCompatActivity {
         } else if (!(pass.length() >= 6)) {
             Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
         } else {
-            limpTextView();
+
             Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
             startActivity(intent);
             limpTextView();
         }
+
+         */
+
+        /*
+
+
+         */
+        Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
+        startActivity(intent);
+        limpTextView();
+
     }
 
     public void limpTextView() {

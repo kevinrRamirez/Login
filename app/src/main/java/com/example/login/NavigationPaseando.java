@@ -73,7 +73,7 @@ public class NavigationPaseando extends AppCompatActivity {
 
     public void ctrlBoton(View view)
     {
-        Intent intent = new Intent(NavigationPaseando.this,PedirPaseo.class);
+        Intent intent = new Intent(view.getContext(),PedirPaseo.class);
         startActivity(intent);
     }
 
