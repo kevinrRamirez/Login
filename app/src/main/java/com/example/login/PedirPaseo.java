@@ -30,8 +30,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback {
     Button btnubicacion;
     TextView txtUbicacion;
-     GoogleMap mMap;
-     MapView mapView;
+    GoogleMap mMap;
+    MapView mapView;
     private double lat;
     private double lon;
     private Location location;
@@ -43,6 +43,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         super.onResume();
         mapView.onResume();
     }
+
     @Override
     protected void onDestroy() {
 
@@ -51,7 +52,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
     }
 
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
         mapView.onPause();
     }
@@ -87,23 +88,22 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
 
         int permissionCheck = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
-     btnubicacion = (Button) findViewById(R.id.btnAccUbica);
-     txtUbicacion = (TextView) findViewById(R.id.txtUbicacion);
-     mapView = (MapView) findViewById(R.id.mapViewPP);
-     mapView.onCreate(savedInstanceState);
-     mapView.getMapAsync(this);
-     //mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-     //mMap.setMyLocationEnabled(true);
+        btnubicacion = (Button) findViewById(R.id.btnAccUbica);
+        txtUbicacion = (TextView) findViewById(R.id.txtUbicacion);
+        mapView = (MapView) findViewById(R.id.mapViewPP);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
+        //mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        //mMap.setMyLocationEnabled(true);
 
 
-    btnubicacion.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-        txtUbicacion.setText(""+lat+"\n"+lon);
+        btnubicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txtUbicacion.setText("" + lat + "\n" + lon);
 
-         }
-     });
-
+            }
+        });
 
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -137,7 +137,6 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         } else {
             // Permission has already been granted
         }
-
 
 
     }
