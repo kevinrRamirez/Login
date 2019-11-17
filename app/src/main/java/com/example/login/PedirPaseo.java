@@ -168,12 +168,13 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         lat = location.getLatitude();
         // Add a marker in Sydney and move the camera
 
-        LatLng sydney = new LatLng(lat, lon);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Mi Ubicación"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng ubicacion = new LatLng(lat, lon);
+        //mMap.addMarker(new MarkerOptions().position(ubicacion).title("Mi Ubicación"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
 
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion,15));
     }
 
 /*
