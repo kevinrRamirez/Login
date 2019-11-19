@@ -86,8 +86,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedir_paseo);
 
-        int permissionCheck = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION);
+
         btnubicacion = (Button) findViewById(R.id.btnAccUbica);
         txtUbicacion = (TextView) findViewById(R.id.txtUbicacion);
         mapView = (MapView) findViewById(R.id.mapViewPP);
@@ -95,8 +94,6 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         mapView.getMapAsync(this);
         //mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         //mMap.setMyLocationEnabled(true);
-
-
         btnubicacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,37 +103,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         });
 
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-        }
 
-
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-            } else {
-                // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        1);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-        } else {
-            // Permission has already been granted
-        }
 
 
     }
