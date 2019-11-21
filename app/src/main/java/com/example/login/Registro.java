@@ -81,7 +81,12 @@ public class Registro extends AppCompatActivity {
         }
 
          */
-        servicio("http://192.168.209.23/prueba/insertar_preba.php");
+
+        servicioRegistro("http://192.168.1.66/paseando/registro_duenio.php"); //compu Orlas
+        //servicioRegistro("http://192.168.209.23/paseando/registro_duenio.php"); //compu Kevin
+
+
+        //servicio("http://192.168.209.23/prueba/insertar_preba.php");//prueba
 
     }
 
@@ -128,6 +133,36 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
             return false;
         }
+    }
+
+
+
+    public void servicioRegistro(String url)
+    {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "Regsitro exitoso xd", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error en el registro xd -> "+error.toString(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+
+                parametros.put("nombre",txtNombre.getText().toString());
+                parametros.put("correo",txtCorreo.getText().toString());
+                parametros.put("contrasenia",txtPass.getText().toString());
+
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
 
