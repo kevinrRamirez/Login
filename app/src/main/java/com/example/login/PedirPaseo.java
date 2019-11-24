@@ -8,6 +8,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -23,6 +25,10 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback {
     Button btnubicacion;
     TextView txtUbicacion;
@@ -32,6 +38,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
     private double lon;
     private Location location;
     private LocationManager locationManager;
+    private  List<Address>  direccion;
 
     @Override
     protected void onResume() {
@@ -83,20 +90,37 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         setContentView(R.layout.activity_pedir_paseo);
 
 
-        btnubicacion = (Button) findViewById(R.id.btnAccUbica);
+
         txtUbicacion = (TextView) findViewById(R.id.txtUbicacion);
         mapView = (MapView) findViewById(R.id.mapViewPP);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
         //mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         //mMap.setMyLocationEnabled(true);
-        btnubicacion.setOnClickListener(new View.OnClickListener() {
+        Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+        try {
+           direccion = geocoder.getFromLocation(lat,lon,1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*
+       btnubicacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtUbicacion.setText("" + lat + "\n" + lon);
+
+                Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+                try {
+                    List<Address> direccion = geocoder.getFromLocation( location.getLatitude(), location.getLongitude(),1);
+                    txtUbicacion.setText(direccion.get(0).getAddressLine(0));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         });
+
+         */
 
 
 
@@ -138,39 +162,17 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion,15));
-    }
 
-/*
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void onMapReady(GoogleMap googleMap) {
-
-        mMap = googleMap;
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    Activity#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for Activity#requestPermissions for more details.
-            return;
+        Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+        try {
+            List<Address> direccion = geocoder.getFromLocation( location.getLatitude(), location.getLongitude(),1);
+            txtUbicacion.setText(direccion.get(0).getAddressLine(0));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-        lon = location.getLongitude();
-        lat = location.getLatitude();
-        // Add a marker in Sydney and move the camera
-
-        LatLng sydney = new LatLng(lat, lon);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Mi Ubicación"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-        mMap.setMyLocationEnabled(true);
-        mMap.getUiSettings().setZoomControlsEnabled(true);
     }
 
- */
 
 
 }

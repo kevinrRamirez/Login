@@ -21,7 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        >
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -37,14 +38,25 @@
 
         <activity
             android:name=".PedirPaseoMapa"
-            android:label="@string/title_activity_pedir_paseo_mapa"></activity>
-        <activity android:name=".Registro" />
-        <activity android:name=".PedirPaseo" />
+            android:label="@string/title_activity_pedir_paseo_mapa"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Registro"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PedirPaseo"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".NavigationPaseando"
             android:label="@string/title_activity_navigation_paseando"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity"
+
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
