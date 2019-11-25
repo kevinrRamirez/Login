@@ -101,7 +101,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnIngresar">
 
                 <TextView
-                    android:id="@+id/editText"
+                    android:id="@+id/textView1"
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:text="@string/no_tienes_cuenta"
