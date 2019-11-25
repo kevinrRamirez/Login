@@ -10,9 +10,11 @@
         android:id="@+id/google_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="594dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="60dp" />
 
     <SearchView
         android:id="@+id/sv_location"
@@ -29,6 +31,19 @@
         android:background="@drawable/bg_sv_location"
         android:elevation="5dp"
         app:iconifiedByDefault="false"
-        app:queryHint="Lugar..." />
+        android:queryHint="@string/paseando" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/google_map"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="167dp"
+        android:text="@string/aceptar"
+        android:background="@drawable/boton_solido"/>
 
 </RelativeLayout>
