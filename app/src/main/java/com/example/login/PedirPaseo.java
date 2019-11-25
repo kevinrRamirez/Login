@@ -18,6 +18,7 @@ import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -88,9 +89,6 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedir_paseo);
-
-
-
         txtUbicacion = (TextView) findViewById(R.id.txtUbicacion);
         mapView = (MapView) findViewById(R.id.mapViewPP);
         mapView.onCreate(savedInstanceState);
@@ -133,6 +131,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         intent = new Intent(view.getContext(), NavigationPaseando.class);
         startActivity(intent);
     }
+
 
     public void ctrlBtnOtraUbi(View view)
     {
