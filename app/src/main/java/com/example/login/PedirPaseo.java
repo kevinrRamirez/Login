@@ -134,6 +134,13 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         startActivity(intent);
     }
 
+    public void ctrlBtnOtraUbi(View view)
+    {
+        Intent intent;
+        intent = new Intent(view.getContext(), OtraUbicacionActivity.class);
+        startActivity(intent);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onMapReady(GoogleMap googleMap) {
