@@ -48,10 +48,14 @@ public class OtraUbicacionActivity extends FragmentActivity implements OnMapRead
 
                     Address address = addressList.get(0);
                     LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(location.substring(0,10)));
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(location));
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+
+
                 }
+
                 return false;
+
             }
 
             @Override
@@ -64,6 +68,8 @@ public class OtraUbicacionActivity extends FragmentActivity implements OnMapRead
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
+        mMap = googleMap;
+        mMap.setMyLocationEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
     }
 }
