@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
          */
 
         //buscarDuenio("http://192.168.1.66/paseando/buscar_duenio.php?codigo="+txtCorreo.getText()+"");
+        buscarDuenio("http://192.168.1.66/paseando/buscar_duenio.php?codigo=o");
 
         /*
 
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void buscarDuenio(String url) {
+    public void buscarDuenio(String url) {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
