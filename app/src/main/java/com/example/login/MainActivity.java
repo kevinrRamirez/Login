@@ -9,16 +9,29 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
+    RequestQueue requestQueue;
 
     TextView txtCorreo;
     TextView txtPass;
+    TextView textView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
+        txtCorreo = (EditText) findViewById(R.id.txtCorreo);
+        txtPass = (EditText) findViewById(R.id.txtPass);
+        textView1 = (TextView) findViewById(R.id.textView1);
 
         /*
 
@@ -95,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
          */
 
+        //buscarDuenio("http://192.168.1.66/paseando/buscar_duenio.php?codigo="+txtCorreo.getText()+"");
+
         /*
 
 
@@ -123,6 +142,40 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
             return false;
         }
+    }
+
+
+
+    private void buscarDuenio(String url) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        textView1.setText(jsonObject.getString("id_duenio"));
+                        textView1.setText(jsonObject.getString("nombre"));
+                        textView1.setText(jsonObject.getString("correo"));
+                        textView1.setText(jsonObject.getString("contrasenia"));
+                        textView1.setText(jsonObject.getString("paseo"));
+
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error de conexión xd", Toast.LENGTH_SHORT).show();
+            }
+        }
+        );
+
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 
 }

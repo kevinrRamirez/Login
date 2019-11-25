@@ -53,8 +53,8 @@ public class Registro extends AppCompatActivity {
     }
 
     public void ctrlBotonIngresar(View view) {
-        Intent intent = null;
-        intent = new Intent(Registro.this, MainActivity.class);
+
+        Intent intent = new Intent(Registro.this, MainActivity.class);
         startActivity(intent);
     }
 
