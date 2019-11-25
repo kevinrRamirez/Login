@@ -31,7 +31,7 @@
             android:title="@string/menu_tools" />
     </group>
 
-    <item android:title="single">
+    <item android:title="">
         <menu>
             <item
                 android:id="@+id/nav_acerca"

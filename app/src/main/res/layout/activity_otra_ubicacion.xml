@@ -10,7 +10,7 @@
         android:id="@+id/google_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="594dp"
+        android:layout_height="546dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
@@ -34,16 +34,31 @@
         android:queryHint="@string/paseando" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnAceptar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/google_map"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="167dp"
-        android:text="@string/aceptar"
-        android:background="@drawable/boton_solido"/>
+        android:layout_marginStart="167dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="156dp"
+        android:background="@drawable/boton_solido"
+        android:onClick="ctrlBtnAceptarSv"
+        android:text="@string/aceptar" />
+
+    <TextView
+        android:id="@+id/txtUbicacion"
+        android:layout_width="364dp"
+        android:layout_height="44dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="615dp"
+        android:layout_marginEnd="25dp"
+        android:text=""
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15dp" />
 
 </RelativeLayout>
