@@ -135,7 +135,7 @@
 
                 android:background="@drawable/boton_solido"
                 android:onClick="ctrlBtnRegistroPerro"
-                android:text="@string/continuar"
+                android:text="@string/finalizar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
