@@ -35,14 +35,15 @@
 
     <Button
         android:id="@+id/btnAceptar"
-        android:layout_width="wrap_content"
+        android:layout_width="116dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/google_map"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="167dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="156dp"
+        android:layout_marginStart="149dp"
+        android:textColor="@color/colorPrimary2"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="145dp"
         android:background="@drawable/boton_solido"
         android:onClick="ctrlBtnAceptarSv"
         android:text="@string/aceptar" />
