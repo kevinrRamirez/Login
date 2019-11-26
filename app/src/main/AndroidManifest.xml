@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Hospedaje"></activity>
+        <activity android:name=".RegistroPerro"></activity>
+        <activity android:name=".Hospedaje" />
         <activity android:name=".OtraUbicacionActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
