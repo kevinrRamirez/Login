@@ -54,13 +54,8 @@
     <string name="otra_ubic">Otra ubicación</string>
     <string name="nuevo_hospedaje">Nuevo Hospedaje</string>
     <string name="debes_descargar_la_aplicacion">Debes descargar la aplicación PaseAndo Paseador</string>
-    <string name="en_construcion">En construcción</string>
-    <string name="mision">Misión</string>
-    <string name="texto_mision">Somos una empresa centrada en el cuidado de perros, siendo el vínculo entre el paseador y el dueño, ayudándolo a administrar su tiempo y no descuidar el bienestar de su mascota.</string>
-    <string name="vision">Visión</string>
-    <string name="texto_vision">Ser la empresa líder dentro del mercado en los próximos 5 años dándole la mejor atención tanto al usuario como a sus perros.</string>
-    <string name="objetivo">Objetivo</string>
-    <string name="texto_objetivo">Crear puestos de trabajo para personas interesadas en el cuidado de perros para brindarles una buena capacitación y así, dar un buen trato a las mascotas.</string>
+    <string name="mascotas">Mascotas</string>
+    <string name="informacion_mascota">informacion de la mascota</string>
 
 
 </resources>

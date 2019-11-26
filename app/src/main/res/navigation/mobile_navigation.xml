@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_cerrar_se" />
 
     <fragment
-        android:id="@+id/nav_tools"
+        android:id="@+id/nav_mascotas"
         android:name="com.example.login.ui.tools.ToolsFragment"
         android:label="@string/paseando"
         tools:layout="@layout/fragment_mascotas" />
