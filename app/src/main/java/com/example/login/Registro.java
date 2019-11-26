@@ -60,7 +60,7 @@ public class Registro extends AppCompatActivity {
 
 
     public void ctrlBtnRegistrar(View view) {
-        /*
+
         String nombre = txtNombre.getText().toString();
         String correo = txtCorreo.getText().toString();
         String pass = txtPass.getText().toString();
@@ -72,21 +72,16 @@ public class Registro extends AppCompatActivity {
             if (!(pass.length() >= 6)) {
                 Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
             } else if (!pass.equals(passConf)) {
-
                 Toast.makeText(this, "Las contaseñas no coinciden", Toast.LENGTH_LONG).show();
             }else{
+                servicioRegistro("http://192.168.1.66/paseando/registro_duenio.php"); //compu Orlas
+                //servicioRegistro("http://192.168.209.23/paseando/registro_duenio.php"); //compu Kevin
+                //servicio("http://192.168.209.23/prueba/insertar_preba.php");//prueba
+
                 Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
                 startActivity(intent);
             }
         }
-
-         */
-
-        servicioRegistro("http://192.168.1.66/paseando/registro_duenio.php"); //compu Orlas
-        //servicioRegistro("http://192.168.209.23/paseando/registro_duenio.php"); //compu Kevin
-
-
-        //servicio("http://192.168.209.23/prueba/insertar_preba.php");//prueba
 
     }
 
