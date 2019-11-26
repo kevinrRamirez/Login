@@ -94,8 +94,8 @@ public class Registro extends AppCompatActivity {
 
         servicioRegistro("http://192.168.222.212/paseando/registro_duenio.php"); //compu Orlas
 
-        //Intent intent = new Intent(view.getContext(), RegistroPerro.class);
-        //startActivity(intent);
+        Intent intent = new Intent(view.getContext(), RegistroPerro.class);
+        startActivity(intent);
 
 
     }
