@@ -54,12 +54,13 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/constraintLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="342dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="120dp"
                 android:layout_marginTop="84dp"
+                android:layout_marginEnd="120dp"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtNombreMascota">
 
@@ -78,12 +79,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="380dp"
+                android:layout_marginEnd="60dp"
                 android:background="@drawable/boton_solido"
                 android:gravity="center"
                 android:onClick="ctrlBtnAceptar"
                 android:text="@string/aceptar"
+                android:textColor="@color/colorPrimary2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.85"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/constraintLayout1" />
 
@@ -104,10 +107,13 @@
                 android:id="@+id/btnOtraUbic"
                 android:layout_width="124dp"
                 android:layout_height="45dp"
+                android:layout_marginStart="60dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="60dp"
                 android:background="@drawable/boton_solido"
                 android:onClick="ctrlBtnOtraUbi"
                 android:text="@string/otra_ubic"
+                android:textColor="@color/colorPrimary2"
                 app:layout_constraintEnd_toStartOf="@+id/button"
                 app:layout_constraintHorizontal_bias="0.337"
                 app:layout_constraintStart_toStartOf="parent"
