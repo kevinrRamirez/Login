@@ -52,9 +52,12 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    public void ctrlBotonIngresar(View view) {
-        Intent intent = new Intent(Registro.this, MainActivity.class);
-        startActivity(intent);
+    /*
+    Método para ejecutar instrucciones y cambia de Activity cuando se hace click en el boton Ingresar
+     */
+    public void ButtonIngresar(View view) {
+        Intent intent = new Intent(view.getContext(), MainActivity.class);/*Se recibe el contexto en el que se encuentra y la clase a la cual se desa ingresar*/
+        startActivity(intent);/*Método para cambiar de Activity*/
     }
 
 
@@ -122,14 +125,16 @@ public class Registro extends AppCompatActivity {
         return bandera;
     }
 
-    boolean validacionCorreo(String s) {
-        // Patrón para validar el email
+    /*
+    Método para hacer la validación de un coreo electronico
+     */
+    boolean validacionCorreo(String correo) {
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        Matcher mather = pattern.matcher(s);
-        if (mather.find()) {
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");/*expresión regular para el correo electronico*/
+        Matcher mather = pattern.matcher(correo);
+        if (mather.find()) { /*cuando cumple con la expresión regular regresa un valor bolleano true*/
             return true;
-        } else {
+        } else { /*cuando no cumple con la expresión regular manda un Toast al usuario y regresa un valor bolleano false*/
             Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
             return false;
         }

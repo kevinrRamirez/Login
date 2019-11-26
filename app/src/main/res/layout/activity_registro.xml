@@ -140,7 +140,7 @@
                     android:id="@+id/tv_ingresar"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:onClick="ctrlBotonIngresar"
+                    android:onClick="ButtonIngresar"
                     android:text="@string/ingresar"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
