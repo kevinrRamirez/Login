@@ -28,7 +28,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:srcCompat="@mipmap/barricada"
+        app:srcCompat="@mipmap/barricade"
         android:contentDescription="@string/app_name"/>
 
 

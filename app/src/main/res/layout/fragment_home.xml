@@ -11,13 +11,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginTop="180dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,15 +50,15 @@
             <TextView
                 android:id="@+id/btnNuevoHospedaje"
                 android:layout_width="299dp"
-                android:gravity="center"
                 android:layout_height="90dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/borde_menu"
-                android:onClick="ctrlBoton"
+                android:gravity="center"
+                android:onClick="ctrlBotonHospedaje"
                 android:text="@string/nuevo_hospedaje"
                 android:textColor="@color/colorPrimary"
-                android:textSize="30sp"
-                android:layout_marginTop="30dp"
-                />
+                android:textSize="30sp" />
 
 
 
