@@ -76,6 +76,7 @@
     <string name="precio2">40$</string>
     <string name="precio3">60$</string>
     <string name="proximo">Esperalo...</string>
+    <string name="datos_perro">Datos del perro</string>
 
 
 </resources>
