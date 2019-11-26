@@ -77,6 +77,12 @@
     <string name="precio3">60$</string>
     <string name="proximo">Esperalo...</string>
     <string name="datos_perro">Datos del perro</string>
+    <string name="continuar">Continuar</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="edad">Edad</string>
+    <string name="tamanio">Tamaño</string>
+    <string name="raza">Raza</string>
+    <string name="cuidados">Cuidados</string>
 
 
 </resources>

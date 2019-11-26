@@ -50,14 +50,14 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <EditText
-                android:id="@+id/txtNombre"
+                android:id="@+id/et_NombrePerro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
-                android:hint="@string/nombre_y_apellido"
+                android:hint="@string/nombre_de_la_mascota"
                 android:inputType="textCapWords"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,18 +65,32 @@
                 />
 
             <EditText
-                android:id="@+id/txtCorreo"
+                android:id="@+id/et_raza"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
-                android:hint="@string/correo_electronio"
+                android:hint="@string/raza"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_NombrePerro" />
+
+            <EditText
+                android:id="@+id/et_edad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:ems="10"
+                android:hint="@string/edad"
                 android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+                app:layout_constraintTop_toBottomOf="@+id/et_raza" />
 
             <EditText
                 android:id="@+id/txtPass"
@@ -86,15 +100,15 @@
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
-                android:hint="@string/contrasenia"
+                android:hint="@string/tamanio"
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCorreo" />
+                app:layout_constraintTop_toBottomOf="@+id/et_edad" />
 
 
             <EditText
-                android:id="@+id/txtPassConf"
+                android:id="@+id/et_cuidados"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -102,7 +116,7 @@
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
-                android:hint="@string/contrasenia"
+                android:hint="@string/cuidados"
                 android:inputType="textPassword"
                 app:layout_constraintBottom_toTopOf="@+id/btnRegistro"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +135,7 @@
 
                 android:background="@drawable/boton_solido"
                 android:onClick="ctrlBtnRegistroPerro"
-                android:text="@string/registrar"
+                android:text="@string/continuar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
