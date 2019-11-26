@@ -19,16 +19,11 @@
             android:title="@string/hazte_paseador" />
 
 
-        <item
-            android:id="@+id/nav_mis_paseos"
-            android:icon="@drawable/ic_acerca"
-            android:title="@string/mis_paseos" />
-
 
         <item
             android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
+            android:icon="@drawable/ic_acerca"
+            android:title="@string/mis_paseos" />
     </group>
 
     <item android:title="">
