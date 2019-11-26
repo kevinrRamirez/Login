@@ -26,12 +26,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <ImageView
                 android:id="@+id/imgMascota"
-                android:layout_width="137dp"
-                android:layout_height="116dp"
-                android:layout_marginTop="40dp"
+                android:layout_width="98dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="36dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.138"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/perro" />
@@ -41,22 +43,23 @@
                 android:id="@+id/txtNombreMascota"
                 android:layout_width="181dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="68dp"
                 android:gravity="center"
                 android:hint="@string/nombre_de_la_mascota"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.766"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgMascota"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_goneMarginTop="30dp" />
-
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/constraintLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="84dp"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtNombreMascota">
 
@@ -69,7 +72,6 @@
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
-
 
             <Button
                 android:id="@+id/button"
@@ -110,6 +112,27 @@
                 app:layout_constraintHorizontal_bias="0.337"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mapViewPP" />
+
+            <Spinner
+                android:id="@+id/spnrTiempo"
+                android:layout_width="216dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.083"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgMascota" />
+
+            <TextView
+                android:id="@+id/txtPrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="36dp"
+                android:text="@string/precio"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.547"
+                app:layout_constraintStart_toEndOf="@+id/spnrTiempo" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

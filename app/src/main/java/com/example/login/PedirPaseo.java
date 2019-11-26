@@ -16,7 +16,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +33,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback {
+public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
     Button btnubicacion;
     TextView txtUbicacion;
     GoogleMap mMap;
@@ -40,6 +43,8 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
     private Location location;
     private LocationManager locationManager;
     private  List<Address>  direccion;
+    private Spinner spnrTiempo;
+    private TextView txtPrecio;
 
     @Override
     protected void onResume() {
@@ -101,6 +106,13 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        txtPrecio = (TextView) findViewById(R.id.txtPrecio);
+
+        spnrTiempo = (Spinner)findViewById(R.id.spnrTiempo);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.selecciona_tiempo, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnrTiempo.setAdapter(adapter);
+        spnrTiempo.setOnItemSelectedListener(this);
         /*
        btnubicacion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,10 +131,29 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback 
         });
 
          */
+    }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String text = adapterView.getItemAtPosition(i).toString();
 
+        if (text.equals("30 min"))
+        {
+            txtPrecio.setText("Costo: " +"\n"+" 25$");
+        }else if (text.equals("1 hr"))
+        {
+            txtPrecio.setText("Costo: " +"\n"+" 40$");
+        }else if (text.equals("2 hr"))
+        {
+            txtPrecio.setText("Costo: " +"\n"+" 60$");
+        }else if (text.equals("Proximas..."))
+        {
+            txtPrecio.setText("Esparalo ");
+        }
+    }
 
-
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 

@@ -63,6 +63,19 @@
     <string name="texto_vision">Ser la empresa líder dentro del mercado en los próximos 5 años dándole la mejor atención tanto al usuario como a sus perros.</string>
     <string name="objetivo">Objetivo</string>
     <string name="texto_objetivo">Crear puestos de trabajo para personas interesadas en el cuidado de perros para brindarles una buena capacitación y así, dar un buen trato a las mascotas.</string>
+    <string name="precio">Precio</string>
+    <string-array name="selecciona_tiempo">
+        <item>Selecciona el tiempo</item>
+        <item>30 min</item>
+        <item>1 hr</item>
+        <item>2 hr</item>
+        <item>Proximas...</item>
+    </string-array>
+    <string name="costo">Costo: </string>
+    <string name="precio1">25$</string>
+    <string name="precio2">40$</string>
+    <string name="precio3">60$</string>
+    <string name="proximo">Esperalo...</string>
 
 
 </resources>
