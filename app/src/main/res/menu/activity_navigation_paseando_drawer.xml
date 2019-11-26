@@ -15,7 +15,7 @@
 
         <item
             android:id="@+id/nav_haz_paseador"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@mipmap/perro_correa"
             android:title="@string/hazte_paseador" />
 
 
