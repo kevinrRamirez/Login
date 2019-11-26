@@ -27,8 +27,8 @@
 
             <Button
                 android:id="@+id/btnIngresar"
-                android:layout_width="199dp"
-                android:layout_height="53dp"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
 
                 android:layout_marginBottom="200dp"
                 android:background="@drawable/boton_solido"
@@ -60,8 +60,8 @@
 
             <EditText
                 android:id="@+id/txtPass"
-                android:layout_width="248dp"
-                android:layout_height="39dp"
+                android:layout_width="250dp"
+                android:layout_height="45dp"
                 android:layout_marginBottom="60dp"
                 android:backgroundTint="#FF196AB6"
                 android:drawableStart="@drawable/ic_action_name"
