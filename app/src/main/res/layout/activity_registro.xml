@@ -92,7 +92,7 @@
                 android:layout_marginEnd="150dp"
 
                 android:background="@drawable/boton_solido"
-                android:onClick="ctrlBtnRegistrar"
+                android:onClick="ctrlBtnRegistroDuenio"
                 android:text="@string/registrar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
