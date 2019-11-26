@@ -53,6 +53,7 @@
     <string name="title_activity_pedir_paseo_mapa">Map</string>
     <string name="otra_ubic">Otra ubicación</string>
     <string name="nuevo_hospedaje">Nuevo Hospedaje</string>
+    <string name="debes_descargar_la_aplicacion">Debes descargar la aplicación PaseAndo Paseador</string>
 
 
 </resources>
