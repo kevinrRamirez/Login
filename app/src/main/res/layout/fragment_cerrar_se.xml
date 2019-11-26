@@ -67,6 +67,7 @@
                     android:text="@string/cerrar"
 
 
+                    android:textColor="@color/colorPrimary2"
                     app:layout_constraintStart_toEndOf="@+id/btnCancelar" />
 
                 <Button
@@ -76,7 +77,8 @@
                     android:layout_marginStart="10dp"
                     android:background="@drawable/boton_solido"
                     android:onClick="ctrlBtnHome"
-                    android:text="@string/cancelar" />
+                    android:text="@string/cancelar"
+                    android:textColor="@color/colorPrimary2" />
 
 
             </LinearLayout>

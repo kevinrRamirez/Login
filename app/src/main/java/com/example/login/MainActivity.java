@@ -112,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
          */
 
-        //buscarDuenio("http://192.168.1.66/paseando/buscar_duenio.php?codigo="+txtCorreo.getText()+"");
-        buscarDuenio("http://192.168.1.66/paseando/buscar_duenio.php?codigo=o");
+        //buscarDuenio("http://192.168.1.66/paseando/buscar_duenio.php?correo="+txtCorreo.getText()+"");
+        buscarDuenio("http://192.168.1.66/paseando/buscar_duenio.php?correo=o");
 
         /*
 

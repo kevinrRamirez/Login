@@ -26,54 +26,14 @@
             android:gravity="center">
 
 
-            <LinearLayout
+
+
+
+
+
+            <TextView
                 android:id="@+id/btnNuevoPaseo"
                 android:layout_width="299dp"
-                android:layout_height="90dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/borde_menu"
-                android:gravity="center"
-                android:onClick="ctrlBoton"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:text="@string/nav_pas_pedirpaseo"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="30sp" />
-                <LinearLayout
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:background="@drawable/circulo"
-                    android:layout_marginStart="30dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:text="@string/mayor_que"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="65sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/btnMenu3"
-                android:layout_width="299dp"
-                android:gravity="center"
-                android:layout_height="90dp"
-                android:background="@drawable/edit_text"
-                android:onClick="ctrlBoton"
-                android:text="@string/nav_pas_pedirpaseo"
-                android:textColor="@color/colorPrimary"
-                android:textSize="30sp"
-                android:layout_marginTop="30dp"
-                />
-
-            <TextView
-                android:id="@+id/btnMenu4"
-                android:layout_width="299dp"
                 android:gravity="center"
                 android:layout_height="90dp"
                 android:background="@drawable/borde_menu"
@@ -85,29 +45,21 @@
 
                 />
 
-            <LinearLayout
-                android:id="@+id/btnMenu2"
+
+            <TextView
+                android:id="@+id/btnNuevoHospedaje"
                 android:layout_width="299dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/edit_text"
                 android:gravity="center"
+                android:layout_height="90dp"
+                android:background="@drawable/borde_menu"
                 android:onClick="ctrlBoton"
-                android:orientation="horizontal"
-                android:layout_marginBottom="50dp">
+                android:text="@string/nuevo_hospedaje"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"
+                android:layout_marginTop="30dp"
+                />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nav_pas_pedirpaseo"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="30sp" />
 
-                <ImageView
-                    android:layout_width="74dp"
-                    android:layout_height="64dp"
-                    app:srcCompat="@drawable/ic_perfil" />
-            </LinearLayout>
 
 
         </LinearLayout>

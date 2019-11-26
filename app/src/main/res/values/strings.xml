@@ -52,6 +52,7 @@
     <string name="mayor_que"><![CDATA[>]]></string>
     <string name="title_activity_pedir_paseo_mapa">Map</string>
     <string name="otra_ubic">Otra ubicación</string>
+    <string name="nuevo_hospedaje">Nuevo Hospedaje</string>
 
 
 </resources>
