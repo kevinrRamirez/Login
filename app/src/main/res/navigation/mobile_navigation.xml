@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_haz_paseador"
+        android:id="@+id/nav_mis_paseos"
         android:name="com.example.login.ui.gallery.GalleryFragment"
         android:label="@string/paseando"
-        tools:layout="@layout/fragment_haz_paseador" />
+        tools:layout="@layout/fragment_paseos" />
 
     <fragment
         android:id="@+id/nav_cerrar_se"

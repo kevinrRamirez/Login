@@ -13,22 +13,24 @@
             android:icon="@drawable/ic_perfil"
             android:title="@string/perfil" />
 
+<!--
         <item
             android:id="@+id/nav_haz_paseador"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/hazte_paseador" />
-
+            android:icon="@drawable/ic_paseo"
+            android:title="@string/paseos" />
+-->
 
         <item
             android:id="@+id/nav_mis_paseos"
             android:icon="@drawable/ic_acerca"
-            android:title="@string/mis_paseos" />
+            android:title="@string/paseos" />
 
-
+<!--
         <item
             android:id="@+id/nav_tools"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_tools" />
+            -->
     </group>
 
     <item android:title="">

@@ -48,7 +48,7 @@
     <string name="altitud_longitud1">Altitud: \\nlongitud:</string>
     <string name="correoapp">paseando@paseando.com</string>
     <string name="mis_paseos">Mis paseos</string>
-    <string name="hazte_paseador">Hazte paseador</string>
+    <string name="paseos">Paseos</string>
     <string name="mayor_que"><![CDATA[>]]></string>
     <string name="title_activity_pedir_paseo_mapa">Map</string>
     <string name="otra_ubic">Otra ubicación</string>

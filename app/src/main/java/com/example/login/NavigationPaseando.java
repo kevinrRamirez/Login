@@ -50,7 +50,7 @@ public class NavigationPaseando extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_haz_paseador, R.id.nav_cerrar_se,
+                R.id.nav_home, R.id.nav_mis_paseos, R.id.nav_cerrar_se,
                 R.id.nav_tools, R.id.nav_perfil, R.id.nav_acerca)
                 .setDrawerLayout(drawer)
                 .build();
