@@ -58,8 +58,9 @@ public class Registro extends AppCompatActivity {
     }
 
 
-    public void ctrlBtnRegistrar(View view) {
+    public void ctrlBtnRegistroDuenio(View view) {
 
+        /*
         String nombre = txtNombre.getText().toString();
         String correo = txtCorreo.getText().toString();
         String pass = txtPass.getText().toString();
@@ -81,6 +82,11 @@ public class Registro extends AppCompatActivity {
                 startActivity(intent);
             }
         }
+
+         */
+        Intent intent = new Intent(view.getContext(), RegistroPerro.class);
+        startActivity(intent);
+
 
     }
 
