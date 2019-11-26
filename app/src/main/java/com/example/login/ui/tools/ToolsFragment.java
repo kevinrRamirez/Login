@@ -23,6 +23,7 @@ public class ToolsFragment extends Fragment {
         toolsViewModel =
                 ViewModelProviders.of(this).get(ToolsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_mascotas, container, false);
+        /*
         final TextView textView = root.findViewById(R.id.text_tools);
         toolsViewModel.getText().observe(this, new Observer<String>() {
             @Override
@@ -30,6 +31,8 @@ public class ToolsFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+         */
         return root;
     }
 }

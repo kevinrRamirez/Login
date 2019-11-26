@@ -12,23 +12,27 @@
             android:id="@+id/nav_perfil"
             android:icon="@drawable/ic_perfil"
             android:title="@string/perfil" />
+        <!--
 
         <item
             android:id="@+id/nav_haz_paseador"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/convierte_paseador" />
-
+            android:icon="@drawable/ic_paseo"
+            android:title="@string/paseos" />
+-->
 
         <item
             android:id="@+id/nav_mis_paseos"
             android:icon="@drawable/ic_acerca"
             android:title="@string/mis_paseos" />
 
+        <!--
 
         <item
-            android:id="@+id/nav_tools"
+            android:id="@+id/nav_mascotas"
             android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
+            android:title="@string/mascotas" />
+            -->
+
     </group>
 
     <item android:title="">
