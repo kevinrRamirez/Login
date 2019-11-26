@@ -63,7 +63,10 @@ public class Registro extends AppCompatActivity {
 
     public void ctrlBtnRegistroDuenio(View view) {
 
+
+
         /*
+
         String nombre = txtNombre.getText().toString();
         String correo = txtCorreo.getText().toString();
         String pass = txtPass.getText().toString();
@@ -85,10 +88,14 @@ public class Registro extends AppCompatActivity {
                 startActivity(intent);
             }
         }
-
          */
-        Intent intent = new Intent(view.getContext(), RegistroPerro.class);
-        startActivity(intent);
+
+
+
+        servicioRegistro("http://192.168.222.212/paseando/registro_duenio.php"); //compu Orlas
+
+        //Intent intent = new Intent(view.getContext(), RegistroPerro.class);
+        //startActivity(intent);
 
 
     }
