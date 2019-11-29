@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.login.ui.Codigos;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,8 +32,9 @@ public class Registro extends AppCompatActivity {
     EditText txtPass;
     EditText txtPassConf;
     Button btnIngresar;
+    TextView textView1;
 
-
+    Codigos c = new Codigos();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class Registro extends AppCompatActivity {
         txtPass = (EditText) findViewById(R.id.txtPass);
         txtPassConf = (EditText) findViewById(R.id.txtPassConf);
         btnIngresar = (Button) findViewById(R.id.btnIngresar);
+        textView1 = (TextView) findViewById(R.id.tv_1);
     }
 
 
@@ -80,9 +83,7 @@ public class Registro extends AppCompatActivity {
             } else if (!pass.equals(passConf)) {
                 Toast.makeText(this, "Las contaseñas no coinciden", Toast.LENGTH_LONG).show();
             }else{
-                //servicioRegistro("http://192.168.1.66/paseando/registro_duenio.php"); //compu Orlas
-                servicioRegistro("http://192.168.209.23/prueba/registro_duenio.php"); //compu Kevin
-                //servicio("http://192.168.209.23/prueba/insertar_preba.php");//prueba
+                servicioRegistro(c.direccionIP+"registro_duenio.php");
 
                 Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
                 startActivity(intent);
@@ -90,10 +91,7 @@ public class Registro extends AppCompatActivity {
         }
          */
 
-
-
-        servicioRegistro("http://192.168.100.119/prueba/registro_duenio.php"); //compu keew
-
+        servicioRegistro(c.direccionIP+"registro_duenio.php");
         Intent intent = new Intent(view.getContext(), RegistroPerro.class);
         startActivity(intent);
 

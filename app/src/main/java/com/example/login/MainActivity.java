@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.login.ui.Codigos;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity{
 
-
+    Codigos c= new Codigos();
 
     RequestQueue requestQueue;
     private EditText txtCorreo;
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity{
     TextView txtNombreUs;
     TextView textView1;
     NavigationPaseando navigationPaseando = new NavigationPaseando();
+    String obtenerCorreo,obtenerPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity{
         txtCorreo = (EditText) findViewById(R.id.txtUsuario);
         txtPass = (EditText) findViewById(R.id.txtPass);
         textView1 = (TextView) findViewById(R.id.textView1);
-
         /*
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -127,16 +127,17 @@ public class MainActivity extends AppCompatActivity{
 
          */
 
-        //buscarDuenio("http://192.168.1.66/paseando/buscar_duenio.php?correo="+txtCorreo.getText()+"");
-        buscarDuenio("http://192.168.100.119/prueba/buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+        textView1.setText(obtenerCorreo+"--"+obtenerPass);
 
-        /*
+        if (!txtCorreo.getText().equals(obtenerCorreo)&&!txtPass.getText().equals(obtenerPass)){
+            Toast.makeText(this, "Sin coincidencia", Toast.LENGTH_LONG).show();
+        }else{
+            Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
+            startActivity(intent);
+            limpTextView();
+        }
 
-
-         */
-        Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
-        startActivity(intent);
-        limpTextView();
 
     }
 
@@ -164,7 +165,7 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-    private void buscarDuenio(String URL) {
+    public void buscarDuenio(String URL) {
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
@@ -180,10 +181,10 @@ public class MainActivity extends AppCompatActivity{
                         textView1.setText(jsonObject.getString("correo"));
                         textView1.setText(jsonObject.getString("contrasenia"));
                         textView1.setText(jsonObject.getString("paseo"));
-
-
  */
-
+                        textView1.setText(jsonObject.getString("correo")+"--"+jsonObject.getString("contrasenia"));
+                        obtenerCorreo= jsonObject.getString("correo");
+                        obtenerPass=jsonObject.getString("contrasenia");
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

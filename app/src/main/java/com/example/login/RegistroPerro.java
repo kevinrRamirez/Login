@@ -6,7 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.login.ui.Codigos;
+
 public class RegistroPerro extends AppCompatActivity {
+
+    Codigos c= new Codigos();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -129,7 +129,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtPassConf">
 
                 <TextView
-                    android:id="@+id/editText"
+                    android:id="@+id/tv_1"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:text="@string/si_tienes_cuenta"
@@ -146,7 +146,7 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/editText"
+                    app:layout_constraintStart_toEndOf="@+id/tv_1"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
