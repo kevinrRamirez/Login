@@ -25,10 +25,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
 
 public class NavigationPaseando extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private TextView textViewCorreo;
+    private TextView textViewNombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,15 @@ public class NavigationPaseando extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        textViewCorreo = (TextView)findViewById(R.id.textViewCorreo);
+        textViewNombre = (TextView)findViewById(R.id.textViewNombre);
     }
+
+   // public NavigationPaseando(TextView textViewCorreo) {
+      //  this.textViewCorreo = textViewCorreo;
+    //}
+
 
     public void cerrarApp(View view)
     {

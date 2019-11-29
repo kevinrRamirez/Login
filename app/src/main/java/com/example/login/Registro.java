@@ -80,8 +80,8 @@ public class Registro extends AppCompatActivity {
             } else if (!pass.equals(passConf)) {
                 Toast.makeText(this, "Las contaseñas no coinciden", Toast.LENGTH_LONG).show();
             }else{
-                servicioRegistro("http://192.168.1.66/paseando/registro_duenio.php"); //compu Orlas
-                //servicioRegistro("http://192.168.209.23/paseando/registro_duenio.php"); //compu Kevin
+                //servicioRegistro("http://192.168.1.66/paseando/registro_duenio.php"); //compu Orlas
+                servicioRegistro("http://192.168.209.23/prueba/registro_duenio.php"); //compu Kevin
                 //servicio("http://192.168.209.23/prueba/insertar_preba.php");//prueba
 
                 Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
@@ -92,7 +92,7 @@ public class Registro extends AppCompatActivity {
 
 
 
-        servicioRegistro("http://192.168.222.212/paseando/registro_duenio.php"); //compu Orlas
+        servicioRegistro("http://192.168.100.119/prueba/registro_duenio.php"); //compu keew
 
         Intent intent = new Intent(view.getContext(), RegistroPerro.class);
         startActivity(intent);
