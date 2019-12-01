@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     TextView textView1;
     NavigationPaseando navigationPaseando = new NavigationPaseando();
     String obtenerCorreo,obtenerPass;
-    String prb= "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
         txtCorreo = (EditText) findViewById(R.id.txtUsuario);
         txtPass = (EditText) findViewById(R.id.txtPass);
         textView1 = (TextView) findViewById(R.id.textView1);
-        prb="2";
-        pruebaGuardarValores("3");
         // Instantiate the RequestQueue.
         rq  = Volley.newRequestQueue(MainActivity.this);
         /*
@@ -153,15 +150,17 @@ public class MainActivity extends AppCompatActivity {
 
         buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
         //textView1.setText(obtenerCorreo+"--"+obtenerPass);
+        obtenerCorreo=textView1.getText().toString();
 
+        textView1.setText(obtenerCorreo);
         //iniciarSesion();
-        textView1.setText(prb);
+        //textView1.setText(prb);
 
 
     }
-
+    String prb= "";
+    String s="0";
     public void buscarDuenio(String URL) {
-
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -169,26 +168,22 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         jsonObject = response.getJSONObject(i);
-
-/*
-                        textView1.setText(jsonObject.getString("id_duenio"));
+                        /*textView1.setText(jsonObject.getString("id_duenio"));
                         textView1.setText(jsonObject.getString("nombre"));
                         textView1.setText(jsonObject.getString("correo"));
                         textView1.setText(jsonObject.getString("contrasenia"));
-                        textView1.setText(jsonObject.getString("paseo"));
- */
+                        textView1.setText(jsonObject.getString("paseo"));*/
                         //textView1.setText(jsonObject.getString("correo")+"--"+jsonObject.getString("contrasenia"));
                         obtenerCorreo= jsonObject.optString("correo");
                         obtenerPass=jsonObject.optString("contrasenia");
-
-                        //textView1.setText(obtenerCorreo+"--"+obtenerPass);
-                        pruebaGuardarValores("4");
+                        s=jsonObject.getString("id_duenio")+jsonObject.getString("nombre")+jsonObject.getString("correo")+jsonObject.getString("contrasenia")+jsonObject.getString("paseo");
+                        textView1.setText(s);
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-
                     }
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -197,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         );
-
+        prb=s;
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
