@@ -45,6 +45,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     private  List<Address>  direccion;
     private Spinner spnrTiempo;
     private TextView txtPrecio;
+    String direc;
 
     @Override
     protected void onResume() {
@@ -158,9 +159,9 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     }
 
     public void ctrlBtnAceptar(View view) {
-        Intent intent;
-        intent = new Intent(view.getContext(), NavigationPaseando.class);
-        startActivity(intent);
+        finish();
+        Intent intent = new Intent(PedirPaseo.this, MainActivity.class);
+        intent.putExtra("datoDireccion",direc);
     }
 
 
@@ -203,7 +204,8 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
         try {
             List<Address> direccion = geocoder.getFromLocation( location.getLatitude(), location.getLongitude(),1);
-            txtUbicacion.setText(direccion.get(0).getAddressLine(0));
+            direc = direccion.get(0).getAddressLine(0);
+            txtUbicacion.setText(direc);
         } catch (IOException e) {
             e.printStackTrace();
         }

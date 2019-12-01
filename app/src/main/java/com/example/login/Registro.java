@@ -40,7 +40,7 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        txtNombre = (EditText) findViewById(R.id.txtNombre);
+        txtNombre = (EditText) findViewById(R.id.txtCorreoP);
         txtCorreo = (EditText) findViewById(R.id.txtCorreo);
         txtPass = (EditText) findViewById(R.id.txtPass);
         txtPassConf = (EditText) findViewById(R.id.txtPassConf);

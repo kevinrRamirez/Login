@@ -31,7 +31,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="150dp"
                 android:layout_marginBottom="60dp"
-                app:layout_constraintBottom_toTopOf="@+id/txtNombre"
+                app:layout_constraintBottom_toTopOf="@+id/txtCorreoP"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"

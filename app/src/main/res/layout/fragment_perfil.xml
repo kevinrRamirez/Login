@@ -18,10 +18,11 @@
         app:srcCompat="@mipmap/usuario" />
 
     <TextView
-        android:id="@+id/txtNombre"
+        android:id="@+id/txtCorreoP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="@string/correo_electronio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,14 +33,15 @@
         android:layout_width="122dp"
         android:layout_height="16dp"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="@string/nombre_de_usuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCorreoP" />
 
     <TextView
-        android:id="@+id/txtDireccion"
+        android:id="@+id/txtDireccionP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -56,7 +58,7 @@
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDireccion"
+        app:layout_constraintTop_toBottomOf="@+id/txtDireccionP"
         app:srcCompat="@mipmap/perro" />
 
     <TextView
@@ -78,4 +80,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNombreMascota" />
+
+    <TextView
+        android:id="@+id/txtPrb1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDireccionP" />
+
+    <TextView
+        android:id="@+id/txtPrb2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDireccionP" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
     NavigationPaseando navigationPaseando = new NavigationPaseando();
     String obtenerCorreo,obtenerPass;
 
+    String id;
+    String nombre;
+    String paseo;
+    String contrasenia;
+    String corre;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,6 +167,15 @@ public class MainActivity extends AppCompatActivity {
         //iniciarSesion();
         //textView1.setText(prb);
 
+        Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
+        intent.putExtra("datoCorreo",corre);
+        intent.putExtra("datoNombre",nombre);
+        intent.putExtra("datoId",id);
+        intent.putExtra("datoContrasenia",contrasenia);
+        intent.putExtra("datoPaseo",paseo);
+        startActivity(intent);
+        limpTextView();
+
 
     }
     String prb= "";
@@ -178,10 +194,17 @@ public class MainActivity extends AppCompatActivity {
                         textView1.setText(jsonObject.getString("contrasenia"));
                         textView1.setText(jsonObject.getString("paseo"));*/
                         //textView1.setText(jsonObject.getString("correo")+"--"+jsonObject.getString("contrasenia"));
-                        obtenerCorreo= jsonObject.optString("correo");
-                        obtenerPass=jsonObject.optString("contrasenia");
-                        s=jsonObject.getString("id_duenio")+jsonObject.getString("nombre")+jsonObject.getString("correo")+jsonObject.getString("contrasenia")+jsonObject.getString("paseo");
-                        textView1.setText(s);
+                        //obtenerCorreo= jsonObject.optString("correo");
+                        //obtenerPass=jsonObject.optString("contrasenia");
+                        //s=jsonObject.getString("id_duenio")+jsonObject.getString("nombre")+jsonObject.getString("correo")+jsonObject.getString("contrasenia")+jsonObject.getString("paseo");
+                        //textView1.setText(s);
+                        id = jsonObject.getString("id_duenio");
+                        nombre = jsonObject.getString("nombre");
+                        corre = jsonObject.getString("correo");
+                        contrasenia = jsonObject.getString("contrasenia");
+                        paseo = jsonObject.getString("paseo");
+
+                        Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -200,9 +223,18 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
+
+    public String getCorre()
+    {
+        return txtCorreo.getText().toString();
+    }
+
     public void pruebaGuardarValores(String s){
         prb=s;
     }
+
+
+
 
         /*
     private void iniciarSesion(){
@@ -257,38 +289,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
             return false;
         }
-    }
-
-    public void servicio(String url)
-    {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Regsitro exitoso", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error en el registro -> "+error.toString(), Toast.LENGTH_LONG).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                /*
-
-                parametros.put("id",txtNombre.getText().toString());
-                parametros.put("nombre",txtCorreo.getText().toString());
-                parametros.put("apellido_pat",txtPass.getText().toString());
-                parametros.put("apellido_mat",txtPassConf.getText().toString());
-
-                 */
-
-                return parametros;
-            }
-        };
-         requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
     }
 
 
