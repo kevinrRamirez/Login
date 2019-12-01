@@ -23,7 +23,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.login.ui.Codigos;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
     TextView textView1;
     NavigationPaseando navigationPaseando = new NavigationPaseando();
     String obtenerCorreo,obtenerPass;
+    String prb= "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
         txtCorreo = (EditText) findViewById(R.id.txtUsuario);
         txtPass = (EditText) findViewById(R.id.txtPass);
         textView1 = (TextView) findViewById(R.id.textView1);
+        prb = "2";
         // Instantiate the RequestQueue.
         rq  = Volley.newRequestQueue(MainActivity.this);
         /*
@@ -104,7 +105,8 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
 
     }
     private void iniciarSesion(){
-        String url = c.direccionIP+"buscar_duenio_prb.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
+        String url = c.direccionIP+"buscar_duenio%20_prb.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
+        //String url = c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
         jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
     }
@@ -117,20 +119,30 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
 
     @Override
     public void onResponse(JSONObject response) {
+        Codigos c1= new Codigos();
         Toast.makeText(this, "Conexión xd", Toast.LENGTH_LONG).show();
         JSONArray jsonArray = response.optJSONArray("array");
         JSONObject jsonObject =null;
 
         try {
             jsonObject = jsonArray.getJSONObject(0);
-            c.setId(jsonObject.optString("id_duenio"));
-            c.setNombre(jsonObject.optString("nombre"));
-            c.setCorreo(jsonObject.optString("correo"));
-            c.setPass(jsonObject.optString("contrasenia"));
-            c.setPaseo(jsonObject.optString("paseo"));
+            c1.setId(jsonObject.optString("id_duenio"));
+            c1.setNombre(jsonObject.optString("nombre"));
+            c1.setCorreo(jsonObject.optString("correo"));
+            c1.setPass(jsonObject.optString("contrasenia"));
+            c1.setPaseo(jsonObject.optString("paseo"));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        //textView1.setText(c.getCorreo()+c.getPass()+c.getPaseo());
+        prb="3";
+
+        Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
+        intent.putExtra(NavigationPaseando.nombre,c1.getNombre());
+        startActivity(intent);
+        limpTextView();
+
 
     }
 
@@ -180,10 +192,11 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
 
 
 
-        //buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
         //textView1.setText(obtenerCorreo+"--"+obtenerPass);
 
-        iniciarSesion();
+        //iniciarSesion();
+        textView1.setText(prb);
 
 
     }
@@ -232,6 +245,8 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
                         //textView1.setText(jsonObject.getString("correo")+"--"+jsonObject.getString("contrasenia"));
                         obtenerCorreo= jsonObject.optString("correo");
                         obtenerPass=jsonObject.optString("contrasenia");
+
+                        //textView1.setText(obtenerCorreo+"--"+obtenerPass);
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

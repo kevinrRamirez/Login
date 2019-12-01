@@ -1,5 +1,4 @@
-package com.example.login.ui;
-
+package com.example.login;
 
 public class Codigos {
 
@@ -59,5 +58,3 @@ public class Codigos {
         this.paseo = paseo;
     }
 }
-
-

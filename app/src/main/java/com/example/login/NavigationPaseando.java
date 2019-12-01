@@ -1,12 +1,10 @@
 package com.example.login;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.MenuItem;
 import android.view.View;
@@ -32,8 +30,10 @@ public class NavigationPaseando extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private TextView textViewCorreo;
     private TextView textViewNombre;
+    public static final String nombre="names";
+    TextView btnNuevoP;
+    Codigos c = new Codigos();
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -49,7 +49,7 @@ public class NavigationPaseando extends AppCompatActivity {
                         .setAction("Action", null).show();
 
                  */
-                    ctrlBoton(view);
+                ctrlBotonNuevoPaseo(view);
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -67,6 +67,12 @@ public class NavigationPaseando extends AppCompatActivity {
 
         textViewCorreo = (TextView)findViewById(R.id.textViewCorreo);
         textViewNombre = (TextView)findViewById(R.id.textViewNombre);
+        btnNuevoP = (TextView)findViewById(R.id.btnNuevoPaseo);
+        String usuario=getIntent().getStringExtra("names");
+        usuario="orlasss";
+        c.setNombre(usuario);
+        //btnNuevoP.setText("Bienvenido"+usuario);
+
     }
 
    // public NavigationPaseando(TextView textViewCorreo) {
@@ -86,7 +92,7 @@ public class NavigationPaseando extends AppCompatActivity {
     }
 
 
-    public void ctrlBoton(View view)
+    public void ctrlBotonNuevoPaseo(View view)
     {
         Intent intent = new Intent(view.getContext(),PedirPaseo.class);
         startActivity(intent);

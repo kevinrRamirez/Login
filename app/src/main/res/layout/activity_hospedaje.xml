@@ -7,7 +7,7 @@
     tools:context=".Hospedaje">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_construccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/tv_construccion"
         app:srcCompat="@mipmap/barricade"
         android:contentDescription="@string/app_name"/>
 
