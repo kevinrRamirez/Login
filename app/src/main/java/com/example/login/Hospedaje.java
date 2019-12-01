@@ -18,7 +18,7 @@ public class Hospedaje extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospedaje);
         tv_construccion = (TextView)findViewById(R.id.tv_construccion);
-        tv_construccion.setText("Hola"+c.getNombre());
+        tv_construccion.setText("Hola"+c.getCorreo()+" xd");
     }
 
 
