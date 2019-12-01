@@ -33,7 +33,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener{
+//
+public class MainActivity extends AppCompatActivity {
 
     Codigos c= new Codigos();
     RequestQueue rq;
@@ -59,7 +60,8 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
         txtCorreo = (EditText) findViewById(R.id.txtUsuario);
         txtPass = (EditText) findViewById(R.id.txtPass);
         textView1 = (TextView) findViewById(R.id.textView1);
-        prb = "2";
+        prb="2";
+        pruebaGuardarValores("3");
         // Instantiate the RequestQueue.
         rq  = Volley.newRequestQueue(MainActivity.this);
         /*
@@ -104,26 +106,23 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
 
 
     }
+    /*
     private void iniciarSesion(){
         String url = c.direccionIP+"buscar_duenio%20_prb.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
         //String url = c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
         jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
     }
-
     @Override
     public void onErrorResponse(VolleyError error) {
         Toast.makeText(this, "Error de conexión xd", Toast.LENGTH_LONG).show();
-
     }
-
     @Override
     public void onResponse(JSONObject response) {
         Codigos c1= new Codigos();
         Toast.makeText(this, "Conexión xd", Toast.LENGTH_LONG).show();
         JSONArray jsonArray = response.optJSONArray("array");
         JSONObject jsonObject =null;
-
         try {
             jsonObject = jsonArray.getJSONObject(0);
             c1.setId(jsonObject.optString("id_duenio"));
@@ -131,21 +130,16 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
             c1.setCorreo(jsonObject.optString("correo"));
             c1.setPass(jsonObject.optString("contrasenia"));
             c1.setPaseo(jsonObject.optString("paseo"));
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
         //textView1.setText(c.getCorreo()+c.getPass()+c.getPaseo());
-        prb="3";
-
         Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
         intent.putExtra(NavigationPaseando.nombre,c1.getNombre());
         startActivity(intent);
         limpTextView();
-
-
     }
-
+*/
 
     public void ctrlBtnReg(View view) {
         Intent intent;
@@ -201,30 +195,6 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
 
     }
 
-
-
-    public void limpTextView() {
-        txtCorreo = (EditText) findViewById(R.id.txtUsuario);
-        txtPass = (EditText) findViewById(R.id.txtPass);
-        txtCorreo.setText("");
-        txtPass.setText("");
-    }
-
-    boolean validacionCorreo(String s) {
-        // Patrón para validar el email
-        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        Matcher mather = pattern.matcher(s);
-        if (mather.find()) {
-            return true;
-        } else {
-            Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
-            return false;
-        }
-    }
-
-
-
     public void buscarDuenio(String URL) {
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
@@ -247,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
                         obtenerPass=jsonObject.optString("contrasenia");
 
                         //textView1.setText(obtenerCorreo+"--"+obtenerPass);
+                        pruebaGuardarValores("4");
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -264,6 +235,29 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
 
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
+    }
+    public void pruebaGuardarValores(String s){
+        prb=s;
+    }
+
+    public void limpTextView() {
+        txtCorreo = (EditText) findViewById(R.id.txtUsuario);
+        txtPass = (EditText) findViewById(R.id.txtPass);
+        txtCorreo.setText("");
+        txtPass.setText("");
+    }
+
+    boolean validacionCorreo(String s) {
+        // Patrón para validar el email
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(s);
+        if (mather.find()) {
+            return true;
+        } else {
+            Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
+            return false;
+        }
     }
 
     public void servicio(String url)
