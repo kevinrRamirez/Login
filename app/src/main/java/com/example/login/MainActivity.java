@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txtCorreoUs;
     TextView txtNombreUs;
     TextView textView1;
+    TextView tv_registrate;
     NavigationPaseando navigationPaseando = new NavigationPaseando();
     String obtenerCorreo,obtenerPass;
 
@@ -59,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         txtCorreo = (EditText) findViewById(R.id.txtUsuario);
         txtPass = (EditText) findViewById(R.id.txtPass);
         textView1 = (TextView) findViewById(R.id.textView1);
+
+        tv_registrate = (TextView) findViewById(R.id.tv_registrate);
         // Instantiate the RequestQueue.
         rq  = Volley.newRequestQueue(MainActivity.this);
         /*
@@ -150,9 +153,10 @@ public class MainActivity extends AppCompatActivity {
 
         buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
         //textView1.setText(obtenerCorreo+"--"+obtenerPass);
-        obtenerCorreo=textView1.getText().toString();
+        prb=textView1.getText().toString();
 
-        textView1.setText(obtenerCorreo);
+        textView1.setText(prb+" xd");
+        tv_registrate.setText(obtenerCorreo);
         //iniciarSesion();
         //textView1.setText(prb);
 
