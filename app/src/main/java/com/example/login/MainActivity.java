@@ -150,15 +150,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
          */
-
-        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
-        //textView1.setText(obtenerCorreo+"--"+obtenerPass);
-        prb=textView1.getText().toString();
-
-        textView1.setText(prb+" xd");
-        tv_registrate.setText(obtenerCorreo);
         //iniciarSesion();
-        //textView1.setText(prb);
+        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+        if (!c.getId().equals("")){
+            textView1.setText(c.getId()+c.getNombre()+" xd");
+        }
 
 
     }
@@ -178,10 +174,13 @@ public class MainActivity extends AppCompatActivity {
                         textView1.setText(jsonObject.getString("contrasenia"));
                         textView1.setText(jsonObject.getString("paseo"));*/
                         //textView1.setText(jsonObject.getString("correo")+"--"+jsonObject.getString("contrasenia"));
-                        obtenerCorreo= jsonObject.optString("correo");
-                        obtenerPass=jsonObject.optString("contrasenia");
+                        c.setId(jsonObject.getString("id_duenio"));
+                        c.setNombre(jsonObject.getString("nombre"));
+                        c.setCorreo(jsonObject.getString("correo"));
+                        c.setPass(jsonObject.getString("contrasenia"));
+                        c.setPaseo(jsonObject.getString("paseo"));
                         s=jsonObject.getString("id_duenio")+jsonObject.getString("nombre")+jsonObject.getString("correo")+jsonObject.getString("contrasenia")+jsonObject.getString("paseo");
-                        textView1.setText(s);
+                        //textView1.setText(s);
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -204,9 +203,9 @@ public class MainActivity extends AppCompatActivity {
         prb=s;
     }
 
-        /*
+/*
     private void iniciarSesion(){
-        String url = c.direccionIP+"buscar_duenio%20_prb.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
+        String url = c.direccionIP+"buscar_duenio_prb.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
         //String url = c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
         jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
@@ -228,14 +227,17 @@ public class MainActivity extends AppCompatActivity {
             c1.setCorreo(jsonObject.optString("correo"));
             c1.setPass(jsonObject.optString("contrasenia"));
             c1.setPaseo(jsonObject.optString("paseo"));
+            obtenerCorreo=jsonObject.optString("correo");
+            textView1.setText(jsonObject.optString("correo")+jsonObject.optString("contrasenia")+jsonObject.optString("paseo"));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
         //textView1.setText(c.getCorreo()+c.getPass()+c.getPaseo());
-        Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
-        intent.putExtra(NavigationPaseando.nombre,c1.getNombre());
-        startActivity(intent);
-        limpTextView();
+        //Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
+        //intent.putExtra(NavigationPaseando.nombre,c1.getNombre());
+        //startActivity(intent);
+        //limpTextView();
     }
 */
 
@@ -291,5 +293,10 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 
 }
