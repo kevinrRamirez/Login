@@ -30,7 +30,7 @@ public class NavigationPaseando extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private TextView textViewCorreo;
     private TextView textViewNombre;
-    public static final String nombre="names";
+    String variableNombre="variableNombre";
     TextView btnNuevoP;
     Codigos c = new Codigos();
 
@@ -68,9 +68,8 @@ public class NavigationPaseando extends AppCompatActivity {
         textViewCorreo = (TextView)findViewById(R.id.textViewCorreo);
         textViewNombre = (TextView)findViewById(R.id.textViewNombre);
         btnNuevoP = (TextView)findViewById(R.id.btnNuevoPaseo);
-        String usuario=getIntent().getStringExtra("names");
-        usuario="orlasss";
-        c.setNombre(usuario);
+        variableNombre = getIntent().getStringExtra("variableNombre");
+
         //btnNuevoP.setText("Bienvenido"+usuario);
 
     }

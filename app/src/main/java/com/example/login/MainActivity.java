@@ -152,9 +152,7 @@ public class MainActivity extends AppCompatActivity {
          */
         //iniciarSesion();
         buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
-        if (!c.getId().equals("")){
-            textView1.setText(c.getId()+c.getNombre()+" xd");
-        }
+
 
 
     }
@@ -179,8 +177,19 @@ public class MainActivity extends AppCompatActivity {
                         c.setCorreo(jsonObject.getString("correo"));
                         c.setPass(jsonObject.getString("contrasenia"));
                         c.setPaseo(jsonObject.getString("paseo"));
-                        s=jsonObject.getString("id_duenio")+jsonObject.getString("nombre")+jsonObject.getString("correo")+jsonObject.getString("contrasenia")+jsonObject.getString("paseo");
+                        //s=jsonObject.getString("id_duenio")+jsonObject.getString("nombre")+jsonObject.getString("correo")+jsonObject.getString("contrasenia")+jsonObject.getString("paseo");
                         //textView1.setText(s);
+
+
+
+                        if (!c.getId().equals("")){
+                            textView1.setText(c.getId()+c.getNombre()+" xd");
+                            Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
+                            intent.putExtra("variableNombre",c.getNombre());
+                            startActivity(intent);
+                            limpTextView();
+                        }
+
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
