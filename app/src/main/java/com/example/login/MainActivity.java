@@ -19,6 +19,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.login.ui.Codigos;
@@ -32,9 +34,11 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener{
 
     Codigos c= new Codigos();
+    RequestQueue rq;
+    JsonRequest jrq;
 
     RequestQueue requestQueue;
     private EditText txtCorreo;
@@ -55,6 +59,8 @@ public class MainActivity extends AppCompatActivity{
         txtCorreo = (EditText) findViewById(R.id.txtUsuario);
         txtPass = (EditText) findViewById(R.id.txtPass);
         textView1 = (TextView) findViewById(R.id.textView1);
+        // Instantiate the RequestQueue.
+        rq  = Volley.newRequestQueue(MainActivity.this);
         /*
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -97,12 +103,42 @@ public class MainActivity extends AppCompatActivity{
 
 
     }
+    private void iniciarSesion(){
+        String url = c.direccionIP+"buscar_duenio_prb.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
+        jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        rq.add(jrq);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(this, "Error de conexión xd", Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        Toast.makeText(this, "Conexión xd", Toast.LENGTH_LONG).show();
+        JSONArray jsonArray = response.optJSONArray("array");
+        JSONObject jsonObject =null;
+
+        try {
+            jsonObject = jsonArray.getJSONObject(0);
+            c.setId(jsonObject.optString("id_duenio"));
+            c.setNombre(jsonObject.optString("nombre"));
+            c.setCorreo(jsonObject.optString("correo"));
+            c.setPass(jsonObject.optString("contrasenia"));
+            c.setPaseo(jsonObject.optString("paseo"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
     public void ctrlBtnReg(View view) {
         Intent intent;
-                intent = new Intent(MainActivity.this, Registro.class);
-            startActivity(intent);
+        intent = new Intent(MainActivity.this, Registro.class);
+        startActivity(intent);
     }
 
     public void ctrlBtnIngresar(View view) {
@@ -127,6 +163,8 @@ public class MainActivity extends AppCompatActivity{
 
          */
 
+
+        /*
         buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
         textView1.setText(obtenerCorreo+"--"+obtenerPass);
 
@@ -137,6 +175,15 @@ public class MainActivity extends AppCompatActivity{
             startActivity(intent);
             limpTextView();
         }
+
+         */
+
+
+
+        //buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+        //textView1.setText(obtenerCorreo+"--"+obtenerPass);
+
+        iniciarSesion();
 
 
     }
@@ -182,9 +229,9 @@ public class MainActivity extends AppCompatActivity{
                         textView1.setText(jsonObject.getString("contrasenia"));
                         textView1.setText(jsonObject.getString("paseo"));
  */
-                        textView1.setText(jsonObject.getString("correo")+"--"+jsonObject.getString("contrasenia"));
-                        obtenerCorreo= jsonObject.getString("correo");
-                        obtenerPass=jsonObject.getString("contrasenia");
+                        //textView1.setText(jsonObject.getString("correo")+"--"+jsonObject.getString("contrasenia"));
+                        obtenerCorreo= jsonObject.optString("correo");
+                        obtenerPass=jsonObject.optString("contrasenia");
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -195,7 +242,7 @@ public class MainActivity extends AppCompatActivity{
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error de conexión xxd", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error de conexión xd", Toast.LENGTH_SHORT).show();
             }
         }
         );
@@ -235,5 +282,6 @@ public class MainActivity extends AppCompatActivity{
          requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
 
 }
