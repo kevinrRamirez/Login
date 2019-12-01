@@ -80,7 +80,7 @@ public class Registro extends AppCompatActivity {
         pass = txtPass.getText().toString();
         passConf = txtPassConf.getText().toString();
 
-        if (nombre.isEmpty() || correo.isEmpty() || pass.isEmpty() || passConf.isEmpty()) {//todos los campos son requeridos
+        /*if (nombre.isEmpty() || correo.isEmpty() || pass.isEmpty() || passConf.isEmpty()) {//todos los campos son requeridos
             Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
         }else if(!c.validacionNombreApellido(nombre)){//no es Nombre Apellido
             Toast.makeText(this, "Ingresar Nombre y Apellido de forma correcta", Toast.LENGTH_LONG).show();
@@ -96,12 +96,12 @@ public class Registro extends AppCompatActivity {
             Intent intent = new Intent(Registro.this, RegistroPerro.class);
             intent.putExtra("variableCorreo",correo);
             startActivity(intent);
-        }
+        }*/
 
-        /*insertDuenio(c.direccionIP+"registro_duenio.php");
+        //insertDuenio(c.direccionIP+"registro_duenio.php");
         Intent intent = new Intent(Registro.this, RegistroPerro.class);
         intent.putExtra("variableCorreo",correo);
-        startActivity(intent);*/
+        startActivity(intent);
 
     }
 
