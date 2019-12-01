@@ -15,8 +15,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +37,12 @@ public class Registro extends AppCompatActivity {
     EditText txtPassConf;
     Button btnIngresar;
     TextView textView1;
+    RequestQueue requestQueue;
+
+    String nombre;
+    String correo;
+    String pass ;
+    String passConf ;
 
     Codigos c = new Codigos();
 
@@ -64,89 +75,37 @@ public class Registro extends AppCompatActivity {
 
 
     public void ctrlBtnRegistroDuenio(View view) {
+        nombre = txtNombre.getText().toString();
+        correo = txtCorreo.getText().toString();
+        pass = txtPass.getText().toString();
+        passConf = txtPassConf.getText().toString();
 
-
-
-        /*
-
-        String nombre = txtNombre.getText().toString();
-        String correo = txtCorreo.getText().toString();
-        String pass = txtPass.getText().toString();
-        String passConf = txtPassConf.getText().toString();
-
-        if (nombre.isEmpty() || correo.isEmpty() || pass.isEmpty() || passConf.isEmpty()) {
+        if (nombre.isEmpty() || correo.isEmpty() || pass.isEmpty() || passConf.isEmpty()) {//todos los campos son requeridos
             Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
-        } else if (validacionNombreApellido(nombre) && validacionCorreo(correo)) {
-            if (!(pass.length() >= 6)) {
-                Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
-            } else if (!pass.equals(passConf)) {
-                Toast.makeText(this, "Las contaseñas no coinciden", Toast.LENGTH_LONG).show();
-            }else{
-                servicioRegistro(c.direccionIP+"registro_duenio.php");
-
-                Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
-                startActivity(intent);
-            }
-        }
-         */
-
-        servicioRegistro(c.direccionIP+"registro_duenio.php");
-        Intent intent = new Intent(view.getContext(), RegistroPerro.class);
-        startActivity(intent);
-
-
-    }
-
-
-    boolean validacionNombreApellido(String s) {
-        boolean bandera = true;
-        StringTokenizer t = new StringTokenizer(s, " ");
-        if (t.countTokens() != 2) {
-            Toast.makeText(this, "Ingresar Nombre y Apellido", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        while (t.hasMoreTokens()) {
-            if (!validacionNombre(t.nextToken())) {
-                Toast.makeText(this, "Ingresar Nombre y Apellido de forma correcta", Toast.LENGTH_LONG).show();
-                bandera = false;
-            }
-        }
-        return bandera;
-    }
-
-    boolean validacionNombre(String s) {
-        boolean bandera = true;
-        String ABC = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-        String abc = "abcdefghijklmnñopqrstuvwxyz";
-        if (!ABC.contains(Character.toString(s.charAt(0)))) {
-            return false;
-        }
-        for (int i = 1; i < s.length(); i++) {
-            if (!abc.contains(Character.toString(s.charAt(i)))) {
-                return false;
-            }
-        }
-        return bandera;
-    }
-
-    /*
-    Método para hacer la validación de un coreo electronico
-     */
-    boolean validacionCorreo(String correo) {
-        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");/*expresión regular para el correo electronico*/
-        Matcher mather = pattern.matcher(correo);
-        if (mather.find()) { /*cuando cumple con la expresión regular regresa un valor bolleano true*/
-            return true;
-        } else { /*cuando no cumple con la expresión regular manda un Toast al usuario y regresa un valor bolleano false*/
+        }else if(!c.validacionNombreApellido(nombre)){//no es Nombre Apellido
+            Toast.makeText(this, "Ingresar Nombre y Apellido de forma correcta", Toast.LENGTH_LONG).show();
+        }else if(!c.validacionCorreo(correo)){
             Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
-            return false;
+        }else if(!(pass.length() >= 6)){
+            Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
+        }else if(!pass.equals(passConf)){
+            Toast.makeText(this, "Las contaseñas no coinciden", Toast.LENGTH_LONG).show();
+        }else{
+            //cumple con todas las validaciones
+            insertDuenio(c.direccionIP+"registro_duenio.php");
+            Intent intent = new Intent(Registro.this, RegistroPerro.class);
+            intent.putExtra("variableCorreo",correo);
+            startActivity(intent);
         }
+
+        /*insertDuenio(c.direccionIP+"registro_duenio.php");
+        Intent intent = new Intent(Registro.this, RegistroPerro.class);
+        intent.putExtra("variableCorreo",correo);
+        startActivity(intent);*/
+
     }
 
-
-
-    public void servicioRegistro(String url)
+    public void insertDuenio(String url)
     {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -162,18 +121,15 @@ public class Registro extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
-
-                parametros.put("nombre",txtNombre.getText().toString());
-                parametros.put("correo",txtCorreo.getText().toString());
-                parametros.put("contrasenia",txtPass.getText().toString());
-
+                parametros.put("nombre",nombre);//txtNombre.getText().toString()
+                parametros.put("correo",correo);//txtCorreo.getText().toString()
+                parametros.put("contrasenia",pass);//txtPass.getText().toString()
                 return parametros;
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
 
     public void servicio(String url)
     {
@@ -191,17 +147,14 @@ public class Registro extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
-
                 parametros.put("id",txtNombre.getText().toString());
                 parametros.put("nombre",txtCorreo.getText().toString());
                 parametros.put("apellido_pat",txtPass.getText().toString());
                 parametros.put("apellido_mat",txtPassConf.getText().toString());
-
                 return parametros;
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
 }
