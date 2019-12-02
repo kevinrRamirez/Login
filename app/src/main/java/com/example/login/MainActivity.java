@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.login;//comentario
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -136,7 +136,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Correo invalido", Toast.LENGTH_LONG).show();
             }else if(!(sPa.length() >= 6)){
                 Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
-            }else if(sPa.equals(contrasenia)){
+            }else if (!sPa.equals(contrasenia)) {
+                Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
+            }else {
                     Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
                     intent.putExtra("datoCorreo",corre);
                     intent.putExtra("datoNombre",nombre);
@@ -150,6 +152,11 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     limpTextView();
             }
+
+        }else if(!sPa.equals(contrasenia)){
+            Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
+
+
         }else if(sPa.equals(contrasenia)){
                 Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
                 intent.putExtra("datoCorreo",corre);
