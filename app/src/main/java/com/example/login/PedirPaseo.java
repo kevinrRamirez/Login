@@ -167,12 +167,14 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String text = adapterView.getItemAtPosition(i).toString();
 
+
         if (text.equals("30 min"))
         {
             txtPrecio.setText("Costo: " +"\n"+" 25$");
             costo = "25";
             tiempo = "30";
-            Toast.makeText(getApplicationContext(),"Estaras pagando 25$ " + datoCorreo,Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(getApplicationContext(),"Estaras pagando 25$ " ,Toast.LENGTH_SHORT).show();
         }else if (text.equals("1 hr"))
         {
             txtPrecio.setText("Costo: " +"\n"+" 40$");
@@ -199,14 +201,12 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     }
 
     public void ctrlBtnAceptar(View view) {
-/*
+
+
         String urlCon = "http://192.168.100.119/prueba/buscar_duenio.php?=correo"+datoCorreo;
         Toast.makeText(getApplicationContext(),urlCon,Toast.LENGTH_SHORT).show();
         consultaDuenio(urlCon);
-        */
-        Boolean tru = false;
 
-        if (tru == true) {
             try {
                 String urlSer = "http://192.168.100.119/prueba/registro_contrato.php";
                 servicioContrato(urlSer);
@@ -215,10 +215,9 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
             {
                 Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
             }
-        }else {
+
 
             finish();
-        }
 
     }
 
@@ -271,6 +270,9 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     }
     public void servicioContrato(String url)
     {
+        final String lati = Double.toString(lat);
+        final String longi = Double.toString(lon);
+        final String dato1 = new Date().toString();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -285,12 +287,13 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("latitud", "1.2" );//Double.toString(lat));
-                parametros.put("longitud","2.2");//Double.toString(lon));
-                parametros.put("id_mascota","11");
-                parametros.put("hora_inicio", " ");//new Date().toString());
-                parametros.put("hora_fin"," ");
-                parametros.put("costo"," ");
+                parametros.put("latitud", "12" );//Double.toString(lat));
+                parametros.put("longitud","12");//Double.toString(lon));
+                parametros.put("id_paseador","13");
+                parametros.put("id_mascota","15");
+                parametros.put("hora_inicio", "121212");//new Date().toString());
+                parametros.put("hora_fin"," 232");
+                parametros.put("costo","eee");
                 return parametros;
             }
         };
