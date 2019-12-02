@@ -50,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
     NavigationPaseando navigationPaseando = new NavigationPaseando();
     String obtenerCorreo,obtenerPass;
 
+    String id;
+    String nombre;
+    String paseo;
+    String contrasenia;
+    String corre;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,9 +157,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
          */
-        //iniciarSesion();
-        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
 
+        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+        //textView1.setText(obtenerCorreo+"--"+obtenerPass);
+        prb=textView1.getText().toString();
+
+        textView1.setText(prb+" xd");
+        tv_registrate.setText(obtenerCorreo);
+        //iniciarSesion();
+        //textView1.setText(prb);
+
+        Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
+        intent.putExtra("datoCorreo",corre);
+        intent.putExtra("datoNombre",nombre);
+        intent.putExtra("datoId",id);
+        intent.putExtra("datoContrasenia",contrasenia);
+        intent.putExtra("datoPaseo",paseo);
+        startActivity(intent);
+        limpTextView();
 
 
     }
@@ -172,24 +194,17 @@ public class MainActivity extends AppCompatActivity {
                         textView1.setText(jsonObject.getString("contrasenia"));
                         textView1.setText(jsonObject.getString("paseo"));*/
                         //textView1.setText(jsonObject.getString("correo")+"--"+jsonObject.getString("contrasenia"));
-                        c.setId(jsonObject.getString("id_duenio"));
-                        c.setNombre(jsonObject.getString("nombre"));
-                        c.setCorreo(jsonObject.getString("correo"));
-                        c.setPass(jsonObject.getString("contrasenia"));
-                        c.setPaseo(jsonObject.getString("paseo"));
+                        //obtenerCorreo= jsonObject.optString("correo");
+                        //obtenerPass=jsonObject.optString("contrasenia");
                         //s=jsonObject.getString("id_duenio")+jsonObject.getString("nombre")+jsonObject.getString("correo")+jsonObject.getString("contrasenia")+jsonObject.getString("paseo");
                         //textView1.setText(s);
+                        id = jsonObject.getString("id_duenio");
+                        nombre = jsonObject.getString("nombre");
+                        corre = jsonObject.getString("correo");
+                        contrasenia = jsonObject.getString("contrasenia");
+                        paseo = jsonObject.getString("paseo");
 
-
-
-                        if (!c.getId().equals("")){
-                            textView1.setText(c.getId()+c.getNombre()+" xd");
-                            Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
-                            intent.putExtra("variableNombre",c.getNombre());
-                            startActivity(intent);
-                            limpTextView();
-                        }
-
+                        Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -208,13 +223,22 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
+
+    public String getCorre()
+    {
+        return txtCorreo.getText().toString();
+    }
+
     public void pruebaGuardarValores(String s){
         prb=s;
     }
 
-/*
+
+
+
+        /*
     private void iniciarSesion(){
-        String url = c.direccionIP+"buscar_duenio_prb.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
+        String url = c.direccionIP+"buscar_duenio%20_prb.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
         //String url = c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
         jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
@@ -236,17 +260,14 @@ public class MainActivity extends AppCompatActivity {
             c1.setCorreo(jsonObject.optString("correo"));
             c1.setPass(jsonObject.optString("contrasenia"));
             c1.setPaseo(jsonObject.optString("paseo"));
-            obtenerCorreo=jsonObject.optString("correo");
-            textView1.setText(jsonObject.optString("correo")+jsonObject.optString("contrasenia")+jsonObject.optString("paseo"));
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
         //textView1.setText(c.getCorreo()+c.getPass()+c.getPaseo());
-        //Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
-        //intent.putExtra(NavigationPaseando.nombre,c1.getNombre());
-        //startActivity(intent);
-        //limpTextView();
+        Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
+        intent.putExtra(NavigationPaseando.nombre,c1.getNombre());
+        startActivity(intent);
+        limpTextView();
     }
 */
 
@@ -270,42 +291,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void servicio(String url)
-    {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Regsitro exitoso", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error en el registro -> "+error.toString(), Toast.LENGTH_LONG).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                /*
-
-                parametros.put("id",txtNombre.getText().toString());
-                parametros.put("nombre",txtCorreo.getText().toString());
-                parametros.put("apellido_pat",txtPass.getText().toString());
-                parametros.put("apellido_mat",txtPassConf.getText().toString());
-
-                 */
-
-                return parametros;
-            }
-        };
-         requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 
 }

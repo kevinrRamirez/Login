@@ -23,7 +23,6 @@ public class Hospedaje extends AppCompatActivity {
 
 
     public void ctrlBtnAceptarC(View view) {
-        Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
-        startActivity(intent);
+       finish();
     }
 }

@@ -106,9 +106,13 @@ public class OtraUbicacionActivity extends FragmentActivity implements OnMapRead
     }
 
     public void ctrlBtnAceptarSv(View view) {
+        /*
         Intent intent;
         intent = new Intent(view.getContext(), NavigationPaseando.class);
         startActivity(intent);
+
+         */
+        finish();
         Toast toast = Toast.makeText(getApplicationContext(),
                 "Buscando Paseaddr", Toast.LENGTH_LONG);
         toast.show();

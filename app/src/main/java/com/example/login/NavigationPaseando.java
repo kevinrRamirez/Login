@@ -4,12 +4,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.login.ui.home.HomeFragment;
+import com.google.android.gms.common.server.response.FastSafeParcelableJsonResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import android.os.TestLooperManager;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -30,12 +35,15 @@ public class NavigationPaseando extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private TextView textViewCorreo;
     private TextView textViewNombre;
-    String variableNombre="variableNombre";
+    private FragmentManager supportFragmentManager;
+
+    TextView txtPrbPaseo;
+    public static final String nombre="names";
     TextView btnNuevoP;
     Codigos c = new Codigos();
+    View view;
 
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_paseando);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -65,11 +73,28 @@ public class NavigationPaseando extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        textViewCorreo = (TextView)findViewById(R.id.textViewCorreo);
-        textViewNombre = (TextView)findViewById(R.id.textViewNombre);
-        btnNuevoP = (TextView)findViewById(R.id.btnNuevoPaseo);
-        variableNombre = getIntent().getStringExtra("variableNombre");
+        //textViewCorreo = (TextView)
+        //textViewNombre = (TextView)findViewById(R.id.textViewNombre);
+        Bundle datoCorreo = getIntent().getExtras();
+        String correo = datoCorreo.getString("datoCorreo");
+        String nombre = datoCorreo.getString("datoNombre");
+        View headerView = navigationView.getHeaderView(0);
+        textViewCorreo = (TextView) headerView.findViewById(R.id.textViewCorreo);
+        textViewCorreo.setText(correo);
 
+        textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
+        textViewNombre.setText(nombre);
+
+
+        btnNuevoP = (TextView)findViewById(R.id.btnNuevoPaseo);
+
+
+
+        //String corr = mainActivity.getCorre();
+        //String url = "buscar_duenio.php?correo=";//+corr+"";
+        // String usuario=getIntent().getStringExtra("names");
+        //usuario="orlasss";
+        //c.setNombre(usuario);
         //btnNuevoP.setText("Bienvenido"+usuario);
 
     }
@@ -84,11 +109,18 @@ public class NavigationPaseando extends AppCompatActivity {
         finish();
     }
 
+    public void editText(View view)
+    {
+        TextView text = (TextView) view.findViewById(R.id.txtPrbPaseo);
+        text.setText("test");
+    }
+
     public void ctrlBtnHome(View view)
     {
         Intent intent = new Intent(view.getContext(),NavigationPaseando.class);
         startActivity(intent);
     }
+
 
 
     public void ctrlBotonNuevoPaseo(View view)
