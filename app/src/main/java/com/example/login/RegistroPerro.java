@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +32,8 @@ public class RegistroPerro extends AppCompatActivity {
     Codigos c= new Codigos();
     String variableId;
     TextView tv_datosPerro;
+    EditText et_NombrePerro,et_raza,et_cuidados;
+    Spinner spinnerEdad,spinnerTam;
     RequestQueue requestQueue;
     String variableCorreo;
 
@@ -36,10 +41,25 @@ public class RegistroPerro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_perro);
-        variableId = getIntent().getStringExtra("variableId");
         tv_datosPerro = (TextView) findViewById(R.id.tv_datosPerro);
+
+        et_NombrePerro = (EditText)findViewById(R.id.et_NombrePerro);
+        et_raza = (EditText)findViewById(R.id.et_raza);
+        et_cuidados = (EditText)findViewById(R.id.et_cuidados);
+
+
+        spinnerEdad=(Spinner)findViewById(R.id.spinnerEdad);
+        String [] arrayEdad ={"Edad:","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"};
+        ArrayAdapter <String> arrayAdapterEdad = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item,arrayEdad);
+        spinnerEdad.setAdapter(arrayAdapterEdad);
+
+        spinnerTam=(Spinner)findViewById(R.id.spinnerTam);
+        String [] arrayTam ={"Tamaño:","Pequeño","Mediano","Grande","Gigante"};
+        ArrayAdapter <String> arrayAdapterTam = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item,arrayTam);
+        spinnerTam.setAdapter(arrayAdapterTam);
+
         variableCorreo = getIntent().getStringExtra("variableCorreo");
-        tv_datosPerro.setText(variableCorreo+"xd");
+
 
         //selectDuenio(c.direccionIP+"buscar_duenio.php?correo="+variableCorreo+"");
 
@@ -69,10 +89,11 @@ public class RegistroPerro extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
                 parametros.put("id_duenio","13");//
-                parametros.put("nombre_mascota","firu");//
-                parametros.put("peso","0."+"10");//
-                parametros.put("cuidados","no");//
-                parametros.put("raza","pitbull");//
+                parametros.put("nombre_mascota",et_NombrePerro.getText().toString());//
+                parametros.put("tamanio",spinnerTam.getSelectedItem().toString());//
+                parametros.put("cuidados",et_cuidados.getText().toString());//
+                parametros.put("raza",et_raza.getText().toString());//
+                parametros.put("edad",spinnerEdad.getSelectedItem().toString());//
                 return parametros;
             }
         };
