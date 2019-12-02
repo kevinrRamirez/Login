@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         txtCorreo = (EditText) findViewById(R.id.txtUsuario);
         txtPass = (EditText) findViewById(R.id.txtPass);
         textView1 = (TextView) findViewById(R.id.textView1);
@@ -72,10 +70,8 @@ public class MainActivity extends AppCompatActivity {
         // Instantiate the RequestQueue.
         rq  = Volley.newRequestQueue(MainActivity.this);
         /*
-
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcherpaseando);
-
          */
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
 
@@ -83,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             // Permission is not granted
         }
-
 
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(this,
@@ -110,10 +105,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // Permission has already been granted
         }
-
-
     }
-
 
     public void ctrlBtnReg(View view) {
         Intent intent;
@@ -123,63 +115,42 @@ public class MainActivity extends AppCompatActivity {
 
     public void ctrlBtnIngresar(View view) {
 
-        /*
-        txtCorreo = (TextView) findViewById(R.id.txtUsuario);
-        txtPass = (TextView) findViewById(R.id.txtPass);
-        String correo = txtCorreo.getText().toString();
-        String pass = txtPass.getText().toString();
-        if (correo.isEmpty() || pass.isEmpty()) {
-            Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
-        } else if (!validacionCorreo(correo)) {
-            Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
-        } else if (!(pass.length() >= 6)) {
-            Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
-        } else {
+        String sCo,sPa;
+        sCo=txtCorreo.getText().toString();
+        sPa=txtPass.getText().toString();
 
-            Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
-            startActivity(intent);
-            limpTextView();
-        }
-
-         */
-
-
-        /*
-        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
-        textView1.setText(obtenerCorreo+"--"+obtenerPass);
-
-        if (!txtCorreo.getText().equals(obtenerCorreo)&&!txtPass.getText().equals(obtenerPass)){
-            Toast.makeText(this, "Sin coincidencia", Toast.LENGTH_LONG).show();
+        if(c.hacerValidaciones=false){
+            if (sCo.isEmpty()||sPa.isEmpty()){
+                Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
+            }else if(!c.validacionCorreo(sCo)){
+                Toast.makeText(this, "Correo invalido", Toast.LENGTH_LONG).show();
+            }else if(!(sPa.length() >= 6)){
+                Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
+            }else{
+                buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+                Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
+                intent.putExtra("datoCorreo",corre);
+                intent.putExtra("datoNombre",nombre);
+                intent.putExtra("datoId",id);
+                intent.putExtra("datoContrasenia",contrasenia);
+                intent.putExtra("datoPaseo",paseo);
+                startActivity(intent);
+                limpTextView();
+            }
         }else{
+            buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
             Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
+            intent.putExtra("datoCorreo",corre);
+            intent.putExtra("datoNombre",nombre);
+            intent.putExtra("datoId",id);
+            intent.putExtra("datoContrasenia",contrasenia);
+            intent.putExtra("datoPaseo",paseo);
             startActivity(intent);
             limpTextView();
         }
-
-         */
-
-        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
-        //textView1.setText(obtenerCorreo+"--"+obtenerPass);
-        prb=textView1.getText().toString();
-
-        textView1.setText(prb+" xd");
-        tv_registrate.setText(obtenerCorreo);
-        //iniciarSesion();
-        //textView1.setText(prb);
-
-        Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
-        intent.putExtra("datoCorreo",corre);
-        intent.putExtra("datoNombre",nombre);
-        intent.putExtra("datoId",id);
-        intent.putExtra("datoContrasenia",contrasenia);
-        intent.putExtra("datoPaseo",paseo);
-        startActivity(intent);
-        limpTextView();
-
 
     }
-    String prb= "";
-    String s="0";
+
     public void buscarDuenio(String URL) {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
@@ -203,14 +174,11 @@ public class MainActivity extends AppCompatActivity {
                         corre = jsonObject.getString("correo");
                         contrasenia = jsonObject.getString("contrasenia");
                         paseo = jsonObject.getString("paseo");
-
                         Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
-
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -219,21 +187,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         );
-        prb=s;
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
-
-    public String getCorre()
-    {
-        return txtCorreo.getText().toString();
-    }
-
-    public void pruebaGuardarValores(String s){
-        prb=s;
-    }
-
-
 
 
         /*
@@ -277,19 +233,5 @@ public class MainActivity extends AppCompatActivity {
         txtCorreo.setText("");
         txtPass.setText("");
     }
-
-    boolean validacionCorreo(String s) {
-        // Patrón para validar el email
-        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        Matcher mather = pattern.matcher(s);
-        if (mather.find()) {
-            return true;
-        } else {
-            Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
-            return false;
-        }
-    }
-
 
 }
