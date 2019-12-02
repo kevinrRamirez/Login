@@ -199,10 +199,26 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     }
 
     public void ctrlBtnAceptar(View view) {
-        finish();
-            //String urlSer = c.direccionIP + "registro_contrato.php";
-            //servicioContrato(urlSer);
-            Toast.makeText(getApplicationContext(),"En proceso ...",Toast.LENGTH_SHORT).show();
+/*
+        String urlCon = "http://192.168.100.119/prueba/buscar_duenio.php?=correo"+datoCorreo;
+        Toast.makeText(getApplicationContext(),urlCon,Toast.LENGTH_SHORT).show();
+        consultaDuenio(urlCon);
+        */
+        Boolean tru = false;
+
+        if (tru == true) {
+            try {
+                String urlSer = "http://192.168.100.119/prueba/registro_contrato.php";
+                servicioContrato(urlSer);
+                Toast.makeText(getApplicationContext(), "En proceso ...", Toast.LENGTH_SHORT).show();
+            }catch (Exception e)
+            {
+                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        }else {
+
+            finish();
+        }
 
     }
 
@@ -255,9 +271,6 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     }
     public void servicioContrato(String url)
     {
-        String urlCon = c.direccionIP+"registro_duenio.php?=correo"+datoCorreo;
-        consultaDuenio(urlCon);
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -272,12 +285,12 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("latitud", Double.toString(lat));
-                parametros.put("longitud",Double.toString(lon));
-                parametros.put("id_mascota",idUs);
-                parametros.put("hora_inicio",new Date().toString());
-                parametros.put("hora_fin","");
-                parametros.put("costo",costo);
+                parametros.put("latitud", "1.2" );//Double.toString(lat));
+                parametros.put("longitud","2.2");//Double.toString(lon));
+                parametros.put("id_mascota","11");
+                parametros.put("hora_inicio", " ");//new Date().toString());
+                parametros.put("hora_fin"," ");
+                parametros.put("costo"," ");
                 return parametros;
             }
         };
