@@ -18,7 +18,8 @@ public class Codigos {
     private String pass="";
     private String paseo="";
 
-
+    String caracteres = "!#$%&/=*/+-{}[]";
+    boolean hacerValidaciones=false;
 
     public Codigos(){
     }
@@ -64,6 +65,28 @@ Método para hacer la validación de un coreo electronico
         }
         for (int i = 1; i < s.length(); i++) {
             if (!abc.contains(Character.toString(s.charAt(i)))) {
+                return false;
+            }
+        }
+        return bandera;
+    }
+
+    boolean validacionPalabra(String s) {
+        boolean bandera = true;
+        String Abc = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+
+        for (int i = 0; i < s.length(); i++) {
+            if (!Abc.contains(Character.toString(s.charAt(i)))) {
+                return false;
+            }
+        }
+        return bandera;
+    }
+
+    boolean validacionCaracteresEspeciales(String s) {
+        boolean bandera = true;
+        for (int i = 0; i < s.length(); i++) {
+            if (caracteres.contains(Character.toString(s.charAt(i)))) {
                 return false;
             }
         }

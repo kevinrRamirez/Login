@@ -37,16 +37,22 @@ public class RegistroPerro extends AppCompatActivity {
     RequestQueue requestQueue;
     String variableCorreo;
 
+    String nombrePerro,razaPerro,cuidadosPerro,edadPerro,tamPerro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_perro);
+
+        et_NombrePerro = (EditText) findViewById(R.id.et_NombrePerro);
+        et_raza = (EditText) findViewById(R.id.et_raza);
+        et_cuidados = (EditText) findViewById(R.id.et_cuidados);
+
         tv_datosPerro = (TextView) findViewById(R.id.tv_datosPerro);
 
         et_NombrePerro = (EditText)findViewById(R.id.et_NombrePerro);
         et_raza = (EditText)findViewById(R.id.et_raza);
         et_cuidados = (EditText)findViewById(R.id.et_cuidados);
-
 
         spinnerEdad=(Spinner)findViewById(R.id.spinnerEdad);
         String [] arrayEdad ={"Edad:","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"};
@@ -54,22 +60,41 @@ public class RegistroPerro extends AppCompatActivity {
         spinnerEdad.setAdapter(arrayAdapterEdad);
 
         spinnerTam=(Spinner)findViewById(R.id.spinnerTam);
-        String [] arrayTam ={"Tamaño:","Pequeño","Mediano","Grande","Gigante"};
+        String [] arrayTam ={"Tamaño:","Chico","Mediano","Grande","Gigante"};
         ArrayAdapter <String> arrayAdapterTam = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item,arrayTam);
         spinnerTam.setAdapter(arrayAdapterTam);
 
         variableCorreo = getIntent().getStringExtra("variableCorreo");
-
-
         //selectDuenio(c.direccionIP+"buscar_duenio.php?correo="+variableCorreo+"");
-
     }
 
 
     public void ctrlBtnRegistroPerro(View v) {
-        insertMascota(c.direccionIP+"registro_mascota.php");
-        Intent intent = new Intent(v.getContext(), NavigationPaseando.class);
-        startActivity(intent);
+        nombrePerro=et_NombrePerro.getText().toString();
+        razaPerro=et_raza.getText().toString();
+        cuidadosPerro=et_cuidados.getText().toString();
+        edadPerro=spinnerEdad.getSelectedItem().toString();
+        tamPerro=spinnerTam.getSelectedItem().toString();
+
+        if(c.hacerValidaciones){
+            insertMascota(c.direccionIP+"registro_mascota.php");
+            Intent intent = new Intent(v.getContext(), NavigationPaseando.class);
+            startActivity(intent);
+        }else{
+            if (nombrePerro.isEmpty()||razaPerro.isEmpty()||cuidadosPerro.isEmpty()||edadPerro.equals("Edad:")||tamPerro.equals("Tamaño:")){
+                Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
+            }else if(!c.validacionPalabra(nombrePerro)){
+                Toast.makeText(this, "Ingresar nombre valido", Toast.LENGTH_LONG).show();
+            }else if(!c.validacionPalabra(razaPerro)){
+                Toast.makeText(this, "Ingresar raza valido", Toast.LENGTH_LONG).show();
+            }else if(!c.validacionCaracteresEspeciales(cuidadosPerro)){
+                Toast.makeText(this, "No usar "+c.caracteres+" en el campo de cuidados", Toast.LENGTH_LONG).show();
+            }else{
+                insertMascota(c.direccionIP+"registro_mascota.php");
+                Intent intent = new Intent(v.getContext(), NavigationPaseando.class);
+                startActivity(intent);
+            }
+        }
     }
 
     public void insertMascota(String url)
