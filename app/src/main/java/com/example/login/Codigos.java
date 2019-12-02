@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
 
 public class Codigos {
 
-    public String direccionIP = "http://192.168.100.119/prueba/"; //compu keew
+    //public String direccionIP = "http://192.168.100.119/prueba/"; //compu keew
 
-   // public String direccionIP = "http://192.168.1.70/paseando/"; //compu Orlas
+    public String direccionIP = "http://192.168.1.70/paseando/"; //compu Orlas
 
     private String id="";
     private String nombre="";

@@ -6,10 +6,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Hospedaje extends AppCompatActivity {
 
@@ -34,7 +45,5 @@ public class Hospedaje extends AppCompatActivity {
     }
 
 
-    public void ctrlBtnAceptarC(View view) {
-       finish();
-    }
+    public void ctrlBtnAceptarC(View view) {finish();}
 }
