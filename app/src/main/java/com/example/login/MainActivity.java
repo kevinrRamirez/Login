@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
     NavigationPaseando navigationPaseando = new NavigationPaseando();
     String obtenerCorreo,obtenerPass;
 
-    String id;
-    String nombre;
-    String paseo;
-    String contrasenia;
-    String corre;
+    String id="";
+    String nombre="";
+    String paseo="";
+    String contrasenia="";
+    String corre="";
 
 
     @Override
@@ -114,11 +114,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ctrlBtnIngresar(View view) {
-
+        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+    }
+    public void loDelIntent(){
         String sCo,sPa;
         sCo=txtCorreo.getText().toString();
         sPa=txtPass.getText().toString();
-
         if(c.hacerValidaciones=false){
             if (sCo.isEmpty()||sPa.isEmpty()){
                 Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
@@ -126,9 +127,18 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Correo invalido", Toast.LENGTH_LONG).show();
             }else if(!(sPa.length() >= 6)){
                 Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
-            }else{
-                buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
-                Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
+            }else if(sPa.equals(contrasenia)){
+                    Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
+                    intent.putExtra("datoCorreo",corre);
+                    intent.putExtra("datoNombre",nombre);
+                    intent.putExtra("datoId",id);
+                    intent.putExtra("datoContrasenia",contrasenia);
+                    intent.putExtra("datoPaseo",paseo);
+                    startActivity(intent);
+                    limpTextView();
+            }
+        }else if(sPa.equals(contrasenia)){
+                Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
                 intent.putExtra("datoCorreo",corre);
                 intent.putExtra("datoNombre",nombre);
                 intent.putExtra("datoId",id);
@@ -136,19 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("datoPaseo",paseo);
                 startActivity(intent);
                 limpTextView();
-            }
-        }else{
-            buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
-            Intent intent = new Intent(view.getContext(), NavigationPaseando.class);
-            intent.putExtra("datoCorreo",corre);
-            intent.putExtra("datoNombre",nombre);
-            intent.putExtra("datoId",id);
-            intent.putExtra("datoContrasenia",contrasenia);
-            intent.putExtra("datoPaseo",paseo);
-            startActivity(intent);
-            limpTextView();
         }
-
     }
 
     public void buscarDuenio(String URL) {
@@ -174,7 +172,8 @@ public class MainActivity extends AppCompatActivity {
                         corre = jsonObject.getString("correo");
                         contrasenia = jsonObject.getString("contrasenia");
                         paseo = jsonObject.getString("paseo");
-                        Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
+                        loDelIntent();
+                        //Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -183,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error de conexión xd", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Vuelve a intentarlo xd", Toast.LENGTH_SHORT).show();
             }
         }
         );
