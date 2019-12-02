@@ -59,10 +59,8 @@ public class Registro extends AppCompatActivity {
         textView1 = (TextView) findViewById(R.id.tv_1);
     }
 
-
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 
     /*
@@ -73,36 +71,35 @@ public class Registro extends AppCompatActivity {
         startActivity(intent);/*Método para cambiar de Activity*/
     }
 
-
     public void ctrlBtnRegistroDuenio(View view) {
         nombre = txtNombre.getText().toString();
         correo = txtCorreo.getText().toString();
         pass = txtPass.getText().toString();
         passConf = txtPassConf.getText().toString();
-
-        /*if (nombre.isEmpty() || correo.isEmpty() || pass.isEmpty() || passConf.isEmpty()) {//todos los campos son requeridos
-            Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
-        }else if(!c.validacionNombreApellido(nombre)){//no es Nombre Apellido
-            Toast.makeText(this, "Ingresar Nombre y Apellido de forma correcta", Toast.LENGTH_LONG).show();
-        }else if(!c.validacionCorreo(correo)){
-            Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
-        }else if(!(pass.length() >= 6)){
-            Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
-        }else if(!pass.equals(passConf)){
-            Toast.makeText(this, "Las contaseñas no coinciden", Toast.LENGTH_LONG).show();
+        if(c.hacerValidaciones){
+            if (nombre.isEmpty() || correo.isEmpty() || pass.isEmpty() || passConf.isEmpty()) {//todos los campos son requeridos
+                Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
+            }else if(!c.validacionNombreApellido(nombre)){//no es Nombre Apellido
+                Toast.makeText(this, "Ingresar Nombre y Apellido de forma correcta", Toast.LENGTH_LONG).show();
+            }else if(!c.validacionCorreo(correo)){
+                Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
+            }else if(!(pass.length() >= 6)){
+                Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
+            }else if(!pass.equals(passConf)){
+                Toast.makeText(this, "Las contaseñas no coinciden", Toast.LENGTH_LONG).show();
+            }else{
+                //cumple con todas las validaciones
+                insertDuenio(c.direccionIP+"registro_duenio.php");
+                Intent intent = new Intent(Registro.this, RegistroPerro.class);
+                intent.putExtra("variableCorreo",correo);
+                startActivity(intent);
+            }
         }else{
-            //cumple con todas las validaciones
             insertDuenio(c.direccionIP+"registro_duenio.php");
             Intent intent = new Intent(Registro.this, RegistroPerro.class);
             intent.putExtra("variableCorreo",correo);
             startActivity(intent);
-        }*/
-
-        //insertDuenio(c.direccionIP+"registro_duenio.php");
-        Intent intent = new Intent(Registro.this, RegistroPerro.class);
-        intent.putExtra("variableCorreo",correo);
-        startActivity(intent);
-
+        }
     }
 
     public void insertDuenio(String url)
