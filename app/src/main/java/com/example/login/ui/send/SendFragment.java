@@ -33,6 +33,9 @@ public class SendFragment extends Fragment {
     TextView txtnombre;
     TextView txt1;
     TextView direc;
+    TextView txtNombreMas;
+    TextView txtEdad;
+    TextView txtCuidados;
     //Codigos c;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -56,6 +59,9 @@ public class SendFragment extends Fragment {
         String nombre = dato.getString("datoNombre");
         String paseo = dato.getString("datoPaseo");
         String dirccion = dato.getString("datoDireccion");
+        String nombreMas = dato.getString("datoNomMas");
+        String datoEdad = dato.getString("datoEdadMas");
+        String cuidados = dato.getString("datoCuidados");
 
         //String url = c.direccionIP+"buscar_duenio.php?correo="+correo+"";
 
@@ -67,6 +73,13 @@ public class SendFragment extends Fragment {
         txt1.setText(paseo);
         direc = (TextView) root.findViewById(R.id.txtDireccionP);
         direc.setText(dirccion);
+        txtNombreMas = (TextView) root.findViewById(R.id.txtNombreMascota);
+        txtNombreMas.setText(nombreMas);
+        txtEdad = (TextView) root.findViewById(R.id.txtEdadMascota);
+        txtEdad.setText("Edad"+"\n"+datoEdad);
+        txtCuidados = (TextView) root.findViewById(R.id.txtCuidados);
+        txtCuidados.setText("Cuidados"+"\n"+cuidados);
+
 
 
         //bDuenioNavi(url,txtCorre,txtnombre,txt1,txt2);

@@ -51,10 +51,18 @@ public class MainActivity extends AppCompatActivity {
     String obtenerCorreo,obtenerPass;
 
     String id="";
+    String idMas ;
+    String idDue;
     String nombre="";
+    String nombreMas;
     String paseo="";
     String contrasenia="";
     String corre="";
+    String tamanio;
+    String cuidados;
+    String raza;
+    String edad;
+    String seguro;
 
 
     @Override
@@ -115,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void ctrlBtnIngresar(View view) {
         buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+       // buscarMascota(c.direccionIP+"buscar_mascota.php?id_mascota=50");
     }
     public void loDelIntent(){
         String sCo,sPa;
@@ -134,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("datoId",id);
                     intent.putExtra("datoContrasenia",contrasenia);
                     intent.putExtra("datoPaseo",paseo);
+                    buscarMascota(c.direccionIP+"buscar_mascota.php?id_mascota="+id);
+                    intent.putExtra("datoNomMas",nombreMas);
+                    intent.putExtra("datoEdadMas",edad);
+                    intent.putExtra("datoCuidados",cuidados);
                     startActivity(intent);
                     limpTextView();
             }
@@ -144,6 +157,10 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("datoId",id);
                 intent.putExtra("datoContrasenia",contrasenia);
                 intent.putExtra("datoPaseo",paseo);
+                buscarMascota(c.direccionIP+"buscar_mascota.php?id_mascota="+id);
+                intent.putExtra("datoNomMas",nombreMas);
+                intent.putExtra("datoEdadMas",edad);
+                intent.putExtra("datoCuidados",cuidados);;
                 startActivity(intent);
                 limpTextView();
         }
@@ -189,6 +206,41 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
+
+    public void buscarMascota(String URL) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        idMas = jsonObject.getString("id_mascota");
+                        idDue = jsonObject.getString("id_duenio");
+                        nombreMas = jsonObject.getString("nombre_mascota");
+                        tamanio = jsonObject.getString("tamanio");
+                        cuidados = jsonObject.getString("cuidados");
+                        raza = jsonObject.getString("raza");
+                        edad = jsonObject.getString("edad");
+                        seguro = jsonObject.getString("id_seguro");
+                        loDelIntent();
+                        //Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Vuelve a intentarlo xd x2", Toast.LENGTH_SHORT).show();
+            }
+        }
+        );
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+    }
+
 
 
         /*
