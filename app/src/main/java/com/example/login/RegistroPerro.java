@@ -65,6 +65,7 @@ public class RegistroPerro extends AppCompatActivity {
         spinnerTam.setAdapter(arrayAdapterTam);
 
         variableCorreo = getIntent().getStringExtra("variableCorreo");
+        tv_datosPerro.setText(variableCorreo);
         //selectDuenio(c.direccionIP+"buscar_duenio.php?correo="+variableCorreo+"");
     }
 

@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 public class Hospedaje extends AppCompatActivity {
 
     public static final String nombre="names";
@@ -18,7 +21,10 @@ public class Hospedaje extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospedaje);
         tv_construccion = (TextView)findViewById(R.id.tv_construccion);
-        tv_construccion.setText("Hola"+c.getCorreo()+" xd");
+
+        Calendar calendar = Calendar.getInstance();
+        String fecha = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
+        tv_construccion.setText(fecha);
     }
 
 
