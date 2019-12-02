@@ -36,7 +36,11 @@ public class RegistroPerro extends AppCompatActivity {
     Spinner spinnerEdad,spinnerTam;
     RequestQueue requestQueue;
     String variableCorreo;
-
+    String idDuenio;
+    String nombreDuenio;
+    String correoDuenio;
+    String extrasDuenio;
+    String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,22 +62,26 @@ public class RegistroPerro extends AppCompatActivity {
         ArrayAdapter <String> arrayAdapterTam = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item,arrayTam);
         spinnerTam.setAdapter(arrayAdapterTam);
 
-        variableCorreo = getIntent().getStringExtra("variableCorreo");
+        Bundle dato = getIntent().getExtras();
+        variableCorreo = dato.getString("variableCorreo");
 
 
         //selectDuenio(c.direccionIP+"buscar_duenio.php?correo="+variableCorreo+"");
+        url = c.direccionIP+"buscar_duenio.php?correo="+variableCorreo+"";
 
     }
 
 
     public void ctrlBtnRegistroPerro(View v) {
         insertMascota(c.direccionIP+"registro_mascota.php");
-        Intent intent = new Intent(v.getContext(), NavigationPaseando.class);
+        finish();
+        Intent intent = new Intent(RegistroPerro.this, MainActivity.class);
         startActivity(intent);
     }
 
     public void insertMascota(String url)
     {
+        selectDuenio(url);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -88,7 +96,7 @@ public class RegistroPerro extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("id_duenio","13");//
+                parametros.put("id_duenio",idDuenio);//
                 parametros.put("nombre_mascota",et_NombrePerro.getText().toString());//
                 parametros.put("tamanio",spinnerTam.getSelectedItem().toString());//
                 parametros.put("cuidados",et_cuidados.getText().toString());//
@@ -111,25 +119,24 @@ public class RegistroPerro extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         jsonObject = response.getJSONObject(i);
-                        c.setId(jsonObject.getString("id_duenio"));
-                        c.setNombre(jsonObject.getString("nombre"));
-                        c.setCorreo(jsonObject.getString("correo"));
-                        c.setPass(jsonObject.getString("contrasenia"));
-                        c.setPaseo(jsonObject.getString("paseo"));
-                        //if (!c.getId().equals("")){
-                        Intent intent = new Intent(RegistroPerro.this, NavigationPaseando.class);
-                        //intent.putExtra("variableId",c.getId());
-                        startActivity(intent);
-                        //}
+                        idDuenio = jsonObject.getString("id_duenio");
+                        nombreDuenio = jsonObject.getString("nombre");
+                        correoDuenio = jsonObject.getString("correo");
+                        extrasDuenio = jsonObject.getString("contrasenia")+ jsonObject.getString("paseo");
+
+                        Toast.makeText(getApplicationContext(), "Ok...", Toast.LENGTH_SHORT).show();
+
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
+
             }
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error de conexión xd", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error de conexión xd ", Toast.LENGTH_SHORT).show();
             }
         }
         );

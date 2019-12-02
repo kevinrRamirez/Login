@@ -37,7 +37,7 @@
                 />
 
             <EditText
-                android:id="@+id/txtCorreo"
+                android:id="@+id/txtCorreoR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -62,7 +62,7 @@
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCorreo" />
+                app:layout_constraintTop_toBottomOf="@+id/txtCorreoR" />
 
 
             <EditText

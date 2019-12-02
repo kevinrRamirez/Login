@@ -23,15 +23,30 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
     Button btnubicacion;
@@ -45,7 +60,17 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     private  List<Address>  direccion;
     private Spinner spnrTiempo;
     private TextView txtPrecio;
+    RequestQueue requestQueue;
+    Codigos c;
     String direc;
+    String tiempo;
+    String costo;
+    String nombreUs;
+    String correoUs;
+    String idUs;
+    String cont;
+    String paseo;
+    String datoCorreo;
 
     @Override
     protected void onResume() {
@@ -132,6 +157,10 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         });
 
          */
+        Bundle dato = getIntent().getExtras();
+        datoCorreo = dato.getString("correo");
+
+
     }
 
     @Override
@@ -141,15 +170,26 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         if (text.equals("30 min"))
         {
             txtPrecio.setText("Costo: " +"\n"+" 25$");
+            costo = "25";
+            tiempo = "30";
+            Toast.makeText(getApplicationContext(),"Estaras pagando 25$ " + datoCorreo,Toast.LENGTH_SHORT).show();
         }else if (text.equals("1 hr"))
         {
             txtPrecio.setText("Costo: " +"\n"+" 40$");
+            costo = "40";
+            tiempo = "60";
+            Toast.makeText(getApplicationContext(),"Estaras pagando 25$",Toast.LENGTH_SHORT).show();
         }else if (text.equals("2 hr"))
         {
             txtPrecio.setText("Costo: " +"\n"+" 60$");
+            costo = "60";
+            tiempo = "120";
+            Toast.makeText(getApplicationContext(),"Estaras pagando 25$",Toast.LENGTH_SHORT).show();
         }else if (text.equals("Proximas..."))
         {
             txtPrecio.setText("Esparalo ");
+            costo = "";
+            tiempo = "";
         }
     }
 
@@ -160,8 +200,10 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
 
     public void ctrlBtnAceptar(View view) {
         finish();
-        Intent intent = new Intent(PedirPaseo.this, MainActivity.class);
-        intent.putExtra("datoDireccion",direc);
+            //String urlSer = c.direccionIP + "registro_contrato.php";
+            //servicioContrato(urlSer);
+            Toast.makeText(getApplicationContext(),"En proceso ...",Toast.LENGTH_SHORT).show();
+
     }
 
 
@@ -211,6 +253,71 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         }
 
     }
+    public void servicioContrato(String url)
+    {
+        String urlCon = c.direccionIP+"registro_duenio.php?=correo"+datoCorreo;
+        consultaDuenio(urlCon);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "Regsitro exitoso #", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error en el registro -> "+error.toString(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("latitud", Double.toString(lat));
+                parametros.put("longitud",Double.toString(lon));
+                parametros.put("id_mascota",idUs);
+                parametros.put("hora_inicio",new Date().toString());
+                parametros.put("hora_fin","");
+                parametros.put("costo",costo);
+                return parametros;
+            }
+        };
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    public void consultaDuenio(String URL) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        idUs = jsonObject.getString("id_duenio");
+                        nombreUs = jsonObject.getString("nombre");
+                        correoUs = jsonObject.getString("correo");
+                        cont = jsonObject.getString("contrasenia");
+                        paseo = jsonObject.getString("paseo");
+
+                        Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
+
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error de conexión xd#", Toast.LENGTH_SHORT).show();
+            }
+        }
+        );
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+    }
+
 
 
 
