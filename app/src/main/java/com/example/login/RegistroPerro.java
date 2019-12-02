@@ -76,9 +76,9 @@ public class RegistroPerro extends AppCompatActivity {
         edadPerro=spinnerEdad.getSelectedItem().toString();
         tamPerro=spinnerTam.getSelectedItem().toString();
 
-        if(c.hacerValidaciones){
+        if(c.hacerValidaciones=true){
             insertMascota(c.direccionIP+"registro_mascota.php");
-            Intent intent = new Intent(v.getContext(), NavigationPaseando.class);
+            Intent intent = new Intent(v.getContext(), MainActivity.class);
             startActivity(intent);
         }else{
             if (nombrePerro.isEmpty()||razaPerro.isEmpty()||cuidadosPerro.isEmpty()||edadPerro.equals("Edad:")||tamPerro.equals("Tamaño:")){
@@ -91,7 +91,7 @@ public class RegistroPerro extends AppCompatActivity {
                 Toast.makeText(this, "No usar "+c.caracteres+" en el campo de cuidados", Toast.LENGTH_LONG).show();
             }else{
                 insertMascota(c.direccionIP+"registro_mascota.php");
-                Intent intent = new Intent(v.getContext(), NavigationPaseando.class);
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
                 startActivity(intent);
             }
         }
