@@ -73,10 +73,7 @@ public class RegistroPerro extends AppCompatActivity {
 
 
     public void ctrlBtnRegistroPerro(View v) {
-        insertMascota(c.direccionIP+"registro_mascota.php");
-        finish();
-        Intent intent = new Intent(RegistroPerro.this, MainActivity.class);
-        startActivity(intent);
+        selectDuenio(c.direccionIP+"buscar_duenio.php?correo="+variableCorreo+"");
     }
 
     public void insertMascota(String url)
@@ -124,7 +121,10 @@ public class RegistroPerro extends AppCompatActivity {
                         correoDuenio = jsonObject.getString("correo");
                         extrasDuenio = jsonObject.getString("contrasenia")+ jsonObject.getString("paseo");
 
-                        Toast.makeText(getApplicationContext(), "Ok...", Toast.LENGTH_SHORT).show();
+                        insertMascota(c.direccionIP+"registro_mascota.php");
+                        finish();
+                        Intent intent = new Intent(RegistroPerro.this, MainActivity.class);
+                        startActivity(intent);
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -136,7 +136,7 @@ public class RegistroPerro extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error de conexión xd ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Listo xd ", Toast.LENGTH_SHORT).show();
             }
         }
         );
