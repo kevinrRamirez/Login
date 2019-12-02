@@ -41,6 +41,7 @@ public class RegistroPerro extends AppCompatActivity {
     String correoDuenio;
     String extrasDuenio;
     String url;
+    String nombrePerro,razaPerro,cuidadosPerro,edadPerro,tamPerro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,11 +121,8 @@ public class RegistroPerro extends AppCompatActivity {
                         nombreDuenio = jsonObject.getString("nombre");
                         correoDuenio = jsonObject.getString("correo");
                         extrasDuenio = jsonObject.getString("contrasenia")+ jsonObject.getString("paseo");
+                        loDelInsertMascota();
 
-                        insertMascota(c.direccionIP+"registro_mascota.php");
-                        finish();
-                        Intent intent = new Intent(RegistroPerro.this, MainActivity.class);
-                        startActivity(intent);
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -142,6 +140,37 @@ public class RegistroPerro extends AppCompatActivity {
         );
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
+    }
+
+
+    public void loDelInsertMascota(){
+        nombrePerro=et_NombrePerro.getText().toString();
+        razaPerro=et_raza.getText().toString();
+        cuidadosPerro=et_cuidados.getText().toString();
+        edadPerro=spinnerEdad.getSelectedItem().toString();
+        tamPerro=spinnerTam.getSelectedItem().toString();
+
+        if(c.hacerValidaciones=false){
+            insertMascota(c.direccionIP+"registro_mascota.php");
+            finish();
+            Intent intent = new Intent(RegistroPerro.this, MainActivity.class);
+            startActivity(intent);
+        }else{
+            if (nombrePerro.isEmpty()||razaPerro.isEmpty()||cuidadosPerro.isEmpty()||edadPerro.equals("Edad:")||tamPerro.equals("Tamaño:")){
+                Toast.makeText(getApplicationContext(), "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
+            }else if(!c.validacionPalabra(nombrePerro)){
+                Toast.makeText(getApplicationContext(), "Ingresar nombre valido", Toast.LENGTH_LONG).show();
+            }else if(!c.validacionPalabra(razaPerro)){
+                Toast.makeText(getApplicationContext(), "Ingresar raza valido", Toast.LENGTH_LONG).show();
+            }else if(!c.validacionCaracteresEspeciales(cuidadosPerro)){
+                Toast.makeText(getApplicationContext(), "No usar "+c.caracteres+" en el campo de cuidados", Toast.LENGTH_LONG).show();
+            }else{
+                insertMascota(c.direccionIP+"registro_mascota.php");
+                finish();
+                Intent intent = new Intent(RegistroPerro.this, MainActivity.class);
+                startActivity(intent);
+            }
+        }
     }
 
 }
