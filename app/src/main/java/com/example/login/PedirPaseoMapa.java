@@ -21,7 +21,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class PedirPaseoMapa extends FragmentActivity implements OnMapReadyCallback {
+public class PedirPaseoMapa extends FragmentActivity implements OnMapReadyCallback { //holaaaaaaa
 
     private GoogleMap mMap;
     private double lat;
