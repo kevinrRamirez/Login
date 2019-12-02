@@ -7,13 +7,12 @@
     tools:context=".RegistroPerro">
 
 
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -43,11 +42,11 @@
                 android:id="@+id/tv_datosPerro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/datos_perro"
                 android:layout_marginTop="200dp"
+                android:text="@string/datos_perro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/et_NombrePerro"
@@ -61,8 +60,7 @@
                 android:inputType="textCapWords"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_datosPerro"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/tv_datosPerro" />
 
             <EditText
                 android:id="@+id/et_raza"
@@ -73,38 +71,20 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/raza"
-                android:inputType="textPassword"
+                android:inputType="textCapWords"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_NombrePerro" />
 
-            <EditText
-                android:id="@+id/et_edad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+            <Spinner
+                android:id="@+id/spinnerEdad"
+                android:layout_width="213dp"
+                android:layout_height="41dp"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/colorPrimary"
-                android:ems="10"
-                android:hint="@string/edad"
-                android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_raza" />
 
-            <EditText
-                android:id="@+id/txtPass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="@color/colorPrimary"
-                android:ems="10"
-                android:hint="@string/tamanio"
-                android:inputType="textPassword"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_edad" />
 
 
             <EditText
@@ -117,13 +97,21 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/cuidados"
-                android:inputType="textPassword"
+                android:inputType="text"
                 app:layout_constraintBottom_toTopOf="@+id/btnRegistro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPass"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerEdad"
                 app:layout_constraintVertical_bias="1.0" />
 
+            <Spinner
+                android:id="@+id/spinnerTam"
+                android:layout_width="213dp"
+                android:layout_height="41dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_cuidados" />
 
             <Button
                 android:id="@+id/btnRegistro"
@@ -136,12 +124,14 @@
                 android:background="@drawable/boton_solido"
                 android:onClick="ctrlBtnRegistroPerro"
                 android:text="@string/finalizar"
+                android:textColor="@color/colorPrimary2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPass"
-                android:textColor="@color/colorPrimary2"/>
+                app:layout_constraintTop_toBottomOf="@+id/spinnerTam"
 
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"/>
 
 
 
