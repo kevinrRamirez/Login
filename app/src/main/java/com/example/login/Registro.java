@@ -73,7 +73,7 @@ public class Registro extends AppCompatActivity {
         pass = txtPass.getText().toString();
         passConf = txtPassConf.getText().toString();
 
-        if(c.hacerValidaciones=true) {
+        if(c.hacerValidaciones) {
             if (nombre.isEmpty() || correo.isEmpty() || pass.isEmpty() || passConf.isEmpty()) {//todos los campos son requeridos
                 Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
             } else if (!c.validacionNombreApellido(nombre)) {//no es Nombre Apellido

@@ -150,7 +150,7 @@ public class RegistroPerro extends AppCompatActivity {
         edadPerro=spinnerEdad.getSelectedItem().toString();
         tamPerro=spinnerTam.getSelectedItem().toString();
 
-        if(c.hacerValidaciones=false){
+        if(!c.hacerValidaciones){
             insertMascota(c.direccionIP+"registro_mascota.php");
             finish();
             Intent intent = new Intent(RegistroPerro.this, MainActivity.class);
