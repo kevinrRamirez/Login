@@ -73,6 +73,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     String datoCorreo;
     String lati;
     String longi;
+    boolean bancosto = false;
 
     @Override
     protected void onResume() {
@@ -175,25 +176,31 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
             txtPrecio.setText("Costo: " +"\n"+" 25$");
             costo = "25";
             tiempo = "30";
-
-            Toast.makeText(getApplicationContext(),"Estaras pagando 25$ " ,Toast.LENGTH_SHORT).show();
+            bancosto = true;
+            Toast.makeText(getApplicationContext(),"Estaras pagando 2$ " ,Toast.LENGTH_SHORT).show();
         }else if (text.equals("1 hr"))
         {
             txtPrecio.setText("Costo: " +"\n"+" 40$");
             costo = "40";
             tiempo = "60";
-            Toast.makeText(getApplicationContext(),"Estaras pagando 25$",Toast.LENGTH_SHORT).show();
+            bancosto = true;
+            Toast.makeText(getApplicationContext(),"Estaras pagando 40$",Toast.LENGTH_SHORT).show();
         }else if (text.equals("2 hr"))
         {
             txtPrecio.setText("Costo: " +"\n"+" 60$");
             costo = "60";
             tiempo = "120";
-            Toast.makeText(getApplicationContext(),"Estaras pagando 25$",Toast.LENGTH_SHORT).show();
+            bancosto = true;
+            Toast.makeText(getApplicationContext(),"Estaras pagando 60$",Toast.LENGTH_SHORT).show();
         }else if (text.equals("Proximas..."))
         {
             txtPrecio.setText("Esparalo ");
             costo = "";
             tiempo = "";
+            bancosto = false;
+        }else if (text.equals("Selecciona el tiempo"))
+        {
+            bancosto = false;
         }
     }
 
@@ -204,25 +211,27 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
 
     public void ctrlBtnAceptar(View view) {
 
+        if (bancosto == false)
+        {
+            Toast.makeText(getApplicationContext(),"Por favor seleciona el tiempo",Toast.LENGTH_LONG).show();
+        }else {
 
-        String urlCon = "http://192.168.222.85/prueba/buscar_duenio.php?=correo"+datoCorreo;
-        //Toast.makeText(getApplicationContext(),urlCon,Toast.LENGTH_SHORT).show();
-        consultaDuenio(urlCon);
 
-        /*
+            String urlCon = "http://192.168.100.119/prueba/buscar_duenio.php?=correo" + datoCorreo;
+            //Toast.makeText(getApplicationContext(),urlCon,Toast.LENGTH_SHORT).show();
+            consultaDuenio(urlCon);
+
+
             try {
-                String urlSer = "http://192.168.222.85/prueba/registro_contrato.php";
+                String urlSer = "http://192.168.100.119/prueba/registro_contrato.php";
                 servicioContrato(urlSer);
                 Toast.makeText(getApplicationContext(), "En proceso ...", Toast.LENGTH_SHORT).show();
-            }catch (Exception e)
-            {
-                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
-
-         */
-
-
             finish();
+
+        }
 
     }
 
@@ -322,7 +331,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
 
                         Toast.makeText(getApplicationContext(), "Iniciando..."+idUs, Toast.LENGTH_SHORT).show();
 
-                        String urlSer = "http://192.168.222.85/prueba/registro_contrato.php";
+                        String urlSer = "http://192.168.100.119/prueba/registro_contrato.php";
                         servicioContrato(urlSer);
 
                     } catch (JSONException e) {
