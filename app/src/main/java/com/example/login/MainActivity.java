@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         String sCo,sPa;
         sCo=txtCorreo.getText().toString();
         sPa=txtPass.getText().toString();
-        if(c.hacerValidaciones=false){
+        if(c.hacerValidaciones){
             if (sCo.isEmpty()||sPa.isEmpty()){
                 Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
             }else if(!c.validacionCorreo(sCo)){
@@ -139,6 +139,8 @@ public class MainActivity extends AppCompatActivity {
             }else if (!sPa.equals(contrasenia)) {
                 Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
             }else {
+                if(sPa.equals(contrasenia)){
+                    Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
                     intent.putExtra("datoCorreo",corre);
                     intent.putExtra("datoNombre",nombre);
@@ -151,13 +153,13 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("datoCuidados",cuidados);
                     startActivity(intent);
                     limpTextView();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                }
             }
-
-        }else if(!sPa.equals(contrasenia)){
-            Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
-
-
-        }else if(sPa.equals(contrasenia)){
+        }else{
+            if(sPa.equals(contrasenia)){
+                Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
                 intent.putExtra("datoCorreo",corre);
                 intent.putExtra("datoNombre",nombre);
@@ -167,9 +169,12 @@ public class MainActivity extends AppCompatActivity {
                 buscarMascota(c.direccionIP+"buscar_mascota.php?id_mascota="+id);
                 intent.putExtra("datoNomMas",nombreMas);
                 intent.putExtra("datoEdadMas",edad);
-                intent.putExtra("datoCuidados",cuidados);;
+                intent.putExtra("datoCuidados",cuidados);
                 startActivity(intent);
                 limpTextView();
+            }else{
+                Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -181,23 +186,13 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         jsonObject = response.getJSONObject(i);
-                        /*textView1.setText(jsonObject.getString("id_duenio"));
-                        textView1.setText(jsonObject.getString("nombre"));
-                        textView1.setText(jsonObject.getString("correo"));
-                        textView1.setText(jsonObject.getString("contrasenia"));
-                        textView1.setText(jsonObject.getString("paseo"));*/
-                        //textView1.setText(jsonObject.getString("correo")+"--"+jsonObject.getString("contrasenia"));
-                        //obtenerCorreo= jsonObject.optString("correo");
-                        //obtenerPass=jsonObject.optString("contrasenia");
-                        //s=jsonObject.getString("id_duenio")+jsonObject.getString("nombre")+jsonObject.getString("correo")+jsonObject.getString("contrasenia")+jsonObject.getString("paseo");
-                        //textView1.setText(s);
                         id = jsonObject.getString("id_duenio");
                         nombre = jsonObject.getString("nombre");
                         corre = jsonObject.getString("correo");
                         contrasenia = jsonObject.getString("contrasenia");
                         paseo = jsonObject.getString("paseo");
                         loDelIntent();
-                        //Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -247,43 +242,6 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
-
-
-
-        /*
-    private void iniciarSesion(){
-        String url = c.direccionIP+"buscar_duenio%20_prb.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
-        //String url = c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"&contrasenia="+txtPass.getText().toString();
-        jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
-        rq.add(jrq);
-    }
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        Toast.makeText(this, "Error de conexión xd", Toast.LENGTH_LONG).show();
-    }
-    @Override
-    public void onResponse(JSONObject response) {
-        Codigos c1= new Codigos();
-        Toast.makeText(this, "Conexión xd", Toast.LENGTH_LONG).show();
-        JSONArray jsonArray = response.optJSONArray("array");
-        JSONObject jsonObject =null;
-        try {
-            jsonObject = jsonArray.getJSONObject(0);
-            c1.setId(jsonObject.optString("id_duenio"));
-            c1.setNombre(jsonObject.optString("nombre"));
-            c1.setCorreo(jsonObject.optString("correo"));
-            c1.setPass(jsonObject.optString("contrasenia"));
-            c1.setPaseo(jsonObject.optString("paseo"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        //textView1.setText(c.getCorreo()+c.getPass()+c.getPaseo());
-        Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
-        intent.putExtra(NavigationPaseando.nombre,c1.getNombre());
-        startActivity(intent);
-        limpTextView();
-    }
-*/
 
     public void limpTextView() {
         txtCorreo = (EditText) findViewById(R.id.txtUsuario);

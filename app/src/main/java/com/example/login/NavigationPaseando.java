@@ -80,9 +80,8 @@ public class NavigationPaseando extends AppCompatActivity {
         String nombre = datoCorreo.getString("datoNombre");
         View headerView = navigationView.getHeaderView(0);
         textViewCorreo = (TextView) headerView.findViewById(R.id.textViewCorreo);
-        textViewCorreo.setText(correo);
-
         textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
+        textViewCorreo.setText(correo);
         textViewNombre.setText(nombre);
 
 

@@ -10,8 +10,8 @@ public class Codigos {
 
     //public String direccionIP = "http://192.168.100.119/prueba/"; //compu keew
 
-    //public String direccionIP = "http://192.168.1.70/paseando/"; //compu Orlas
-    public String direccionIP = "http://192.168.222.139/paseando/"; //compu Orlas tec
+    public String direccionIP = "http://192.168.1.70/paseando/"; //compu Orlas casa
+    //public String direccionIP = "http://192.168.222.139/paseando/"; //compu Orlas tec
 
     private String id="";
     private String nombre="";
