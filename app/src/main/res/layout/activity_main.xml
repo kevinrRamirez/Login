@@ -53,7 +53,7 @@
                 android:drawableStart="@drawable/ic_email"
                 android:ems="10"
                 android:hint="@string/correo_electronio"
-                android:inputType="textPersonName"
+                android:inputType="textEmailAddress"
                 app:layout_constraintBottom_toTopOf="@+id/txtPass"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
