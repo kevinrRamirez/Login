@@ -218,7 +218,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
 
 
             //String urlCon ="http://192.168.100.119/prueba/buscar_duenio.php?=correo" + datoCorreo;
-            String urlCon =c.direccionIP+"buscar_duenio.php?=correo" + datoCorreo;
+            String urlCon =c.direccionIP+"buscar_duenio.php?correo=" + datoCorreo;
             //Toast.makeText(getApplicationContext(),urlCon,Toast.LENGTH_SHORT).show();
             consultaDuenio(urlCon);
 
@@ -332,7 +332,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
                         cont = jsonObject.getString("contrasenia");
                         paseo = jsonObject.getString("paseo");
 
-                        Toast.makeText(getApplicationContext(), "Iniciando..."+idUs, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Iniciando..."+idUs, Toast.LENGTH_SHORT).show();
 
                         //String urlSer = "http://192.168.100.119/prueba/registro_contrato.php";
                         String urlSer = c.direccionIP+"registro_contrato.php";
