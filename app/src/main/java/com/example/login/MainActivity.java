@@ -131,48 +131,52 @@ public class MainActivity extends AppCompatActivity {
         String sCo,sPa;
         sCo=txtCorreo.getText().toString();
         sPa=txtPass.getText().toString();
-        if(c.hacerValidaciones=false){
-            if (sCo.isEmpty()||sPa.isEmpty()){
+        if(c.hacerValidaciones) {
+            if (sCo.isEmpty() || sPa.isEmpty()) {
                 Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
-            }else if(!c.validacionCorreo(sCo)){
+            } else if (!c.validacionCorreo(sCo)) {
                 Toast.makeText(this, "Correo invalido", Toast.LENGTH_LONG).show();
-            }else if(!(sPa.length() >= 6)){
+            } else if (!(sPa.length() >= 6)) {
                 Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
-            }else if (!sPa.equals(contrasenia)) {
+            } else if (!sPa.equals(contrasenia)) {
                 Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
-            }else {
+            } else {
+                if (sPa.equals(contrasenia)) {
                     Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
-                    intent.putExtra("datoCorreo",sCo);
-                    intent.putExtra("datoNombre",nombre);
-                    intent.putExtra("datoId",id);
-                    intent.putExtra("datoContrasenia",contrasenia);
-                    intent.putExtra("datoPaseo",paseo);
-                    buscarMascota(c.direccionIP+"buscar_mascota.php?id_mascota="+id);
-                    intent.putExtra("datoNomMas",nombreMas);
-                    intent.putExtra("datoEdadMas",edad);
-                    intent.putExtra("datoCuidados",cuidados);
+                    intent.putExtra("datoCorreo", sCo);
+                    intent.putExtra("datoNombre", nombre);
+                    intent.putExtra("datoId", id);
+                    intent.putExtra("datoContrasenia", contrasenia);
+                    intent.putExtra("datoPaseo", paseo);
+                    buscarMascota(c.direccionIP + "buscar_mascota.php?id_mascota=" + id);
+                    intent.putExtra("datoNomMas", nombreMas);
+                    intent.putExtra("datoEdadMas", edad);
+                    intent.putExtra("datoCuidados", cuidados);
                     startActivity(intent);
                     limpTextView();
-                    Toast.makeText(getApplicationContext(),"   "+corre+"  ",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "   " + corre + "  ", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
+                }
             }
-
-        }else if(!sPa.equals(contrasenia)){
-            Toast.makeText(this, "Verifica la contraseña **", Toast.LENGTH_LONG).show();
-
-
-        }else if(sPa.equals(contrasenia)){
+        }else {
+            if (sPa.equals(contrasenia)) {
                 Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
-                intent.putExtra("datoCorreo",sCo);
-                intent.putExtra("datoNombre",nombre);
-                intent.putExtra("datoId",id);
-                intent.putExtra("datoContrasenia",contrasenia);
-                intent.putExtra("datoPaseo",paseo);
-                buscarMascota(c.direccionIP+"buscar_mascota.php?id_mascota="+id);
-                intent.putExtra("datoNomMas",nombreMas);
-                intent.putExtra("datoEdadMas",edad);
-                intent.putExtra("datoCuidados",cuidados);;
+                intent.putExtra("datoCorreo", sCo);
+                intent.putExtra("datoNombre", nombre);
+                intent.putExtra("datoId", id);
+                intent.putExtra("datoContrasenia", contrasenia);
+                intent.putExtra("datoPaseo", paseo);
+                buscarMascota(c.direccionIP + "buscar_mascota.php?id_mascota=" + id);
+                intent.putExtra("datoNomMas", nombreMas);
+                intent.putExtra("datoEdadMas", edad);
+                intent.putExtra("datoCuidados", cuidados);
                 startActivity(intent);
                 limpTextView();
+                Toast.makeText(getApplicationContext(), "   " + corre + "  ", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
