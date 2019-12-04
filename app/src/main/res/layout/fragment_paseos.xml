@@ -12,8 +12,8 @@
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="@string/paseos"
+        android:layout_marginTop="150dp"
+        android:text="@string/preguntas_frecuentes"
         android:textSize="30dp"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,11 +23,11 @@
 
     <TextView
         android:id="@+id/txtPaseoEnCurso"
+        android:layout_width="351dp"
+        android:layout_height="434dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:layout_width="187dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="112dp"
-        android:text="Datos de paseo en curso"
+        android:text="@string/texto_aviso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPaseos" />
