@@ -59,7 +59,7 @@
         android:id="@+id/imgMascota"
         android:layout_width="114dp"
         android:layout_height="120dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDireccionP"
@@ -92,16 +92,18 @@
 
     <TextView
         android:id="@+id/txtCuidados"
-        android:layout_width="195dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
         android:gravity="center"
         android:text="@string/cuidados"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="20dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombreMascota" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEdadMascota" />
 
 
 

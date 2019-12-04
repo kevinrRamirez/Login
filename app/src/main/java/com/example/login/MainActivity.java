@@ -123,8 +123,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ctrlBtnIngresar(View view) {
-        //buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
-        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+"root"+"");
+        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+        //buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+"root"+"");
        // buscarMascota(c.direccionIP+"buscar_mascota.php?id_mascota=50");
     }
     public void loDelIntent(){
