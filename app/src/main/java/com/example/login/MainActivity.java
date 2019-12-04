@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         txtCorreo = (EditText) findViewById(R.id.txtUsuario);
         txtPass = (EditText) findViewById(R.id.txtPass);
         textView1 = (TextView) findViewById(R.id.textView1);
+        txtCorreo.setText("");
+        txtPass.setText("");
 
         tv_registrate = (TextView) findViewById(R.id.tv_registrate);
         // Instantiate the RequestQueue.
@@ -161,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                         sCo=txtCorreo.getText().toString();
                         sPa=txtPass.getText().toString();
                         if(c.hacerValidaciones) {
-                            if (sCo.isEmpty() || sPa.isEmpty()) {
+                            if (sCo.isEmpty() || sPa.isEmpty()||sCo.equals("")||sPa.equals("")) {
                                 Toast.makeText(getApplicationContext(), "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
                             } else if (!c.validacionCorreo(sCo)) {
                                 Toast.makeText(getApplicationContext(), "Correo invalido", Toast.LENGTH_LONG).show();
