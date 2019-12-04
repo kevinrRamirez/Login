@@ -19,7 +19,7 @@ public class Codigos {
     private String paseo="";
 
     String caracteres = "!#$%&/=*/+-{}[]";
-    boolean hacerValidaciones=false;
+    boolean hacerValidaciones=true;
 
     public Codigos(){
     }

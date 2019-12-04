@@ -47,6 +47,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
     Button btnubicacion;
@@ -61,7 +62,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     private Spinner spnrTiempo;
     private TextView txtPrecio;
     RequestQueue requestQueue;
-    Codigos c;
+    Codigos c = new Codigos();
     String direc;
     String tiempo;
     String costo;
@@ -135,7 +136,6 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         txtPrecio = (TextView) findViewById(R.id.txtPrecio);
 
         spnrTiempo = (Spinner)findViewById(R.id.spnrTiempo);
@@ -214,11 +214,12 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
 
         if (bancosto == false)
         {
-            Toast.makeText(getApplicationContext(),"Por favor seleciona el tiempo " +datoCorreo,Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Por favor seleciona el tiempo",Toast.LENGTH_LONG).show();
         }else {
 
 
-            String urlCon ="http://192.168.100.119/prueba/buscar_duenio.php?correo=" + datoCorreo+"";
+            //String urlCon ="http://192.168.100.119/prueba/buscar_duenio.php?=correo" + datoCorreo;
+            String urlCon =c.direccionIP+"buscar_duenio.php?correo=" + datoCorreo;
             //Toast.makeText(getApplicationContext(),urlCon,Toast.LENGTH_SHORT).show();
             consultaDuenio(urlCon);
 
@@ -308,8 +309,11 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
                 parametros.put("longitud",longi);//Double.toString(lon));
                 parametros.put("id_paseador", "1");
                 parametros.put("id_mascota",idUs);
-                parametros.put("hora_inicio", new Date().toString());//new Date().toString());
-                parametros.put("hora_fin","0");
+                //parametros.put("hora_inicio", new Date().toString());//new Date().toString());
+                //parametros.put("hora_fin","0");
+                sacarHoras();
+                parametros.put("hora_inico", horaIni);
+                parametros.put("hora_fin",horaFin);
                 parametros.put("costo",costo);
                 return parametros;
             }
@@ -332,9 +336,10 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
                         cont = jsonObject.getString("contrasenia");
                         paseo = jsonObject.getString("paseo");
 
-                        Toast.makeText(getApplicationContext(), "Iniciando..."+idUs, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Iniciando..."+idUs, Toast.LENGTH_SHORT).show();
 
-                        String urlSer = "http://192.168.100.119/prueba/registro_contrato.php";
+                        //String urlSer = "http://192.168.100.119/prueba/registro_contrato.php";
+                        String urlSer = c.direccionIP+"registro_contrato.php";
                         servicioContrato(urlSer);
 
                     } catch (JSONException e) {
@@ -354,6 +359,57 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         requestQueue.add(jsonArrayRequest);
     }
 
+
+    String horaIni,horaFin;
+    public void sacarHoras(){
+        horaIni=new Date().toString();
+        String hrs,min;
+        StringTokenizer t = new StringTokenizer(horaIni, " ");
+        t.nextToken();
+        t.nextToken();
+        t.nextToken();
+        horaIni=t.nextToken();
+        StringTokenizer t1 = new StringTokenizer(horaIni, ":");
+        hrs=t1.nextToken();
+        min=t1.nextToken();
+        hrs=sumaHoras(hrs,"1");
+        horaIni=hrs+":"+min;
+        if(tiempo.equals("30")){
+            int x1,x2;
+            x1=Integer.parseInt(min);
+            x2=Integer.parseInt("30");
+            x1+=x2;
+            if(x1>=60){
+                x1-=60;
+                hrs=sumaHoras(hrs,"1");
+            }
+            horaFin=hrs+":"+x1;
+        }else if(tiempo.equals("60")){
+            hrs=sumaHoras(hrs,"1");
+            horaFin=hrs+":"+min;
+        }else if(tiempo.equals("120")){
+            hrs=sumaHoras(hrs,"2");
+            horaFin=hrs+":"+min;
+        }
+    }
+    public String sumaMinutos(String m1,String m2){
+        int x1=Integer.parseInt(m1);
+        int x2=Integer.parseInt(m2);
+        x1+=x2;
+        if(x1>=60){
+            x1-=60;
+        }
+        return Integer.toString(x1);
+    }
+    public String sumaHoras(String h1,String h2){
+        int x1=Integer.parseInt(h1);
+        int x2=Integer.parseInt(h2);
+        x1+=x2;
+        if(x1>=24){
+            x1-=23;
+        }
+        return Integer.toString(x1);
+    }
 
 
 

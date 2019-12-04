@@ -76,9 +76,9 @@ public class SendFragment extends Fragment {
         txtNombreMas = (TextView) root.findViewById(R.id.txtNombreMascota);
         txtNombreMas.setText(nombreMas);
         txtEdad = (TextView) root.findViewById(R.id.txtEdadMascota);
-        txtEdad.setText("Edad"+"\n"+datoEdad);
+        txtEdad.setText("Edad: "+datoEdad);
         txtCuidados = (TextView) root.findViewById(R.id.txtCuidados);
-        txtCuidados.setText("Cuidados"+"\n"+cuidados);
+        txtCuidados.setText("Cuidados: "+cuidados);
 
 
 
