@@ -167,7 +167,7 @@ public class RegistroPerro extends AppCompatActivity {
             }else{
                 insertMascota(c.direccionIP+"registro_mascota.php");
                 finish();
-                Intent intent = new Intent(RegistroPerro.this, MainActivity.class);
+                Intent intent = new Intent(RegistroPerro.this, PrivacidadActivity.class);
                 startActivity(intent);
             }
         }

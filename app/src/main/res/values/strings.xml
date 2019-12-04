@@ -84,6 +84,7 @@
     <string name="raza">Raza</string>
     <string name="cuidados">Cuidados</string>
     <string name="nuevo_paseo">Nuevo paseo</string>
+    <string name="aceptar_politicas">Lei el aviso de privacidad y estoy de acuerdo</string>
 
 
 </resources>

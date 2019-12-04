@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RegistroPerro"></activity>
+        <activity android:name=".PrivacidadActivity"></activity>
+        <activity android:name=".RegistroPerro" />
         <activity android:name=".Hospedaje" />
         <activity android:name=".OtraUbicacionActivity" />
         <!--
