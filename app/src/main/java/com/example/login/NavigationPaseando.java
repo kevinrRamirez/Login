@@ -127,7 +127,7 @@ public class NavigationPaseando extends AppCompatActivity {
     public void ctrlBotonNuevoPaseo(View view)
     {
         Intent intent = new Intent(NavigationPaseando.this,PedirPaseo.class);
-        intent.putExtra("correo",correo2);
+        intent.putExtra("correo",textViewCorreo.getText().toString());
         startActivity(intent);
     }
     public void ctrlBotonHospedaje(View view)
@@ -148,6 +148,7 @@ public class NavigationPaseando extends AppCompatActivity {
         if (id == R.id.action_ayuda)
         {
             Uri uri = Uri.parse("https://paseando.bss.design/");
+            //Uri uri = Uri.parse("https://waze.com/ul?q=19.285601C-99.5924230");//"https://www.waze.com/ul?ll=19.285601C-99.5924230&navigate=yes&zoom=17");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         }
