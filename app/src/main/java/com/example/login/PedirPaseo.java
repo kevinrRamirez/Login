@@ -61,7 +61,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     private Spinner spnrTiempo;
     private TextView txtPrecio;
     RequestQueue requestQueue;
-    Codigos c;
+    Codigos c = new Codigos();
     String direc;
     String tiempo;
     String costo;
@@ -217,7 +217,8 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         }else {
 
 
-            String urlCon ="http://192.168.100.119/prueba/buscar_duenio.php?=correo" + datoCorreo;
+            //String urlCon ="http://192.168.100.119/prueba/buscar_duenio.php?=correo" + datoCorreo;
+            String urlCon =c.direccionIP+"buscar_duenio.php?=correo" + datoCorreo;
             //Toast.makeText(getApplicationContext(),urlCon,Toast.LENGTH_SHORT).show();
             consultaDuenio(urlCon);
 
@@ -333,7 +334,8 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
 
                         Toast.makeText(getApplicationContext(), "Iniciando..."+idUs, Toast.LENGTH_SHORT).show();
 
-                        String urlSer = "http://192.168.100.119/prueba/registro_contrato.php";
+                        //String urlSer = "http://192.168.100.119/prueba/registro_contrato.php";
+                        String urlSer = c.caracteres+"registro_contrato.php";
                         servicioContrato(urlSer);
 
                     } catch (JSONException e) {
