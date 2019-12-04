@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("datoId", id);
                 intent.putExtra("datoContrasenia", contrasenia);
                 intent.putExtra("datoPaseo", paseo);
-                buscarMascota(c.direccionIP + "buscar_mascota.php?id_mascota=" + id);
+                //buscarMascota(c.direccionIP + "buscar_mascota.php?id_mascota=" + id);
                 intent.putExtra("datoNomMas", nombreMas);
                 intent.putExtra("datoEdadMas", edad);
                 intent.putExtra("datoCuidados", cuidados);

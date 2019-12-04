@@ -335,7 +335,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
                         Toast.makeText(getApplicationContext(), "Iniciando..."+idUs, Toast.LENGTH_SHORT).show();
 
                         //String urlSer = "http://192.168.100.119/prueba/registro_contrato.php";
-                        String urlSer = c.caracteres+"registro_contrato.php";
+                        String urlSer = c.direccionIP+"registro_contrato.php";
                         servicioContrato(urlSer);
 
                     } catch (JSONException e) {
