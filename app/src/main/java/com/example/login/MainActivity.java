@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     String raza;
     String edad;
     String seguro;
+    String sCo,sPa;
 
 
     @Override
@@ -122,43 +123,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ctrlBtnIngresar(View view) {
-        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+        //buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+"root"+"");
        // buscarMascota(c.direccionIP+"buscar_mascota.php?id_mascota=50");
     }
     public void loDelIntent(){
-        String sCo,sPa;
-        sCo=txtCorreo.getText().toString();
-        sPa=txtPass.getText().toString();
-        if(c.hacerValidaciones) {
-            if (sCo.isEmpty() || sPa.isEmpty()) {
-                Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
-            } else if (!c.validacionCorreo(sCo)) {
-                Toast.makeText(this, "Correo invalido", Toast.LENGTH_LONG).show();
-            } else if (!(sPa.length() >= 6)) {
-                Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
-            } else if (!sPa.equals(contrasenia)) {
-                Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
-            } else {
-                if (sPa.equals(contrasenia)) {
-                    Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
-                    intent.putExtra("datoCorreo", sCo);
-                    intent.putExtra("datoNombre", nombre);
-                    intent.putExtra("datoId", id);
-                    intent.putExtra("datoContrasenia", contrasenia);
-                    intent.putExtra("datoPaseo", paseo);
-                    buscarMascota(c.direccionIP + "buscar_mascota.php?id_mascota=" + id);
-                    intent.putExtra("datoNomMas", nombreMas);
-                    intent.putExtra("datoEdadMas", edad);
-                    intent.putExtra("datoCuidados", cuidados);
-                    startActivity(intent);
-                    limpTextView();
-                    Toast.makeText(getApplicationContext(), "   " + corre + "  ", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
-                }
-            }
-        }else {
-            if (sPa.equals(contrasenia)) {
                 Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
                 intent.putExtra("datoCorreo", sCo);
                 intent.putExtra("datoNombre", nombre);
@@ -171,11 +140,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("datoCuidados", cuidados);
                 startActivity(intent);
                 limpTextView();
-                Toast.makeText(getApplicationContext(), "   " + corre + "  ", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
-            }
-        }
     }
 
     public void buscarDuenio(String URL) {
@@ -186,23 +150,35 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         jsonObject = response.getJSONObject(i);
-                        /*textView1.setText(jsonObject.getString("id_duenio"));
-                        textView1.setText(jsonObject.getString("nombre"));
-                        textView1.setText(jsonObject.getString("correo"));
-                        textView1.setText(jsonObject.getString("contrasenia"));
-                        textView1.setText(jsonObject.getString("paseo"));*/
-                        //textView1.setText(jsonObject.getString("correo")+"--"+jsonObject.getString("contrasenia"));
-                        //obtenerCorreo= jsonObject.optString("correo");
-                        //obtenerPass=jsonObject.optString("contrasenia");
-                        //s=jsonObject.getString("id_duenio")+jsonObject.getString("nombre")+jsonObject.getString("correo")+jsonObject.getString("contrasenia")+jsonObject.getString("paseo");
-                        //textView1.setText(s);
                         id = jsonObject.getString("id_duenio");
                         nombre = jsonObject.getString("nombre");
                         corre = jsonObject.getString("correo");
                         contrasenia = jsonObject.getString("contrasenia");
                         paseo = jsonObject.getString("paseo");
-                        loDelIntent();
-                        //Toast.makeText(getApplicationContext(), "Iniciando...", Toast.LENGTH_SHORT).show();
+
+                        sCo=txtCorreo.getText().toString();
+                        sPa=txtPass.getText().toString();
+                        if(c.hacerValidaciones) {
+                            if (sCo.isEmpty() || sPa.isEmpty()) {
+                                Toast.makeText(getApplicationContext(), "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
+                            } else if (!c.validacionCorreo(sCo)) {
+                                Toast.makeText(getApplicationContext(), "Correo invalido", Toast.LENGTH_LONG).show();
+                            } else if (!(sPa.length() >= 6)) {
+                                Toast.makeText(getApplicationContext(), "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
+                            } else {
+                                if (sPa.equals(contrasenia)) {
+                                    buscarMascota(c.direccionIP + "buscar_mascota.php?id_mascota=" + id);
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Verifica la contraseña", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }else {
+                            if (sPa.equals(contrasenia)) {
+                                buscarMascota(c.direccionIP + "buscar_mascota.php?id_mascota=" + id);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Verifica la contraseña", Toast.LENGTH_LONG).show();
+                            }
+                        }
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
