@@ -121,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
     public void ctrlBtnIngresar(View view) {
         buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
        // buscarMascota(c.direccionIP+"buscar_mascota.php?id_mascota=50");

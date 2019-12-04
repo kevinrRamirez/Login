@@ -135,6 +135,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         txtPrecio = (TextView) findViewById(R.id.txtPrecio);
 
         spnrTiempo = (Spinner)findViewById(R.id.spnrTiempo);
@@ -213,11 +214,11 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
 
         if (bancosto == false)
         {
-            Toast.makeText(getApplicationContext(),"Por favor seleciona el tiempo",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Por favor seleciona el tiempo " +datoCorreo,Toast.LENGTH_LONG).show();
         }else {
 
 
-            String urlCon ="http://192.168.100.119/prueba/buscar_duenio.php?=correo" + datoCorreo;
+            String urlCon ="http://192.168.100.119/prueba/buscar_duenio.php?correo=" + datoCorreo+"";
             //Toast.makeText(getApplicationContext(),urlCon,Toast.LENGTH_SHORT).show();
             consultaDuenio(urlCon);
 

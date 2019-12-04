@@ -127,7 +127,7 @@ public class NavigationPaseando extends AppCompatActivity {
     public void ctrlBotonNuevoPaseo(View view)
     {
         Intent intent = new Intent(NavigationPaseando.this,PedirPaseo.class);
-        intent.putExtra("correo",textViewCorreo.getText().toString());
+        intent.putExtra("correo",correo2);
         startActivity(intent);
     }
     public void ctrlBotonHospedaje(View view)
