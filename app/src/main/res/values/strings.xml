@@ -85,6 +85,9 @@
     <string name="cuidados">Cuidados</string>
     <string name="nuevo_paseo">Nuevo paseo</string>
     <string name="aceptar_politicas">Lei el aviso de privacidad y estoy de acuerdo</string>
+    <string name="preguntas_frecuentes">Preguntas frecuentes</string>
+    <string name="texto_aviso">¿Cómo puedo volverme paseador ? \nDescarga nuestra aplicación PaseAndo paseador y solo regístrate. \n ¿Cómo son los paseos? \nLos paseos son caminando, ya que consideramos que es la mejor forma de alegrar el día, ejercitando y sociabilizando.  \n¿Cuál es el costo de los paseos? \nEs de 25 pesos por 30 min, 40 por un hora, 60 por dos horas. \n¿Cuál es la forma de pago? \nPor ahora solo contamos con método en efectivo.   \n¿Qué NO debo hacer si mi perro es agresivo?\n •\tProvocar la agresividad. •\tEsperar que se arregle solo. •\tLiderar erróneamente la manada. •\tImponerse sobre el perro. •\tGolpearle o castigarle. •\tReforzar la agresividad. •\tOlvidar que el perro puede suponer un riesgo. \nEstos puntos pueden reforzar esa conducta agresiva. · \n¿Qué SÍ debo hacer si mi perro es agresivo?\n •\tSeguridad ante todo. •\tEvitar las situaciones agresivas. •\tGánatelo todo, amigo. •\tUniformizar la relación con el perro. •\tRutina de actividades. •\tObediencia en positivo.</string>
+
 
 
 </resources>
