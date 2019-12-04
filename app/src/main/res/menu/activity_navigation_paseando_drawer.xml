@@ -23,7 +23,7 @@
         <item
             android:id="@+id/nav_mis_paseos"
             android:icon="@drawable/ic_acerca"
-            android:title="@string/mis_paseos" />
+            android:title="@string/preguntas_frecuentes" />
 
         <!--
 
