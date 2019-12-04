@@ -217,18 +217,20 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         }else {
 
 
-            String urlCon = c.direccionIP+"buscar_duenio.php?=correo" + datoCorreo;
+            String urlCon ="http://192.168.100.119/prueba/buscar_duenio.php?=correo" + datoCorreo;
             //Toast.makeText(getApplicationContext(),urlCon,Toast.LENGTH_SHORT).show();
             consultaDuenio(urlCon);
 
-
+/*
             try {
-                String urlSer = c.direccionIP+"registro_contrato.php";
+                String urlSer ="http://192.168.100.119/prueba/registro_contrato.php";
                 servicioContrato(urlSer);
                 Toast.makeText(getApplicationContext(), "En proceso ...", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
+
+ */
             finish();
 
         }
@@ -331,7 +333,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
 
                         Toast.makeText(getApplicationContext(), "Iniciando..."+idUs, Toast.LENGTH_SHORT).show();
 
-                        String urlSer = c.direccionIP+"registro_contrato.php";
+                        String urlSer = "http://192.168.100.119/prueba/registro_contrato.php";
                         servicioContrato(urlSer);
 
                     } catch (JSONException e) {

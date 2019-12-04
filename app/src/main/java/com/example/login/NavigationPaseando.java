@@ -36,6 +36,7 @@ public class NavigationPaseando extends AppCompatActivity {
     private TextView textViewCorreo;
     private TextView textViewNombre;
     private FragmentManager supportFragmentManager;
+    String correo2;
 
     TextView txtPrbPaseo;
     public static final String nombre="names";
@@ -76,11 +77,11 @@ public class NavigationPaseando extends AppCompatActivity {
         //textViewCorreo = (TextView)
         //textViewNombre = (TextView)findViewById(R.id.textViewNombre);
         Bundle datoCorreo = getIntent().getExtras();
-        String correo = datoCorreo.getString("datoCorreo");
+        correo2 = datoCorreo.getString("datoCorreo");
         String nombre = datoCorreo.getString("datoNombre");
         View headerView = navigationView.getHeaderView(0);
         textViewCorreo = (TextView) headerView.findViewById(R.id.textViewCorreo);
-        textViewCorreo.setText(correo);
+        textViewCorreo.setText(correo2);
 
         textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
         textViewNombre.setText(nombre);
@@ -125,8 +126,8 @@ public class NavigationPaseando extends AppCompatActivity {
 
     public void ctrlBotonNuevoPaseo(View view)
     {
-        Intent intent = new Intent(view.getContext(),PedirPaseo.class);
-        intent.putExtra("correo",textViewCorreo.getText().toString());
+        Intent intent = new Intent(NavigationPaseando.this,PedirPaseo.class);
+        intent.putExtra("correo",correo2);
         startActivity(intent);
     }
     public void ctrlBotonHospedaje(View view)

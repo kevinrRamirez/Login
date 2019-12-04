@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     String nombreMas;
     String paseo="";
     String contrasenia="";
-    String corre="";
+    String corre;
     String tamanio;
     String cuidados;
     String raza;
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
             }else {
                     Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
-                    intent.putExtra("datoCorreo",corre);
+                    intent.putExtra("datoCorreo",sCo);
                     intent.putExtra("datoNombre",nombre);
                     intent.putExtra("datoId",id);
                     intent.putExtra("datoContrasenia",contrasenia);
@@ -151,15 +151,16 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("datoCuidados",cuidados);
                     startActivity(intent);
                     limpTextView();
+                    Toast.makeText(getApplicationContext(),"   "+corre+"  ",Toast.LENGTH_LONG).show();
             }
 
         }else if(!sPa.equals(contrasenia)){
-            Toast.makeText(this, "Verifica la contraseña", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Verifica la contraseña **", Toast.LENGTH_LONG).show();
 
 
         }else if(sPa.equals(contrasenia)){
                 Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
-                intent.putExtra("datoCorreo",corre);
+                intent.putExtra("datoCorreo",sCo);
                 intent.putExtra("datoNombre",nombre);
                 intent.putExtra("datoId",id);
                 intent.putExtra("datoContrasenia",contrasenia);
