@@ -1,7 +1,9 @@
 package com.example.login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +48,10 @@ public class Registro extends AppCompatActivity {
 
     Codigos c = new Codigos();
 
+    private FirebaseAuth mAuth;
+    private ProgressDialog progressDialog;
+    FirebaseUser firebaseUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +63,11 @@ public class Registro extends AppCompatActivity {
         txtPassConf = (EditText) findViewById(R.id.txtPassConf);
         btnIngresar = (Button) findViewById(R.id.btnIngresar);
         textView1 = (TextView) findViewById(R.id.tv_1);
+
+        mAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
 
     }
 
@@ -68,10 +87,10 @@ public class Registro extends AppCompatActivity {
 
 
     public void ctrlBtnRegistroDuenio(View view) {
-        nombre = txtNombre.getText().toString();
-        correo = txtCorreo.getText().toString();
-        pass = txtPass.getText().toString();
-        passConf = txtPassConf.getText().toString();
+        nombre = txtNombre.getText().toString().trim();
+        correo = txtCorreo.getText().toString().trim();
+        pass = txtPass.getText().toString().trim();
+        passConf = txtPassConf.getText().toString().trim();
 
         if(c.hacerValidaciones) {
             if (nombre.isEmpty() || correo.isEmpty() || pass.isEmpty() || passConf.isEmpty()) {//todos los campos son requeridos
@@ -84,21 +103,87 @@ public class Registro extends AppCompatActivity {
                 Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();
             } else if (!pass.equals(passConf)) {
                 Toast.makeText(this, "Las contaseñas no coinciden", Toast.LENGTH_LONG).show();
-            } else {
-                //cumple con todas las validaciones
-                servicio(c.direccionIP+"registro_duenio.php");
-                finish();
-                Intent intent = new Intent(Registro.this, RegistroPerro.class);
-                intent.putExtra("variableCorreo",txtCorreo.getText().toString());
-                startActivity(intent);
             }
-        }else{
-            servicio(c.direccionIP+"registro_duenio.php");
-            finish();
-            Intent intent = new Intent(Registro.this, RegistroPerro.class);
-            intent.putExtra("variableCorreo",txtCorreo.getText().toString());
-            startActivity(intent);
         }
+
+        progressDialog.setMessage("Realizando registro...");
+        progressDialog.show();
+        //creacion del nuevo usuario
+        mAuth.createUserWithEmailAndPassword(correo, pass)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            //enviar correo de verificacion
+                            mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+
+                                        if (c.bln_CloudFirestore){
+                                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                            Map<String, Object> usuario = new HashMap<>();
+                                            usuario.put("nombre", nombre);
+                                            usuario.put("apellidoPat", "");
+                                            usuario.put("apellidoMat", "");
+                                            usuario.put("correo", correo);
+                                            usuario.put("contrasena", pass);
+                                            // Add a new document with a generated ID
+                                            db.collection("usuarios")
+                                                    .document(firebaseUser.getUid())
+                                                    .set(usuario)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()){
+                                                                Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
+                                                                Intent i= new Intent(getApplication(), MainActivity.class);
+                                                                startActivity(i);
+                                                            }else{
+                                                                Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                                            }
+                                                        }
+                                                    });
+                                        }else if(c.bln_RealtimeDatabase){
+                                            Usuario usuario = new Usuario(nombre,"","",correo,pass);
+                                            FirebaseDatabase.getInstance().getReference("Usuarios").child(mAuth.getCurrentUser().getUid()).setValue(usuario)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()){
+                                                                Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
+                                                                Intent i= new Intent(getApplication(), MainActivity.class);
+                                                                startActivity(i);
+                                                            }else{
+                                                                Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                                                            }
+                                                        }
+                                                    });
+                                        }
+                                    }else {
+                                        Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        }else{
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException){//Si el usuario ya existe
+                                Toast.makeText(getApplicationContext(),"El usuario ya existe",Toast.LENGTH_LONG).show();
+                            }else{
+                                Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        progressDialog.dismiss();
+                    }
+                });
+
+        /*
+        servicio(c.direccionIP+"registro_duenio.php");
+        finish();
+        Intent intent = new Intent(Registro.this, RegistroPerro.class);
+        intent.putExtra("variableCorreo",txtCorreo.getText().toString());
+        startActivity(intent);
+         */
+
 
     }
 

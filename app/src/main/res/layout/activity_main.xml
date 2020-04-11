@@ -104,6 +104,7 @@
                     android:id="@+id/textView1"
                     android:layout_width="0dp"
                     android:layout_height="35dp"
+                    android:onClick="ctrlReestablecerPass"
                     android:text="@string/no_tienes_cuenta"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

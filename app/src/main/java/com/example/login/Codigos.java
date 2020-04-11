@@ -21,6 +21,9 @@ public class Codigos {
     String caracteres = "!#$%&/=*/+-{}[]";
     boolean hacerValidaciones=true;
 
+    boolean bln_CloudFirestore = true;
+    boolean bln_RealtimeDatabase = true;
+
     public Codigos(){
     }
 
@@ -56,7 +59,7 @@ Método para hacer la validación de un coreo electronico
         return bandera;
     }
 
-    boolean validacionNombre(String s) {
+    boolean validacionNombre1(String s) {
         boolean bandera = true;
         String ABC = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
         String abc = "abcdefghijklmnñopqrstuvwxyz";
@@ -69,6 +72,16 @@ Método para hacer la validación de un coreo electronico
             }
         }
         return bandera;
+    }
+
+    public static boolean validacionNombre(String nombre) {
+        boolean nombreClienteCorrecto = false;
+        Pattern patron = Pattern.compile("[ 0-9A-Za-zñÑáéíóúÁÉÍÓÚ¡!¿?@#$%()=+-€/.,]{1,50}");
+        Matcher comprobacion = patron.matcher(nombre);
+        if (comprobacion.matches()) {
+            nombreClienteCorrecto = true;
+        }
+        return nombreClienteCorrecto ;
     }
 
     boolean validacionPalabra(String s) {

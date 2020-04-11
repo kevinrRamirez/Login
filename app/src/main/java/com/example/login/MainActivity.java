@@ -1,13 +1,16 @@
 package com.example.login;//comentario
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +26,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
     String edad;
     String seguro;
     String sCo,sPa;
+
+    private FirebaseAuth mAuth;
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -116,6 +126,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // Permission has already been granted
         }
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
+        progressDialog = new ProgressDialog(this);
     }
 
     public void ctrlBtnReg(View view) {
@@ -127,10 +142,88 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void ctrlBtnIngresar(View view) {
-        buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
+        //buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
         //buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+"root"+"");
        // buscarMascota(c.direccionIP+"buscar_mascota.php?id_mascota=50");
+        final String str_correo = txtCorreo.getText().toString().trim();
+        String str_contrasena = txtPass.getText().toString().trim();
+
+        //obtenemos los valores de los EditText
+        Codigos c = new Codigos ();
+        boolean vacios = false;
+        //validamos que no esten vacias
+        if (TextUtils.isEmpty(str_correo)){
+            txtCorreo.setError("Requerido");
+            vacios=true;
+        }
+        if (TextUtils.isEmpty(str_contrasena)){
+            txtPass.setError("Requerido");
+            vacios=true;
+        }
+        if (vacios){
+            return;
+        }
+        if (!c.validacionCorreo(str_correo)){
+            txtCorreo.setError("Invalido");
+            return;
+        }
+        if (str_contrasena.length()<6){
+            txtPass.setError("Minimo 6 caracteres");
+            return;
+        }
+        progressDialog.setMessage("Procesando...");
+        progressDialog.show();
+        //creacion del nuevo usuario
+        mAuth.signInWithEmailAndPassword(str_correo, str_contrasena)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        //checking if success
+                        if(task.isSuccessful()){
+                            if (mAuth.getCurrentUser().isEmailVerified()){
+                                Toast.makeText(MainActivity.this,"Bienvenido: "+ str_correo,Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getApplicationContext(), NavigationPaseando.class);
+                                startActivity(intent);
+                            }else{
+                                Toast.makeText(MainActivity.this,"Correo sin verificar",Toast.LENGTH_LONG).show();
+                            }
+                        }else{
+                            Toast.makeText(MainActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                        }
+                        progressDialog.dismiss();
+                    }
+                });
     }
+
+    public void ctrlReestablecerPass(View view)
+    {
+        //obtenemos los valores de los EditText
+        final String str_correo = txtCorreo.getText().toString().trim();
+        Codigos c = new Codigos ();
+        if (TextUtils.isEmpty(str_correo)){
+            txtCorreo.setError("Requerido");
+            return;
+        }
+        if (!c.validacionCorreo(str_correo)){
+            Toast.makeText(getApplicationContext(), "Correo invalido", Toast.LENGTH_LONG).show();
+            return;
+        }
+        progressDialog.setMessage("Procesando...");
+        progressDialog.show();
+        mAuth.sendPasswordResetEmail(str_correo).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Dialog dialog = new Dialog("Reestablecer contraseña","Se te ha enciado un correo para reestablecer la contraseña");
+                    dialog.show(getSupportFragmentManager(),"");
+                }else{
+                    Toast.makeText(MainActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                }
+                progressDialog.dismiss();
+            }
+        });
+    }
+
     public void loDelIntent(){
                 Intent intent = new Intent(MainActivity.this, NavigationPaseando.class);
                 intent.putExtra("datoCorreo", sCo);
