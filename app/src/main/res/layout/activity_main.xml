@@ -98,13 +98,13 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnIngresar">
+                app:layout_constraintTop_toBottomOf="@+id/btnIngresar"
+                android:id="@+id/cl_1">
 
                 <TextView
                     android:id="@+id/textView1"
                     android:layout_width="0dp"
                     android:layout_height="35dp"
-                    android:onClick="ctrlReestablecerPass"
                     android:text="@string/no_tienes_cuenta"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +124,19 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_registrate2"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:onClick="ctrlReestablecerPass"
+                android:text="@string/Restablecer_contraseña"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/cl_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="20dp"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
