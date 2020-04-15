@@ -124,8 +124,8 @@ public class Registro extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
-
                                         if (c.bln_CloudFirestore){
+                                            //Meter los datos a Cloud Firestore
                                             FirebaseFirestore db = FirebaseFirestore.getInstance();
                                             Map<String, Object> usuario = new HashMap<>();
                                             usuario.put("nombre", nombre);
@@ -141,46 +141,52 @@ public class Registro extends AppCompatActivity {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful()){
+                                                                progressDialog.dismiss();
                                                                 Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
                                                                 Intent i= new Intent(getApplication(), MainActivity.class);
                                                                 startActivity(i);
                                                             }else{
+                                                                progressDialog.dismiss();
                                                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                                             }
                                                         }
                                                     });
                                         }else if(c.bln_RealtimeDatabase){
+                                            //Meter los datos a Realtime Database
                                             Usuario usuario = new Usuario(nombre,"","",correo,pass);
                                             FirebaseDatabase.getInstance().getReference("Usuarios").child(mAuth.getCurrentUser().getUid()).setValue(usuario)
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful()){
+                                                                progressDialog.dismiss();
                                                                 Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
                                                                 Intent i= new Intent(getApplication(), MainActivity.class);
                                                                 startActivity(i);
                                                             }else{
+                                                                progressDialog.dismiss();
                                                                 Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
                                                             }
                                                         }
                                                     });
                                         }
                                     }else {
+                                        progressDialog.dismiss();
                                         Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
                         }else{
                             if (task.getException() instanceof FirebaseAuthUserCollisionException){//Si el usuario ya existe
+                                progressDialog.dismiss();
                                 Toast.makeText(getApplicationContext(),"El usuario ya existe",Toast.LENGTH_LONG).show();
                             }else{
+                                progressDialog.dismiss();
                                 Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
                             }
                         }
-                        progressDialog.dismiss();
                     }
                 });
-
         /*
         servicio(c.direccionIP+"registro_duenio.php");
         finish();
@@ -188,8 +194,6 @@ public class Registro extends AppCompatActivity {
         intent.putExtra("variableCorreo",txtCorreo.getText().toString());
         startActivity(intent);
          */
-
-
     }
 
     public void insertDuenio(String url)

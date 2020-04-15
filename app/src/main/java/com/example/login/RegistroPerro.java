@@ -1,7 +1,9 @@
 package com.example.login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +21,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +50,11 @@ public class RegistroPerro extends AppCompatActivity {
     String extrasDuenio;
     String url;
     String nombrePerro,razaPerro,cuidadosPerro,edadPerro,tamPerro;
+
+    ProgressDialog progressDialog;
+    FirebaseUser firebaseUser;
+    FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,15 +81,65 @@ public class RegistroPerro extends AppCompatActivity {
 
 
         //selectDuenio(c.direccionIP+"buscar_duenio.php?correo="+variableCorreo+"");
-        url = c.direccionIP+"buscar_duenio.php?correo="+variableCorreo+"";
+        progressDialog = new ProgressDialog(this);
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        db = FirebaseFirestore.getInstance();
 
     }
 
 
     public void ctrlBtnRegistroPerro(View v) {
-        selectDuenio(c.direccionIP+"buscar_duenio.php?correo="+variableCorreo+"");
+        nombrePerro=et_NombrePerro.getText().toString().trim();
+        razaPerro=et_raza.getText().toString().trim();
+        cuidadosPerro=et_cuidados.getText().toString().trim();
+        edadPerro=spinnerEdad.getSelectedItem().toString().trim();
+        tamPerro=spinnerTam.getSelectedItem().toString().trim();
+
+        if (nombrePerro.isEmpty()||razaPerro.isEmpty()||cuidadosPerro.isEmpty()||edadPerro.equals("Edad:")||tamPerro.equals("Tamaño:")) {
+            Toast.makeText(getApplicationContext(), "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(!c.validacionPalabra(nombrePerro)){
+            Toast.makeText(getApplicationContext(), "Ingresar nombre valido", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(!c.validacionPalabra(razaPerro)){
+            Toast.makeText(getApplicationContext(), "Ingresar raza valido", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(!c.validacionCaracteresEspeciales(cuidadosPerro)){
+            Toast.makeText(getApplicationContext(), "No usar "+c.caracteres+" en el campo de cuidados", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        progressDialog.setMessage("Realizando registro...");
+        progressDialog.show();
+        //hacer el registro de datos
+        Map<String, Object> mascota = new HashMap<>();
+        mascota.put("id_usuario",firebaseUser.getUid());
+        mascota.put("nombrePerro", nombrePerro);
+        mascota.put("razaPerro", razaPerro);
+        mascota.put("cuidadosPerro", cuidadosPerro);
+        mascota.put("edadPerro", edadPerro);
+        mascota.put("tamPerro", tamPerro);
+        db.collection("mascotas")
+                .add(mascota)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
+                            Intent i= new Intent(getApplication(), PrivacidadActivity.class);
+                            startActivity(i);
+                        }else{
+                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        progressDialog.dismiss();
+                    }
+                });
     }
 
+/*
     public void insertMascota(String url)
     {
         selectDuenio(url);
@@ -172,5 +235,5 @@ public class RegistroPerro extends AppCompatActivity {
             }
         }
     }
-
+*/
 }

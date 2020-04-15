@@ -76,15 +76,15 @@ public class NavigationPaseando extends AppCompatActivity {
 
         //textViewCorreo = (TextView)
         //textViewNombre = (TextView)findViewById(R.id.textViewNombre);
-        Bundle datoCorreo = getIntent().getExtras();
-        correo2 = datoCorreo.getString("datoCorreo");
-        String nombre = datoCorreo.getString("datoNombre");
+        //Bundle datoCorreo = getIntent().getExtras();
+        //correo2 = datoCorreo.getString("datoCorreo");
+        //String nombre = datoCorreo.getString("datoNombre");
         View headerView = navigationView.getHeaderView(0);
         textViewCorreo = (TextView) headerView.findViewById(R.id.textViewCorreo);
-        textViewCorreo.setText(correo2);
+        textViewCorreo.setText("");
 
         textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
-        textViewNombre.setText(nombre);
+        textViewNombre.setText("");
 
 
         btnNuevoP = (TextView)findViewById(R.id.btnNuevoPaseo);

@@ -134,17 +134,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ctrlBtnReg(View view) {
-        Intent intent;
-        intent = new Intent(MainActivity.this, Registro.class);
+        Intent intent = new Intent(getApplication(), Registro.class);
         startActivity(intent);
     }
-
-
-
+    public void ctrlBtnIngresar2(View view) {
+        Intent intent = new Intent(getApplication(), NavigationPaseando.class);
+        intent.putExtra(NavigationPaseando.nombre,"Esta linea no es necesaria, pero no la he podido quitar");
+        startActivity(intent);
+    }
     public void ctrlBtnIngresar(View view) {
-        //buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+txtCorreo.getText().toString()+"");
-        //buscarDuenio(c.direccionIP+"buscar_duenio.php?correo="+"root"+"");
-       // buscarMascota(c.direccionIP+"buscar_mascota.php?id_mascota=50");
         final String str_correo = txtCorreo.getText().toString().trim();
         String str_contrasena = txtPass.getText().toString().trim();
 
@@ -181,16 +179,19 @@ public class MainActivity extends AppCompatActivity {
                         //checking if success
                         if(task.isSuccessful()){
                             if (mAuth.getCurrentUser().isEmailVerified()){
+                                progressDialog.dismiss();
                                 Toast.makeText(MainActivity.this,"Bienvenido: "+ str_correo,Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(getApplicationContext(), NavigationPaseando.class);
+                                Intent intent = new Intent(getApplication(), NavigationPaseando.class);
+                                intent.putExtra(NavigationPaseando.nombre,"Esta linea no es necesaria, pero no la he podido quitar");
                                 startActivity(intent);
                             }else{
+                                progressDialog.dismiss();
                                 Toast.makeText(MainActivity.this,"Correo sin verificar",Toast.LENGTH_LONG).show();
                             }
                         }else{
+                            progressDialog.dismiss();
                             Toast.makeText(MainActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
                         }
-                        progressDialog.dismiss();
                     }
                 });
     }
@@ -214,12 +215,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Dialog dialog = new Dialog("Reestablecer contraseña","Se te ha enciado un correo para reestablecer la contraseña");
+                    progressDialog.dismiss();
+                    Dialog dialog = new Dialog("Importante","Se te ha enviado un correo para reestablecer la contraseña");
                     dialog.show(getSupportFragmentManager(),"");
                 }else{
+                    progressDialog.dismiss();
                     Toast.makeText(MainActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
-                progressDialog.dismiss();
             }
         });
     }
