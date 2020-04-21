@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -36,6 +37,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -75,6 +82,9 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     String lati;
     String longi;
     boolean bancosto = false;
+    ProgressDialog progressDialog;
+    FirebaseUser firebaseUser;
+    FirebaseFirestore db;
 
     @Override
     protected void onResume() {
@@ -164,6 +174,10 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         Bundle dato = getIntent().getExtras();
         datoCorreo = dato.getString("correo");
 
+        progressDialog = new ProgressDialog(this);
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        db = FirebaseFirestore.getInstance();
+
 
     }
 
@@ -209,8 +223,40 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-
     public void ctrlBtnAceptar(View view) {
+        if (bancosto == false) {
+            Toast.makeText(getApplicationContext(),"Por favor seleciona el tiempo",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        progressDialog.setMessage("Realizando registro...");
+        progressDialog.show();
+        //hacer el registro de datos
+        Map<String, Object> paseo = new HashMap<>();
+        paseo.put("id_usuario",firebaseUser.getUid());
+        paseo.put("latitud", Double.toString(lat) );//Double.toString(lat));
+        paseo.put("longitud",Double.toString(lon));//Double.toString(lon);
+        sacarHoras();
+        paseo.put("hora inico", horaIni);
+        paseo.put("hora fin",horaFin);
+        paseo.put("costo",costo);
+        db.collection("paseo")
+                .add(paseo)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
+                            finish();
+                        }else{
+                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        progressDialog.dismiss();
+                    }
+                });
+    }
+
+    public void ctrlBtnAceptarViejo(View view) {
 
         if (bancosto == false)
         {
