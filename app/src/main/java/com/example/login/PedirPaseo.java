@@ -240,6 +240,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         paseo.put("hora inico", horaIni);
         paseo.put("hora fin",horaFin);
         paseo.put("costo",costo);
+        paseo.put("id_paseador","");
         db.collection("paseo")
                 .add(paseo)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
