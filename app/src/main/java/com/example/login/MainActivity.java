@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -50,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     private EditText txtCorreo;
     private EditText txtPass;
-    TextView txtCorreoUs;
-    TextView txtNombreUs;
     TextView textView1;
     TextView tv_registrate;
     NavigationPaseando navigationPaseando = new NavigationPaseando();
@@ -74,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
+    private SharedPreferences preferences;
 
 
     @Override
@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         textView1 = (TextView) findViewById(R.id.textView1);
         txtCorreo.setText("");
         txtPass.setText("");
+
+        preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
 
         tv_registrate = (TextView) findViewById(R.id.tv_registrate);
         // Instantiate the RequestQueue.
@@ -131,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(this);
+        validaSesion();
     }
 
     public void ctrlBtnReg(View view) {
@@ -145,6 +148,11 @@ public class MainActivity extends AppCompatActivity {
     public void ctrlBtnIngresar(View view) {
         final String str_correo = txtCorreo.getText().toString().trim();
         String str_contrasena = txtPass.getText().toString().trim();
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("correo_",str_correo);
+        editor.putString("contrasenia",str_contrasena);
+        editor.commit();
 
         //obtenemos los valores de los EditText
         Codigos c = new Codigos ();
@@ -328,6 +336,18 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
+    private void validaSesion()
+    {
+        String correo = preferences.getString("correo_", null);
+        String contrasenia = preferences.getString("contrasenia", null);
+
+        if (correo != null && contrasenia != null)
+        {
+            finish();
+            Intent intent = new Intent(getApplication(), NavigationPaseando.class);
+            startActivity(intent);
+        }
+    }
 
 
         /*

@@ -1,6 +1,7 @@
 package com.example.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -43,6 +44,7 @@ public class NavigationPaseando extends AppCompatActivity {
     TextView btnNuevoP;
     Codigos c = new Codigos();
     View view;
+    private SharedPreferences preferences;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +68,7 @@ public class NavigationPaseando extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_mis_paseos, R.id.nav_cerrar_se,
+                R.id.nav_home, R.id.nav_mis_paseos,
                 R.id.nav_mascotas, R.id.nav_perfil, R.id.nav_acerca)
                 .setDrawerLayout(drawer)
                 .build();
@@ -79,13 +81,22 @@ public class NavigationPaseando extends AppCompatActivity {
         //Bundle datoCorreo = getIntent().getExtras();
         //correo2 = datoCorreo.getString("datoCorreo");
         //String nombre = datoCorreo.getString("datoNombre");
+        preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
+
+
+        String correo = preferences.getString("correo_", null);
+        String contrasenia = preferences.getString("contrasenia", null);
+
         View headerView = navigationView.getHeaderView(0);
         textViewCorreo = (TextView) headerView.findViewById(R.id.textViewCorreo);
-        textViewCorreo.setText("");
+        if (correo != null && contrasenia != null)
+        {
+            textViewCorreo.setText(correo.toString());
+        }
+
 
         textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
         textViewNombre.setText("");
-
 
         btnNuevoP = (TextView)findViewById(R.id.btnNuevoPaseo);
 
@@ -159,6 +170,8 @@ public class NavigationPaseando extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
     @Override
     public boolean onSupportNavigateUp() {

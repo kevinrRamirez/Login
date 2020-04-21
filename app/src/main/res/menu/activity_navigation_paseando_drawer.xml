@@ -41,13 +41,14 @@
                 android:id="@+id/nav_acerca"
                 android:icon="@drawable/ic_acerca"
                 android:title="@string/acerca_de" />
+            <!--
+                        <item
+                            android:id="@+id/nav_cerrar_se"
+                            android:icon="@drawable/ic_cerrar"
+                            android:title="@string/cerrar"/>
+                            -->
 
-            <item
-                android:id="@+id/nav_cerrar_se"
-                android:icon="@drawable/ic_cerrar"
-                android:title="@string/cerrar"/>
+                    </menu>
+                </item>
 
-        </menu>
-    </item>
-
-</menu>
+            </menu>

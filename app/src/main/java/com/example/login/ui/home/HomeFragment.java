@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment {
 
          */
         Bundle datoCorreo = getActivity().getIntent().getExtras();
-        String correo = datoCorreo.getString("datoCorreo");
+//        String correo = datoCorreo.getString("datoCorreo");
 
         //TextView text = (TextView) root.findViewById(R.id.txtPrbPaseo);
         //text.setText(correo);
