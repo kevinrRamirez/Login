@@ -192,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getApplication(), NavigationPaseando.class);
                                 intent.putExtra(NavigationPaseando.nombre,"Esta linea no es necesaria, pero no la he podido quitar");
                                 startActivity(intent);
+                                finish();
                             }else{
                                 progressDialog.dismiss();
                                 Toast.makeText(MainActivity.this,"Correo sin verificar",Toast.LENGTH_LONG).show();
