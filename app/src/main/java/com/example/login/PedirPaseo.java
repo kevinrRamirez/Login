@@ -185,7 +185,6 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String text = adapterView.getItemAtPosition(i).toString();
 
-
         if (text.equals("30 min"))
         {
             txtPrecio.setText("Costo: " +"\n"+" 25$");
@@ -234,14 +233,15 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         //hacer el registro de datos
         Map<String, Object> paseo = new HashMap<>();
         paseo.put("id_usuario",firebaseUser.getUid());
-        paseo.put("latitud", Double.toString(lat) );//Double.toString(lat));
-        paseo.put("longitud",Double.toString(lon));//Double.toString(lon);
+        paseo.put("latitud", Double.toString(lat) );
+        paseo.put("longitud",Double.toString(lon));
+        paseo.put("duracion",tiempo);
         sacarHoras();
-        paseo.put("hora inico", horaIni);
-        paseo.put("hora fin",horaFin);
+        paseo.put("hora_inico", horaIni);
+        paseo.put("hora_fin",horaFin);
         paseo.put("costo",costo);
         paseo.put("id_paseador","");
-        db.collection("paseo")
+        db.collection("paseos")
                 .add(paseo)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
