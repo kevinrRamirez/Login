@@ -8,11 +8,11 @@
         android:title="@string/ayuda"
         app:showAsAction="never" />
 
-<!--
+
     <item
-        android:id="@+id/action_ayuda"
+        android:id="@+id/action_salir"
         android:orderInCategory="100"
-        android:title="@string/ayuda"
+        android:title="@string/salir"
         app:showAsAction="never"/>
-        -->
+
 </menu>

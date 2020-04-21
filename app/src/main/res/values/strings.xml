@@ -36,6 +36,7 @@
     <string name="cancelar">Cancelar</string>
     <string name="nada"> </string>
     <string name="paseando">PaseAndo</string>
+    <string name="salir">cerrar sesión</string>
 
 
     <string name="no_tienes_cuenta">¿No tienes una cuenta?</string>

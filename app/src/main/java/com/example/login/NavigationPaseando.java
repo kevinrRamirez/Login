@@ -151,6 +151,10 @@ public class NavigationPaseando extends AppCompatActivity {
             //Uri uri = Uri.parse("https://waze.com/ul?q=19.285601C-99.5924230");//"https://www.waze.com/ul?ll=19.285601C-99.5924230&navigate=yes&zoom=17");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
+        }else if (id == R.id.action_salir)
+        {
+            Intent intent = new Intent(this,PopupSalir.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

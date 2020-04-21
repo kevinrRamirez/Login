@@ -16,12 +16,13 @@
         android:name="com.example.login.ui.gallery.GalleryFragment"
         android:label="@string/paseando"
         tools:layout="@layout/fragment_paseos" />
+    <!--
 
-    <fragment
-        android:id="@+id/nav_cerrar_se"
-        android:name="com.example.login.ui.slideshow.SlideshowFragment"
-        android:label="@string/paseando"
-        tools:layout="@layout/fragment_cerrar_se" />
+     <fragment
+         android:id="@+id/nav_cerrar_se"
+         android:name="com.example.login.ui.slideshow.SlideshowFragment"
+         android:label="@string/paseando"/>-->
+
 
     <fragment
         android:id="@+id/nav_mascotas"
