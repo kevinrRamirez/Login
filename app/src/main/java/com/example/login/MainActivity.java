@@ -31,6 +31,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -140,11 +145,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplication(), Registro.class);
         startActivity(intent);
     }
-    public void ctrlBtnIngresar2(View view) {
-        Intent intent = new Intent(getApplication(), NavigationPaseando.class);
-        intent.putExtra(NavigationPaseando.nombre,"Esta linea no es necesaria, pero no la he podido quitar");
-        startActivity(intent);
-    }
+
     public void ctrlBtnIngresar(View view) {
         final String str_correo = txtCorreo.getText().toString().trim();
         String str_contrasena = txtPass.getText().toString().trim();
@@ -187,12 +188,34 @@ public class MainActivity extends AppCompatActivity {
                         //checking if success
                         if(task.isSuccessful()){
                             if (mAuth.getCurrentUser().isEmailVerified()){
-                                progressDialog.dismiss();
-                                Toast.makeText(MainActivity.this,"Bienvenido: "+ str_correo,Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(getApplication(), NavigationPaseando.class);
-                                intent.putExtra(NavigationPaseando.nombre,"Esta linea no es necesaria, pero no la he podido quitar");
-                                startActivity(intent);
-                                finish();
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                                Query query = db.collection("usuarios").whereEqualTo("id", firebaseUser.getUid());
+                                query
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    //Toast.makeText(getApplicationContext(), "Exito", Toast.LENGTH_LONG).show();
+                                                    String nombre = "";
+                                                    String correo = "";
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        nombre = document.get("nombre").toString();
+                                                        correo = document.get("correo").toString();
+                                                    }
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(getApplication(),"Bienvenido "+nombre+correo,Toast.LENGTH_LONG).show();
+                                                    Intent intent = new Intent(getApplication(), NavigationPaseando.class);
+                                                    intent.putExtra(NavigationPaseando.nombre,"Esta linea no es necesaria, pero no la he podido quitar");
+                                                    startActivity(intent);
+                                                    finish();
+                                                } else {
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                                }
+                                            }
+                                        });
                             }else{
                                 progressDialog.dismiss();
                                 Toast.makeText(MainActivity.this,"Correo sin verificar",Toast.LENGTH_LONG).show();
@@ -233,6 +256,38 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    String str = "";
+    public  void selectDatosUsuario(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        Query query = db.collection("usuarios").whereEqualTo("id", firebaseUser.getUid());
+        query
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            //Toast.makeText(getApplicationContext(), "Exito", Toast.LENGTH_LONG).show();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                str
+                                        +=  "Nombre: \t" + document.get("nombre").toString()+ "\n"
+                                        +  "Correo: \t" + document.get("correo").toString()+ "\n";
+                            }
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplication(),"Bienvenido "+str,Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getApplication(), NavigationPaseando.class);
+                            intent.putExtra(NavigationPaseando.nombre,"Esta linea no es necesaria, pero no la he podido quitar");
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
 
     public void loDelIntent(){

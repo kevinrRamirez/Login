@@ -1,5 +1,6 @@
 package com.example.login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 
 import com.example.login.ui.home.HomeFragment;
 import com.google.android.gms.common.server.response.FastSafeParcelableJsonResponse;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.os.TestLooperManager;
@@ -22,6 +25,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -30,6 +41,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NavigationPaseando extends AppCompatActivity {
 
@@ -38,12 +50,10 @@ public class NavigationPaseando extends AppCompatActivity {
     private TextView textViewNombre;
     private FragmentManager supportFragmentManager;
     String correo2;
-
     TextView txtPrbPaseo;
     public static final String nombre="names";
     TextView btnNuevoP;
-    Codigos c = new Codigos();
-    View view;
+    private ProgressDialog progressDialog;
     private SharedPreferences preferences;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +92,6 @@ public class NavigationPaseando extends AppCompatActivity {
         //correo2 = datoCorreo.getString("datoCorreo");
         //String nombre = datoCorreo.getString("datoNombre");
         preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
-
-
         String correo = preferences.getString("correo_", null);
         String contrasenia = preferences.getString("contrasenia", null);
 
@@ -93,27 +101,14 @@ public class NavigationPaseando extends AppCompatActivity {
         {
             textViewCorreo.setText(correo.toString());
         }
-
-
         textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
         textViewNombre.setText("");
-
         btnNuevoP = (TextView)findViewById(R.id.btnNuevoPaseo);
 
 
-
-        //String corr = mainActivity.getCorre();
-        //String url = "buscar_duenio.php?correo=";//+corr+"";
-        // String usuario=getIntent().getStringExtra("names");
-        //usuario="orlasss";
-        //c.setNombre(usuario);
-        //btnNuevoP.setText("Bienvenido"+usuario);
-
     }
 
-   // public NavigationPaseando(TextView textViewCorreo) {
-      //  this.textViewCorreo = textViewCorreo;
-    //}
+
 
 
     public void cerrarApp(View view)

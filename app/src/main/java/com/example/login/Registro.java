@@ -130,9 +130,9 @@ public class Registro extends AppCompatActivity {
                                             Map<String, Object> usuario = new HashMap<>();
                                             usuario.put("nombre", nombre);
                                             usuario.put("apellidoPat", "");
-                                            usuario.put("apellidoMat", "");
                                             usuario.put("correo", correo);
                                             usuario.put("contrasena", pass);
+                                            usuario.put("id", firebaseUser.getUid());
                                             // Add a new document with a generated ID
                                             db.collection("usuarios")
                                                     .document(firebaseUser.getUid())
