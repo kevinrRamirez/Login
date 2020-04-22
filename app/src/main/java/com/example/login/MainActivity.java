@@ -150,10 +150,6 @@ public class MainActivity extends AppCompatActivity {
         final String str_correo = txtCorreo.getText().toString().trim();
         String str_contrasena = txtPass.getText().toString().trim();
 
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("correo_",str_correo);
-        editor.putString("contrasenia",str_contrasena);
-        editor.commit();
 
         //obtenemos los valores de los EditText
         Codigos c = new Codigos ();
@@ -206,9 +202,15 @@ public class MainActivity extends AppCompatActivity {
                                                     }
                                                     progressDialog.dismiss();
                                                     Toast.makeText(getApplication(),"Bienvenido "+nombre,Toast.LENGTH_LONG).show();
+                                                    /*
                                                     Intent intent = new Intent(getApplication(), NavigationPaseando.class);
                                                     intent.putExtra("datoNombre",nombre);
-                                                    intent.putExtra("datoCorreo",correo);                                                    startActivity(intent);
+                                                    intent.putExtra("datoCorreo",correo);
+                                                    startActivity(intent);
+                                                     */
+                                                    preferencias(correo,nombre);
+                                                    Intent intent = new Intent(getApplication(), NavigationPaseando.class);
+                                                    startActivity(intent);
                                                     finish();
                                                 } else {
                                                     progressDialog.dismiss();
@@ -288,6 +290,18 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+
+    private void preferencias(String str_cor, String str_nom)
+    {
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("correo_",str_cor);
+        editor.putString("nombre",str_nom);
+        editor.commit();
+
+
     }
 
     public void loDelIntent(){
@@ -395,9 +409,9 @@ public class MainActivity extends AppCompatActivity {
     private void validaSesion()
     {
         String correo = preferences.getString("correo_", null);
-        String contrasenia = preferences.getString("contrasenia", null);
+        String nombre = preferences.getString("nombre", null);
 
-        if (correo != null && contrasenia != null)
+        if (correo != null && nombre != null)
         {
             finish();
             Intent intent = new Intent(getApplication(), NavigationPaseando.class);

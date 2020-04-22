@@ -91,25 +91,36 @@ public class NavigationPaseando extends AppCompatActivity {
         //Bundle datoCorreo = getIntent().getExtras();
         //correo2 = datoCorreo.getString("datoCorreo");
         //String nombre = datoCorreo.getString("datoNombre");
-        preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
-        String correo = preferences.getString("correo_", null);
-        String contrasenia = preferences.getString("contrasenia", null);
+
+
 
         View headerView = navigationView.getHeaderView(0);
         textViewCorreo = (TextView) headerView.findViewById(R.id.textViewCorreo);
-        if (correo != null && contrasenia != null)
+
+        preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
+
+        String correo = preferences.getString("correo_", null);
+        String nombre = preferences.getString("nombre", null);
+        if (correo != null && nombre != null)
         {
             textViewCorreo.setText(correo.toString());
+            textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
+            textViewNombre.setText(nombre);
         }
 
-        Bundle b = getIntent().getExtras();
-        String bCorreo = b.getString("datoCorreo");
-        String bNombre = b.getString("datoNombre");
+/*
+          Bundle b = getIntent().getExtras();
+          String bCorreo = b.getString("datoCorreo");
+          String bNombre = b.getString("datoNombre");
 
-        textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
+
+
+       textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
         textViewNombre.setText(bNombre);
         textViewCorreo.setText(bCorreo);
         btnNuevoP = (TextView)findViewById(R.id.btnNuevoPaseo);
+
+ */
 
 
     }
