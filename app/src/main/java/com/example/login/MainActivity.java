@@ -205,10 +205,10 @@ public class MainActivity extends AppCompatActivity {
                                                         correo = document.get("correo").toString();
                                                     }
                                                     progressDialog.dismiss();
-                                                    Toast.makeText(getApplication(),"Bienvenido "+nombre+correo,Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getApplication(),"Bienvenido "+nombre,Toast.LENGTH_LONG).show();
                                                     Intent intent = new Intent(getApplication(), NavigationPaseando.class);
-                                                    intent.putExtra(NavigationPaseando.nombre,"Esta linea no es necesaria, pero no la he podido quitar");
-                                                    startActivity(intent);
+                                                    intent.putExtra("datoNombre",nombre);
+                                                    intent.putExtra("datoCorreo",correo);                                                    startActivity(intent);
                                                     finish();
                                                 } else {
                                                     progressDialog.dismiss();

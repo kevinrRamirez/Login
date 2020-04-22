@@ -101,8 +101,14 @@ public class NavigationPaseando extends AppCompatActivity {
         {
             textViewCorreo.setText(correo.toString());
         }
+
+        Bundle b = getIntent().getExtras();
+        String bCorreo = b.getString("datoCorreo");
+        String bNombre = b.getString("datoNombre");
+
         textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
-        textViewNombre.setText("");
+        textViewNombre.setText(bNombre);
+        textViewCorreo.setText(bCorreo);
         btnNuevoP = (TextView)findViewById(R.id.btnNuevoPaseo);
 
 
