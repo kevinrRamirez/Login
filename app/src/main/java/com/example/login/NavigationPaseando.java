@@ -44,6 +44,8 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
+
 public class NavigationPaseando extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -157,9 +159,45 @@ public class NavigationPaseando extends AppCompatActivity {
 
     public void ctrlBotonNuevoPaseo(View view)
     {
+
+        progressDialog.setMessage("Procesando...");
+        progressDialog.show();
+        CollectionReference collectionReference = db.collection("paseos");
+        collectionReference
+                .whereIn("status", Arrays.asList("0", "1","2"))
+                .whereEqualTo("id_usuario", firebaseUser.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            String str = "";
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                str +=  "status: \t" + document.get("status").toString()+ "\n";
+                            }
+                            if (str.equals("")){
+                                progressDialog.dismiss();
+                                Intent intent = new Intent(NavigationPaseando.this,PedirPaseo.class);
+                                intent.putExtra("correo",correo2);
+                                startActivity(intent);
+
+                            }else{
+                                progressDialog.dismiss();
+                                Dialog dialog = new Dialog("Aviso","Solo se puede realizar un servicio a la vez");
+                                dialog.show(getSupportFragmentManager(),"");
+                                return;
+                            }
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+/*
         Intent intent = new Intent(NavigationPaseando.this,PedirPaseo.class);
         intent.putExtra("correo",correo2);
         startActivity(intent);
+ */
     }
     public void ctrlBotonHospedaje(View view)
     {
@@ -172,7 +210,7 @@ public class NavigationPaseando extends AppCompatActivity {
         progressDialog.show();
         CollectionReference collectionReference = db.collection("paseos");
         collectionReference
-                .whereEqualTo("status", "1")
+                .whereIn("status", Arrays.asList("0", "1","2"))
                 .whereEqualTo("id_usuario", firebaseUser.getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -181,21 +219,29 @@ public class NavigationPaseando extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             String str = "";
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                str +=  "usuario: \t" + document.get("id_usuario").toString()+ "\n";
-                                str +=  "status: \t" + document.get("status").toString()+ "\n";
+                                str = document.get("status").toString();
+                            }
+                            if (str.equals("")){
+                                progressDialog.dismiss();
+                                Dialog dialog = new Dialog("Aviso","Realiza tu solicitud de paseo");
+                                dialog.show(getSupportFragmentManager(),"");
+                                return;
+                            }else if (str.equals("0")){
+                                progressDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "El paseo no ha sido aceptado aun", Toast.LENGTH_LONG).show();
+                            }else if (str.equals("1")){
+                                progressDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Paseador en camino", Toast.LENGTH_LONG).show();
+                            }else if (str.equals("2")){
+                                progressDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Paseo en proceso. Puedes ver el mapa", Toast.LENGTH_LONG).show();
                             }
                             progressDialog.dismiss();
-                            if (!str.equals("")){
-
-                            }else{
-                                Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG).show();
-
-                            }
-
                         } else {
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
+
                     }
                 });
     }
