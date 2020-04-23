@@ -232,6 +232,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         progressDialog.show();
         //hacer el registro de datos
         Map<String, Object> paseo = new HashMap<>();
+        paseo.put("id","");
         paseo.put("id_usuario",firebaseUser.getUid());
         paseo.put("latitud", Double.toString(lat) );
         paseo.put("longitud",Double.toString(lon));
@@ -240,7 +241,11 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         paseo.put("hora_inico", horaIni);
         paseo.put("hora_fin",horaFin);
         paseo.put("costo",costo);
+        paseo.put("mascotaInfo","");
         paseo.put("id_paseador","");
+        paseo.put("latitudPaseador","");
+        paseo.put("longitudPaseador","");
+        paseo.put("status","");
         db.collection("paseos")
                 .add(paseo)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
