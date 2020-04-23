@@ -295,13 +295,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void preferencias(String str_cor, String str_nom)
     {
-
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("correo_",str_cor);
         editor.putString("nombre",str_nom);
         editor.commit();
-
-
     }
 
     public void loDelIntent(){

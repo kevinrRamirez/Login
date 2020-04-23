@@ -102,15 +102,14 @@ public class NavigationPaseando extends AppCompatActivity {
 
         View headerView = navigationView.getHeaderView(0);
         textViewCorreo = (TextView) headerView.findViewById(R.id.textViewCorreo);
+        textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
 
         preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
-
         String correo = preferences.getString("correo_", null);
         String nombre = preferences.getString("nombre", null);
         if (correo != null && nombre != null)
         {
-            textViewCorreo.setText(correo.toString());
-            textViewNombre = (TextView) headerView.findViewById(R.id.textViewNombre);
+            textViewCorreo.setText(correo);
             textViewNombre.setText(nombre);
         }
 
@@ -193,11 +192,13 @@ public class NavigationPaseando extends AppCompatActivity {
                         }
                     }
                 });
-/*
-        Intent intent = new Intent(NavigationPaseando.this,PedirPaseo.class);
-        intent.putExtra("correo",correo2);
-        startActivity(intent);
- */
+    }
+    private void preferencias(String str_cor, String str_nom)
+    {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("correo_",str_cor);
+        editor.putString("nombre",str_nom);
+        editor.commit();
     }
     public void ctrlBotonHospedaje(View view)
     {
