@@ -291,6 +291,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
     {
         Intent intent;
         intent = new Intent(view.getContext(), OtraUbicacionActivity.class);
+        Toast.makeText(getApplicationContext(), lon +" "+lat, Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
 
