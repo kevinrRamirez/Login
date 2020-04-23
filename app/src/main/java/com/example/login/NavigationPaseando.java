@@ -175,7 +175,7 @@ public class NavigationPaseando extends AppCompatActivity {
                                 str +=  "status: \t" + document.get("status").toString()+ "\n";
                             }
                             if (str.equals("")){
-                                progressDialog.dismiss();
+                                //progressDialog.dismiss();
                                 Intent intent = new Intent(NavigationPaseando.this,PedirPaseo.class);
                                 intent.putExtra("correo",correo2);
                                 startActivity(intent);
@@ -218,31 +218,42 @@ public class NavigationPaseando extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            String str = "";
+                            String str_status = "";
+                            String str_infoPaseo = "";
+                            String str_idPaseo = "";
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                str = document.get("status").toString();
+                                str_status = document.get("status").toString();
+                                str_idPaseo = document.get("id").toString();
+                                str_infoPaseo = "Detalles:\n"+
+                                        "Costo: $"+document.get("costo").toString()+".00 MNX\n"+
+                                        "Duracion: "+document.get("duracion").toString()+"\n"+
+                                        "Hora inicio: "+document.get("hora_inico").toString()+"\n"+
+                                        "Hora fin: "+document.get("hora_fin").toString()+"\n";
                             }
-                            if (str.equals("")){
+                            if (str_status.equals("")){
                                 progressDialog.dismiss();
                                 Dialog dialog = new Dialog("Aviso","Realiza tu solicitud de paseo");
                                 dialog.show(getSupportFragmentManager(),"");
                                 return;
-                            }else if (str.equals("0")){
-                                progressDialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "El paseo no ha sido aceptado aun", Toast.LENGTH_LONG).show();
-                            }else if (str.equals("1")){
-                                progressDialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "Paseador en camino", Toast.LENGTH_LONG).show();
-                            }else if (str.equals("2")){
-                                progressDialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "Paseo en proceso. Puedes ver el mapa", Toast.LENGTH_LONG).show();
+                            }else if (str_status.equals("0")){
+                                str_infoPaseo += "***El paseo no ha sido aceptado aun***";
+                            }else if (str_status.equals("1")){
+                                str_infoPaseo += "***Paseador en camino***";
+                            }else if (str_status.equals("2")){
+                                str_infoPaseo += "***Paseo en proceso. Puedes ver el mapa***";
                             }
                             progressDialog.dismiss();
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("str_idPaseo",str_idPaseo);
+                            editor.putString("str_infoPaseo",str_infoPaseo);
+                            editor.putString("str_status",str_status);
+                            editor.commit();
+                            Intent intent = new Intent(getApplication(), SeguimientoActivity.class);
+                            startActivity(intent);
                         } else {
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
-
                     }
                 });
     }

@@ -91,6 +91,9 @@
     <string name="Restablecer_contraseña">Restablecer contraseña</string>
     <string name="title_activity_prueba_mapa">Map</string>
     <string name="Seguimiento">Seguimiento</string>
+    <string name="Aceptar">Aceptar</string>
+    <string name="Detalles">Detalles</string>
+    <string name="Mapa">Mapa</string>
 
 
 </resources>
