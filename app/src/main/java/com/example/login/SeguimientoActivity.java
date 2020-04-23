@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SeguimientoActivity extends AppCompatActivity {
     private SharedPreferences preferences;
@@ -33,7 +34,7 @@ public class SeguimientoActivity extends AppCompatActivity {
         if (str_status != null)
         {
             if(str_status.equals("0")||str_status.equals("1") ){
-            btnVerMapa.setVisibility(View.INVISIBLE);
+                btnVerMapa.setVisibility(View.INVISIBLE);
             }else if (str_status.equals("2")){
                 btnVerMapa.setVisibility(View.VISIBLE);
             }
@@ -46,5 +47,6 @@ public class SeguimientoActivity extends AppCompatActivity {
     }
 
     public void ctrlBtnVerMapa(View view){
+        Toast.makeText(this, "Ver mapa", Toast.LENGTH_LONG).show();
     }
 }

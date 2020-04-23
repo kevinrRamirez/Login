@@ -224,11 +224,14 @@ public class NavigationPaseando extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 str_status = document.get("status").toString();
                                 str_idPaseo = document.get("id").toString();
-                                str_infoPaseo = "Detalles:\n"+
-                                        "Costo: $"+document.get("costo").toString()+".00 MNX\n"+
-                                        "Duracion: "+document.get("duracion").toString()+"\n"+
+                                str_infoPaseo += "****  El paseo no ha sido aceptado aun  ****";
+                                str_infoPaseo += "*****        Paseador en camino        *****";
+                                str_infoPaseo += "*** Paseo en proceso. Puedes ver el mapa ***";
+                                str_infoPaseo = "***********        DETALLES         **********\n\n"+
+                                        "Costo:       $"+document.get("costo").toString()+".00 MNX\n"+
+                                        "Duracion:    "+document.get("duracion").toString()+"\n"+
                                         "Hora inicio: "+document.get("hora_inico").toString()+"\n"+
-                                        "Hora fin: "+document.get("hora_fin").toString()+"\n";
+                                        "Hora fin:    "+document.get("hora_fin").toString()+"\n\n";
                             }
                             if (str_status.equals("")){
                                 progressDialog.dismiss();
@@ -236,11 +239,11 @@ public class NavigationPaseando extends AppCompatActivity {
                                 dialog.show(getSupportFragmentManager(),"");
                                 return;
                             }else if (str_status.equals("0")){
-                                str_infoPaseo += "***El paseo no ha sido aceptado aun***";
+                                str_infoPaseo += "*** El paseo no ha sido aceptado aun  ***";
                             }else if (str_status.equals("1")){
-                                str_infoPaseo += "***Paseador en camino***";
+                                str_infoPaseo += "****         Paseador en camino         ****";
                             }else if (str_status.equals("2")){
-                                str_infoPaseo += "***Paseo en proceso. Puedes ver el mapa***";
+                                str_infoPaseo += "*** Paseo en proceso. Puedes ver el mapa  ***";
                             }
                             progressDialog.dismiss();
                             SharedPreferences.Editor editor = preferences.edit();
