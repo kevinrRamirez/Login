@@ -319,7 +319,6 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
 
         lon = location.getLongitude();
         lat = location.getLatitude();
-        // Add a marker in Sydney and move the camera
 
         LatLng ubicacion = new LatLng(lat, lon);
         //mMap.addMarker(new MarkerOptions().position(ubicacion).title("Mi Ubicación"));
@@ -327,11 +326,11 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
 
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion,15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion,17));
 
         Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
         try {
-            List<Address> direccion = geocoder.getFromLocation( location.getLatitude(), location.getLongitude(),1);
+            List<Address> direccion = geocoder.getFromLocation( lat , lon,1);
             direc = direccion.get(0).getAddressLine(0);
             txtUbicacion.setText(direc);
         } catch (IOException e) {

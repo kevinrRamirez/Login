@@ -1,11 +1,18 @@
 package com.example.login;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
@@ -29,7 +36,9 @@ public class OtraUbicacionActivity extends FragmentActivity implements OnMapRead
     SearchView searchView;
     TextView txtUbi;
     List<Address> addressList = null;
-    List<Address>  direccion;
+    List<Address> direccion;
+    private Location location;
+    private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +53,11 @@ public class OtraUbicacionActivity extends FragmentActivity implements OnMapRead
                 String location = searchView.getQuery().toString();
 
 
-                if (location != null || !location.equals(""))
-                {
+                if (location != null || !location.equals("")) {
                     Geocoder geocoder = new Geocoder(OtraUbicacionActivity.this);
 
                     try {
-                        addressList = geocoder.getFromLocationName(location,1);
+                        addressList = geocoder.getFromLocationName(location, 1);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -57,13 +65,14 @@ public class OtraUbicacionActivity extends FragmentActivity implements OnMapRead
                     Address address = addressList.get(0);
                     LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(latLng).title(location));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
 
                     Geocoder geocoder2 = new Geocoder(getApplicationContext(), Locale.getDefault());
 
                     try {
-                        direccion = geocoder2.getFromLocation(address.getLatitude(),address.getLongitude(),1);
-                        txtUbi.setText(direccion.get(0).getAddressLine(0));
+                        direccion = geocoder2.getFromLocation(address.getLatitude(), address.getLongitude(), 1);
+                        txtUbi.setText(direccion.get(2).getAddressLine(2));
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -82,11 +91,26 @@ public class OtraUbicacionActivity extends FragmentActivity implements OnMapRead
         smp.getMapAsync(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    Activity#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for Activity#requestPermissions for more details.
+            return;
+        }
+        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        LatLng ubicacion = new LatLng(location.getLatitude(), location.getLongitude());
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion,17));
     }
 
     public double coorLat()
