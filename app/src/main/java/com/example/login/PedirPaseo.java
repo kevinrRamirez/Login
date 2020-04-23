@@ -245,7 +245,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
         paseo.put("id_paseador","");
         paseo.put("latitudPaseador","");
         paseo.put("longitudPaseador","");
-        paseo.put("status","");
+        paseo.put("status","0");
         db.collection("paseos")
                 .add(paseo)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {

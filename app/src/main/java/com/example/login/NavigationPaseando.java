@@ -27,6 +27,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -55,6 +56,9 @@ public class NavigationPaseando extends AppCompatActivity {
     TextView btnNuevoP;
     private ProgressDialog progressDialog;
     private SharedPreferences preferences;
+
+    FirebaseFirestore db;
+    FirebaseUser firebaseUser;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +126,10 @@ public class NavigationPaseando extends AppCompatActivity {
 
  */
 
+        db = FirebaseFirestore.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        progressDialog = new ProgressDialog(this);
+
 
     }
 
@@ -157,6 +165,39 @@ public class NavigationPaseando extends AppCompatActivity {
     {
         Intent intent = new Intent(view.getContext(),Hospedaje.class);
         startActivity(intent);
+    }
+    public void ctrlBotonSeguimiento(View view)
+    {
+        progressDialog.setMessage("Procesando...");
+        progressDialog.show();
+        CollectionReference collectionReference = db.collection("paseos");
+        collectionReference
+                .whereEqualTo("status", "1")
+                .whereEqualTo("id_usuario", firebaseUser.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            String str = "";
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                str +=  "usuario: \t" + document.get("id_usuario").toString()+ "\n";
+                                str +=  "status: \t" + document.get("status").toString()+ "\n";
+                            }
+                            progressDialog.dismiss();
+                            if (!str.equals("")){
+
+                            }else{
+                                Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG).show();
+
+                            }
+
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
