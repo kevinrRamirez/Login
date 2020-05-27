@@ -100,7 +100,7 @@ public class Registro extends AppCompatActivity {
                 Toast.makeText(this, "Ingresar Nombre y Apellido de forma correcta", Toast.LENGTH_LONG).show();
                 return;
             } else if (!c.validacionCorreo(correo)) {
-                Toast.makeText(this, "Correo electronico invalido", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Correo electrónico invalido", Toast.LENGTH_LONG).show();
                 return;
             } else if (!(pass.length() >= 6)) {
                 Toast.makeText(this, "Se requiere una contraseña mayor a 5 caracteres", Toast.LENGTH_LONG).show();

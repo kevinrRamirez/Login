@@ -8,23 +8,23 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">Inicio</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="login_ingresar">Ingresar</string>
-    <string name="login_registro">Registrate</string>
+    <string name="login_registro">Regístrate</string>
     <string name="nav_pas_pedirpaseo">Nuevo Paseo</string>
 
-    <string name="correo_electronio">Correo electronico</string>
+    <string name="correo_electronio">Correo electrónico</string>
     <string name="acerca_de">Acerca de</string>
     <string name="acerca_de_paseando">Acerca de PaseAndo</string>
     <string name="perfil">Perfil</string>
     <string name="cerrar">Cerrar sesión</string>
     <string name="nombre_de_usuario">Nombre de usuario</string>
-    <string name="direccion">Direccion</string>
+    <string name="direccion">Dirección</string>
     <string name="nombre_de_la_mascota">Nombre de la mascota</string>
     <string name="edad_de_la_mascota">Edad de la Mascota</string>
     <string name="convierte_paseador">Conviertete en Paseador</string>
@@ -36,7 +36,7 @@
     <string name="cancelar">Cancelar</string>
     <string name="nada"> </string>
     <string name="paseando">PaseAndo</string>
-    <string name="salir">cerrar sesión</string>
+    <string name="salir">Cerrar sesión</string>
 
 
     <string name="no_tienes_cuenta">¿No tienes una cuenta?</string>
@@ -56,7 +56,7 @@
     <string name="nuevo_hospedaje">Nuevo Hospedaje</string>
     <string name="debes_descargar_la_aplicacion">Debes descargar la aplicación PaseAndo Paseador</string>
     <string name="mascotas">Mascotas</string>
-    <string name="en_construcion">En Construccion</string>
+    <string name="en_construcion">En Construcción</string>
     <string name="informacion_mascota">informacion de la mascota</string>
     <string name="mision">Misión</string>
     <string name="texto_mision">Somos una empresa centrada en el cuidado de perros, siendo el vínculo entre el paseador y el dueño, ayudándolo a administrar su tiempo y no descuidar el bienestar de su mascota.</string>
@@ -85,7 +85,7 @@
     <string name="raza">Raza</string>
     <string name="cuidados">Cuidados</string>
     <string name="nuevo_paseo">Nuevo paseo</string>
-    <string name="aceptar_politicas">Lei el aviso de privacidad y estoy de acuerdo</string>
+    <string name="aceptar_politicas">Leí el aviso de privacidad y estoy de acuerdo</string>
     <string name="preguntas_frecuentes">Preguntas frecuentes</string>
     <string name="texto_aviso">¿Cómo puedo volverme paseador ? \nDescarga nuestra aplicación PaseAndo paseador y solo regístrate. \n ¿Cómo son los paseos? \nLos paseos son caminando, ya que consideramos que es la mejor forma de alegrar el día, ejercitando y sociabilizando.  \n¿Cuál es el costo de los paseos? \nEs de 25 pesos por 30 min, 40 por un hora, 60 por dos horas. \n¿Cuál es la forma de pago? \nPor ahora solo contamos con método en efectivo.   \n¿Qué NO debo hacer si mi perro es agresivo?\n •\tProvocar la agresividad. •\tEsperar que se arregle solo. •\tLiderar erróneamente la manada. •\tImponerse sobre el perro. •\tGolpearle o castigarle. •\tReforzar la agresividad. •\tOlvidar que el perro puede suponer un riesgo. \nEstos puntos pueden reforzar esa conducta agresiva. · \n¿Qué SÍ debo hacer si mi perro es agresivo?\n •\tSeguridad ante todo. •\tEvitar las situaciones agresivas. •\tGánatelo todo, amigo. •\tUniformizar la relación con el perro. •\tRutina de actividades. •\tObediencia en positivo.</string>
     <string name="Restablecer_contraseña">Restablecer contraseña</string>

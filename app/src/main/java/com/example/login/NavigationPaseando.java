@@ -175,7 +175,7 @@ public class NavigationPaseando extends AppCompatActivity {
                                 str +=  "status: \t" + document.get("status").toString()+ "\n";
                             }
                             if (str.equals("")){
-                                //progressDialog.dismiss();
+                                progressDialog.dismiss();
                                 Intent intent = new Intent(NavigationPaseando.this,PedirPaseo.class);
                                 intent.putExtra("correo",correo2);
                                 startActivity(intent);

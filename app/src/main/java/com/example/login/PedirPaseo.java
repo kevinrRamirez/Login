@@ -228,8 +228,8 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
             return;
         }
 
-        progressDialog.setMessage("Realizando registro...");
-        progressDialog.show();
+       // progressDialog.setMessage("Realizando registro...");
+        //progressDialog.show();
         //hacer el registro de datos
         Map<String, Object> paseo = new HashMap<>();
         paseo.put("id","");
@@ -257,7 +257,7 @@ public class PedirPaseo extends AppCompatActivity implements OnMapReadyCallback,
                         }else{
                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
                     }
                 });
     }

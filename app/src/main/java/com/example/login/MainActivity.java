@@ -167,11 +167,11 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         if (!c.validacionCorreo(str_correo)){
-            txtCorreo.setError("Invalido");
+            txtCorreo.setError("Inválido");
             return;
         }
         if (str_contrasena.length()<6){
-            txtPass.setError("Minimo 6 caracteres");
+            txtPass.setError("Mínimo 6 caracteres");
             return;
         }
         progressDialog.setMessage("Procesando...");
