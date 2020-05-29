@@ -106,7 +106,7 @@ public class NavigationPaseando extends AppCompatActivity {
 
         preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
         String correo = preferences.getString("correo_", null);
-        String nombre = preferences.getString("nombre", null);
+        String nombre = preferences.getString("nombre_", null);
         if (correo != null && nombre != null)
         {
             textViewCorreo.setText(correo);

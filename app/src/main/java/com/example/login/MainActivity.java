@@ -32,6 +32,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
     private SharedPreferences preferences;
+
 
 
     @Override
@@ -196,20 +198,24 @@ public class MainActivity extends AppCompatActivity {
                                                     //Toast.makeText(getApplicationContext(), "Exito", Toast.LENGTH_LONG).show();
                                                     String nombre = "";
                                                     String correo = "";
+                                                    String name = "";
+                                                    String email = "";
                                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                                         nombre = document.get("nombre").toString();
+                                                         name = document.get("nombre").toString();
                                                         correo = document.get("correo").toString();
+                                                         email= document.get("correo").toString();
                                                     }
                                                     progressDialog.dismiss();
                                                     Toast.makeText(getApplication(),"Bienvenido "+nombre,Toast.LENGTH_LONG).show();
-                                                    /*
+
                                                     Intent intent = new Intent(getApplication(), NavigationPaseando.class);
                                                     intent.putExtra("datoNombre",nombre);
                                                     intent.putExtra("datoCorreo",correo);
                                                     startActivity(intent);
-                                                     */
-                                                    preferencias(correo,nombre);
-                                                    Intent intent = new Intent(getApplication(), NavigationPaseando.class);
+
+                                                    //Intent intent = new Intent(getApplication(), NavigationPaseando.class);
+                                                    preferencias(email,name);
                                                     startActivity(intent);
                                                     finish();
                                                 } else {
@@ -297,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
     {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("correo_",str_cor);
-        editor.putString("nombre",str_nom);
+        editor.putString("nombre_",str_nom);
         editor.commit();
     }
 
@@ -406,7 +412,7 @@ public class MainActivity extends AppCompatActivity {
     private void validaSesion()
     {
         String correo = preferences.getString("correo_", null);
-        String nombre = preferences.getString("nombre", null);
+        String nombre = preferences.getString("nombre_", null);
 
         if (correo != null && nombre != null)
         {
