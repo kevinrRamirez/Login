@@ -1,7 +1,9 @@
 package com.example.login;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Context;
@@ -17,14 +19,28 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SeguimientoActivity extends AppCompatActivity implements OnMapReadyCallback {
     private SharedPreferences preferences;
@@ -37,6 +53,13 @@ public class SeguimientoActivity extends AppCompatActivity implements OnMapReady
     private double lat;
     private double lon;
     private DatabaseReference databaseReference;
+
+
+    FusedLocationProviderClient fusedLocationProviderClient;
+    LocationRequest locationRequest;
+    LocationCallback locationCallBack;
+    private static final int PERMISSIONS_FINE_LOCATION = 99;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +93,34 @@ public class SeguimientoActivity extends AppCompatActivity implements OnMapReady
         mapView.getMapAsync(this);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        db = FirebaseFirestore.getInstance();
+
+        //inicio locattion
+        locationRequest = new LocationRequest();
+        locationRequest.setInterval(1000);
+        locationRequest.setFastestInterval(1000);
+        //locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);//use GPS (mayor presicion)
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);//use Torrres y Wifi
+        //event that is triggered whenever the update interval is met (1000)
+        locationCallBack = new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+                //save the location
+                Location location = locationResult.getLastLocation();
+                updateLatLon(location);
+            }
+        };
+        //fin location
+        //updateGPS();
+
+        if (str_status.equals("2")){
+            //activar el gps
+            updateGPS();
+            //variable para detectar los cambios de ubicacion
+            fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallBack, null);
+        }
+
     }
 
     public void ctrlBtnAceptar(View view) {
@@ -145,4 +196,37 @@ public class SeguimientoActivity extends AppCompatActivity implements OnMapReady
     }
 
  */
+
+    public void updateLatLon(Location location){
+
+        Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_LONG).show();
+        //String aux ="EUcfgCXaUhlGy0pyRm9Y";
+
+        LatLng ubicacion = new LatLng(location.getLongitude(), location.getLatitude());
+        mMap.addMarker(new MarkerOptions().position(ubicacion).title("Paseador"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
+
+    }
+
+    public void updateGPS(){
+        //get permissions from the user ti track GPS
+        //get current location from the fused client
+        //update the UI - i.e. set all properties in their associated text view items
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            //user provided the permission
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    //we got permissions. Put the values of location
+                    //Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_LONG).show();
+                }
+            });
+        }else{
+            //permission not granted yet
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION},PERMISSIONS_FINE_LOCATION);
+            }
+        }
+    }
 }
