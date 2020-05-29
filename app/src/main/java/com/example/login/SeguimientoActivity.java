@@ -36,9 +36,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -198,14 +202,41 @@ public class SeguimientoActivity extends AppCompatActivity implements OnMapReady
  */
 
     public void updateLatLon(Location location){
+        String str_idPaseo = "EUcfgCXaUhlGy0pyRm9Y";
 
-        Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_LONG).show();
+        CollectionReference collectionReference = db.collection("paseos");
+        collectionReference
+                .whereEqualTo("id", str_idPaseo)
+                .whereEqualTo("status", "2")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            String la = "",lo = "";
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                la +=  document.get("latitudPaseador").toString();
+                                lo +=  document.get("longitudPaseador").toString();
+                                break;
+                            }
+                            Toast.makeText(getApplicationContext(), la+","+lo, Toast.LENGTH_LONG).show();
+                            LatLng ubicacion = new LatLng(Double.valueOf(la),Double.valueOf(lo) );
+                            mMap.addMarker(new MarkerOptions().position(ubicacion).title("Mi Ubicación"));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+        //Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_LONG).show();
         //String aux ="EUcfgCXaUhlGy0pyRm9Y";
 
+        /*
         LatLng ubicacion = new LatLng(location.getLongitude(), location.getLatitude());
         mMap.addMarker(new MarkerOptions().position(ubicacion).title("Paseador"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
-
+*/
     }
 
     public void updateGPS(){
