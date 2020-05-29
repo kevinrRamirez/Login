@@ -220,11 +220,17 @@ public class NavigationPaseando extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             String str_status = "";
                             String str_infoPaseo = "";
+                            String str_infoPaseo1 = "";
                             String str_idPaseo = "";
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 str_status = document.get("status").toString();
                                 str_idPaseo = document.get("id").toString();
                                 str_infoPaseo = "***********        DETALLES         **********\n\n"+
+                                        "Costo:       $"+document.get("costo").toString()+".00 MNX\n"+
+                                        "Duracion:    "+document.get("duracion").toString()+"\n"+
+                                        "Hora inicio: "+document.get("hora_inico").toString()+"\n"+
+                                        "Hora fin:    "+document.get("hora_fin").toString()+"\n\n";
+                                str_infoPaseo1 =
                                         "Costo:       $"+document.get("costo").toString()+".00 MNX\n"+
                                         "Duracion:    "+document.get("duracion").toString()+"\n"+
                                         "Hora inicio: "+document.get("hora_inico").toString()+"\n"+
@@ -236,9 +242,17 @@ public class NavigationPaseando extends AppCompatActivity {
                                 dialog.show(getSupportFragmentManager(),"");
                                 return;
                             }else if (str_status.equals("0")){
-                                str_infoPaseo += "****  El paseo no ha sido aceptado aun  ****";
+                                str_infoPaseo += "****  El paseo no ha sido aceptado aún  ****";
+                                progressDialog.dismiss();
+                                Dialog dialog = new Dialog("Detalles",str_infoPaseo1+"\nEl paseo no ha sido aceptado aún ");
+                                dialog.show(getSupportFragmentManager(),"");
+                                return;
                             }else if (str_status.equals("1")){
                                 str_infoPaseo += "*****        Paseador en camino        *****";
+                                progressDialog.dismiss();
+                                Dialog dialog = new Dialog("Detalles",str_infoPaseo1+"\nPaseador en camino a tu domicilio");
+                                dialog.show(getSupportFragmentManager(),"");
+                                return;
                             }else if (str_status.equals("2")){
                                 str_infoPaseo += "*** Paseo en proceso. Puedes ver el mapa ***";
                             }
