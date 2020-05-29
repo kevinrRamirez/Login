@@ -4,12 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -29,6 +33,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -203,6 +209,18 @@ public class SeguimientoActivity extends AppCompatActivity implements OnMapReady
 
  */
 
+    //Para el icono
+
+private BitmapDescriptor bitmapDescriptor(Context context, int vector)
+{
+    Drawable vectorDrawable = ContextCompat.getDrawable(context,vector);
+    vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
+    Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+    Canvas canvas = new Canvas(bitmap);
+    vectorDrawable.draw(canvas);
+    return BitmapDescriptorFactory.fromBitmap(bitmap);
+}
+
     public void updateLatLon(Location location){
         //String str_idPaseo = "EUcfgCXaUhlGy0pyRm9Y";
 
@@ -221,9 +239,10 @@ public class SeguimientoActivity extends AppCompatActivity implements OnMapReady
                                 lo +=  document.get("longitudPaseador").toString();
                                 break;
                             }
-                            Toast.makeText(getApplicationContext(), la+","+lo, Toast.LENGTH_LONG).show();
+                           // Toast.makeText(getApplicationContext(), la+","+lo, Toast.LENGTH_LONG).show();
                             LatLng ubicacion = new LatLng(Double.valueOf(la),Double.valueOf(lo) );
-                            mMap.addMarker(new MarkerOptions().position(ubicacion).title("Mi Ubicación"));
+                            mMap.addMarker(new MarkerOptions().position(ubicacion).title("Mi Ubicación")
+                                    .icon(bitmapDescriptor(getApplicationContext(),R.drawable.ic_ubication_dog)));
                             mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
 
                         } else {
