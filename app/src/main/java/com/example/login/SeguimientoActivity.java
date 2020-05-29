@@ -64,6 +64,7 @@ public class SeguimientoActivity extends AppCompatActivity implements OnMapReady
     LocationCallback locationCallBack;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
     FirebaseFirestore db;
+    String str_idPaseo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,7 @@ public class SeguimientoActivity extends AppCompatActivity implements OnMapReady
         //btnVerMapa = (Button) findViewById(R.id.btnVerMapa);
 
         preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
-        String str_idPaseo = preferences.getString("str_idPaseo", null);
+        str_idPaseo = preferences.getString("str_idPaseo", null);
         String str_infoPaseo = preferences.getString("str_infoPaseo", null);
         String str_status = preferences.getString("str_status", null);
         if (str_idPaseo != null && str_infoPaseo != null && str_status != null) {
@@ -202,7 +203,7 @@ public class SeguimientoActivity extends AppCompatActivity implements OnMapReady
  */
 
     public void updateLatLon(Location location){
-        String str_idPaseo = "EUcfgCXaUhlGy0pyRm9Y";
+        //String str_idPaseo = "EUcfgCXaUhlGy0pyRm9Y";
 
         CollectionReference collectionReference = db.collection("paseos");
         collectionReference
