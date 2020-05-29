@@ -79,7 +79,8 @@ public class SeguimientoActivity extends AppCompatActivity implements OnMapReady
         String str_infoPaseo = preferences.getString("str_infoPaseo", null);
         String str_status = preferences.getString("str_status", null);
         if (str_idPaseo != null && str_infoPaseo != null && str_status != null) {
-            textView.setText(str_idPaseo + "\n" + str_infoPaseo + "\n" + str_status + "\n");
+            //textView.setText(str_idPaseo + "\n" + str_infoPaseo + "\n" + str_status + "\n");
+            textView.setText("\n" + str_infoPaseo + "\n");
         }
         /*
         if (str_status != null)

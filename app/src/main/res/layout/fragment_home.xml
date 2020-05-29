@@ -50,19 +50,6 @@
                 tools:text="------------" />
 
             <TextView
-                android:id="@+id/btnNuevoHospedaje"
-                android:layout_width="299dp"
-                android:layout_height="90dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/borde_menu"
-                android:gravity="center"
-                android:onClick="ctrlBotonHospedaje"
-                android:text="@string/nuevo_hospedaje"
-                android:textColor="@color/colorPrimary"
-                android:textSize="30sp" />
-
-            <TextView
                 android:id="@+id/btnSeguimiento"
                 android:layout_width="299dp"
                 android:layout_height="90dp"
